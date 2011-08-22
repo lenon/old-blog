@@ -23,7 +23,7 @@ get "/" do
   haml :index
 end
 
-get "/:slug" do
+get "/post/:slug" do
   @post = Post.find_by_slug(params[:slug])
   haml :post
 end

@@ -1,5 +1,5 @@
 - @posts.each do |post|
   %div{ :id => "post-#{post.id}", :class => "post" }
     %h2.post-title
-      %a{ :href => "/#{post.slug}" } #{post.title}
+      %a{ :href => "/post/#{post.slug}" } #{post.title}
     =post.content
