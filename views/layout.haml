@@ -3,11 +3,15 @@
   %head
     %meta{ :charset => "utf-8" }
     %title Lenon Marcel #{if @title.nil? then ' | Blog' else ' | ' + @title end}
+    %link{ :rel => "stylesheet", :href => "http://fonts.googleapis.com/css?family=Arvo" }
+    %link{ :rel => "stylesheet", :href => "/stylesheets/app.css" }
   %body
     #container{ :dir => "ltr" }
       %header#header
-        %h1 Lenon Marcel
-        %h2 forever programmer
+        %hgroup
+          %a{ :href => "/" }
+            %h1 Lenon Marcel
+            %h2 forever programmer
       #main{ :role => "main" }
         =yield
-      %footer &copy #{Time.now.year} Lenon Marcel
+      %footer#footer &copy #{Time.now.year} Lenon Marcel

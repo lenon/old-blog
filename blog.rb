@@ -1,7 +1,6 @@
 require "rubygems"
 require "sinatra"
 require "haml"
-require "sass"
 require "mongoid"
 require "mongoid_slug"
 
@@ -13,7 +12,6 @@ configure do
   set :public, File.join(File.dirname(__FILE__), 'public')
   set :views, File.join(File.dirname(__FILE__), 'views')
   set :haml, { :format => :html5 }
-  set :sass, { :style => :compressed } if ENV['RACK_ENV'] == 'production'
 
   Mongoid.configure do |config|
     config.master = Mongo::Connection.new.db("my_blog")

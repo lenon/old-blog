@@ -1,0 +1,73 @@
+@import "reset";
+
+@mixin fixed-width {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+body {
+  font: 13px/18px Arial, sans-serif;
+  background: #f0f0f0;
+  color: #333;
+}
+
+a {
+  color: brown;
+  text-decoration: none;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+#header {
+  background: brown;
+  color: #fff;
+  padding: 15px 0;
+  text-shadow: 1px 1px #000;
+  border-bottom: 1px solid #000;
+
+  h1 {
+    font: 24px/30px Arvo, Arial, sans-serif;
+    display: inline;
+    vertical-align: middle;
+  }
+
+  h2 {
+    vertical-align: middle;
+    display: inline;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  hgroup {
+    @include fixed-width;
+    padding-left: 20px;
+  }
+}
+
+#main {
+  @include fixed-width;
+  padding-top: 15px;
+}
+
+#footer {
+  @include fixed-width;
+  padding-left: 20px;
+}
+
+.post {
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  font: 20px/24px Arvo, Arial, sans-serif;
+  padding-bottom: 10px;
+}
+
