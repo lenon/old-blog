@@ -18,13 +18,17 @@ configure do
   end
 end
 
+not_found do
+  haml :'404'
+end
+
 get "/" do
   @posts = Post.all
   haml :index
 end
 
 get "/post/:slug" do
-  @post = Post.find_by_slug(params[:slug])
+  @post = Post.find_by_slug(params[:slug]) || not_found
   haml :post
 end
 

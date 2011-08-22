@@ -8,10 +8,21 @@
   %body
     #container{ :dir => "ltr" }
       %header#header
-        %hgroup
-          %a{ :href => "/" }
-            %h1 Lenon Marcel
-            %h2 forever programmer
+        #header-inner
+          %hgroup
+            %a{ :href => "/" }
+              %h1 Lenon Marcel
+              %h2 forever programmer
+          %ul#nav{ :role => "navigation" }
+            %li
+              %a{ :href => "https://github.com/lenon" } github
+            %li
+              %a{ :href => "https://twitter.com/lenonm" } twitter
+            %li
+              %a{ :href => "https://facebook.com/lenon" } facebook
       #main{ :role => "main" }
         =yield
-      %footer#footer &copy #{Time.now.year} Lenon Marcel
+      %footer#footer
+        &copy #{Time.now.year} Lenon Marcel
+        | source code available on
+        %a{ :href => "https://github.com/lenon/blog" } github

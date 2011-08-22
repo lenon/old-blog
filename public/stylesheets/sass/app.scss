@@ -42,11 +42,12 @@ a {
   a {
     color: #fff;
   }
+}
 
-  hgroup {
-    @include fixed-width;
-    padding-left: 20px;
-  }
+#header-inner {
+  @include fixed-width;
+  padding-left: 20px;
+  position: relative;
 }
 
 #main {
@@ -57,17 +58,45 @@ a {
 #footer {
   @include fixed-width;
   padding-left: 20px;
+  padding-bottom: 15px;
 }
 
-.post {
+.post, #not-found {
   padding: 10px;
   background: #fafafa;
   border: 1px solid #ddd;
+  border-color: #e9e9e9 #ddd #ddd #e9e9e9;
   margin-bottom: 10px;
 }
 
-.post-title {
+.post-title, #not-found h1 {
   font: 20px/24px Arvo, Arial, sans-serif;
   padding-bottom: 10px;
+}
+
+#not-found {
+  height: 300px;
+}
+
+#nav {
+  position: absolute;
+  top: 0;
+  right: 30px;
+
+  li {
+    float: left;
+    padding-left: 5px;
+  }
+
+  a {
+    display: block;
+    padding: 4px 6px;
+    background: #942525;
+    border-radius: 3px;
+
+    &:hover {
+      background: #832121;
+    }
+  }
 }
 
