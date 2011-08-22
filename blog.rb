@@ -1,6 +1,7 @@
 require "rubygems"
 require "sinatra"
 require "haml"
+require "sass"
 require "mongoid"
 require "mongoid_slug"
 
