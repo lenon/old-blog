@@ -16,5 +16,6 @@ end
 
 get "/post/:slug/" do
   @post = Post.find_by_slug( params[:slug] ) || not_found
+  @title = @post.title
   haml :post
 end

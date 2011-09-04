@@ -1,24 +1,42 @@
 var onload = function(){
-  if (!document.getElementById("post-form")) return;
+  if (!document.getElementById("post-form"))
+    return;
 
-  var title_input = document.getElementById("post-title");
-  var content_input = document.getElementById("post-content");
+  var title = document.getElementById("post-title"),
+      content = document.getElementById("post-content"),
+      title_preview = document.getElementById("post-preview-title"),
+      content_preview = document.getElementById("post-preview-content");
 
-  var title_preview = document.getElementById("post-preview-title");
-  var content_preview = document.getElementById("post-preview-content");
+  var changed = false;
+  var request;
 
-  var title_input_onkeyup = function(){
-    title_preview.textContent = title_input.value || "";
+  title.onkeyup = function(){ changed = true; };
+  content.onkeyup = function(){ changed = true; };
+
+  var do_request = function(){
+    try { request.abort(); } catch(e){}
+
+    changed = false;
+
+    request = new XMLHttpRequest();
+    request.open("POST", "/admin/markdown-preview", true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function(){
+      if (request.readyState == 4 && request.status == 200) {
+        title_preview.textContent = title.value || "";
+        content_preview.innerHTML = request.responseText || "";
+      }
+    }
+
+    request.send( 'text=' + encodeURIComponent( content.value ) );
   };
-  title_input.onkeyup = title_input_onkeyup;
 
-  var content_input_onkeyup = function(){
-    content_preview.innerHTML = content_input.value || "";
-  };
-  content_input.onkeyup = content_input_onkeyup;
+  setInterval( function(){
+    if (changed) { do_request(); }
+  }, 15000);
 
-  content_input_onkeyup();  
-  title_input_onkeyup();
+  do_request();
 };
 
 window.onload = onload;

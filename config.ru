@@ -1,9 +1,12 @@
 require 'rubygems'
 require 'bundler'
-Bundler.setup
+Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
 require 'sass/plugin/rack'
 use Sass::Plugin::Rack
 
-require File.join(File.dirname(__FILE__), 'blog')
+Dir['./models/**/*.rb', './{configure,helpers,routes,admin}.rb'].each do |file|
+  require file
+end
+
 run Sinatra::Application

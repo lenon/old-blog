@@ -1,7 +1,19 @@
 configure do
-  set :public, File.join(File.dirname(__FILE__), 'public')
-  set :views, File.join(File.dirname(__FILE__), 'views')
-  set :haml, { :format => :html5 }
+  env = ENV['RACK_ENV'].to_sym
+
+  set :public, './public' # Public files
+  set :views, './views'   # Templates
+
+  # Haml options
+  set :haml, {
+    :format => :html5, # <3
+    :ugly => (env == :production)
+  }
+
+  # Sass options
+  set :sass, {
+    :style => (env == :production ? :compressed : :nested)
+  }
 
   enable :sessions
   use Rack::Flash

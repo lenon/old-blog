@@ -103,3 +103,8 @@ delete "/admin/delete-post/:id" do
   flash[:notice] = "Post successfully deleted!"
   redirect :"admin"
 end
+
+post "/admin/markdown-preview" do
+  login_required
+  Redcarpet.new( params[:text] ).to_html
+end
