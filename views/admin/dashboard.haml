@@ -3,6 +3,6 @@
   .section
     %h2.section-title Posts
     -Post.all.each do |post|
-      %a{ :href => "/admin/edit-post/#{post.id}" } Post.title
+      %a{ :href => "/admin/edit-post/#{post.id}" } #{post.title}
     .footer
       %a{ :href => "/admin/new-post" } New post

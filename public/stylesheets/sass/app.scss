@@ -1,10 +1,14 @@
 @import "reset";
 
-@mixin fixed-width {
-  width: 980px;
+$layout_width : 1000px;
+$reduced_width : 980px;
+
+@mixin fixed-width($width : $layout_width) {
+  width: $width;
   margin: 0 auto;
-  padding: 0 10px;
 }
+
+/* General */
 
 body {
   font: 13px/18px Arial, sans-serif;
@@ -21,23 +25,13 @@ a {
   }
 }
 
+/* Header */
+
 #header {
   background: brown;
   color: #fff;
-  padding: 15px 0;
   text-shadow: 1px 1px #000;
   border-bottom: 1px solid #000;
-
-  h1 {
-    font: 24px/30px Arvo, Arial, sans-serif;
-    display: inline;
-    vertical-align: middle;
-  }
-
-  h2 {
-    vertical-align: middle;
-    display: inline;
-  }
 
   a {
     color: #fff;
@@ -45,54 +39,34 @@ a {
 }
 
 #header-inner {
-  @include fixed-width;
-  padding-left: 20px;
-  position: relative;
+  @include fixed-width($reduced_width);
+  padding: 20px 0;
+  height: 30px;
 }
 
-#main {
-  @include fixed-width;
-  padding-top: 15px;
+/* Branding */
+
+#branding {
+  float: left;
+
+  a {
+    display: block;
+  }
 }
 
-#footer {
-  @include fixed-width;
-  padding-left: 20px;
-  padding-bottom: 15px;
+#site-title {
+  font: 24px/30px Arvo, Arial, sans-serif;
 }
 
-.post,
-#not-found,
-#login,
-#page {
-  padding: 10px;
-  background: #fafafa;
-  border: 1px solid #ddd;
-  border-color: #e9e9e9 #ddd #ddd #e9e9e9;
-  margin-bottom: 10px;
+#site-title,
+#site-description {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.post-title,
-#not-found h1,
-#page .page-title,
-.section-title {
-  font: 20px/24px Arvo, Arial, sans-serif;
-  padding-bottom: 10px;
-}
-
-.section-title {
-  font-size: 18px;
-}
-
-#not-found {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
+/* Menu */
 #nav {
-  position: absolute;
-  top: 0;
-  right: 30px;
+  float: right;
 
   li {
     float: left;
@@ -109,29 +83,89 @@ a {
       background: #832121;
     }
   }
-}
 
-#login {
-  padding-top: 40px;
-  padding-bottom: 40px;
-
-  form {
-    width: 200px;
-    text-align: right;
+  .logged_in a {
+    background: #165959;
   }
 }
+
+/* Main (mãe, pros leigos) */
+
+#main {
+  @include fixed-width;
+  padding-top: 15px;
+}
+
+/* Pages */
+
+.post,
+#page {
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-color: #e9e9e9 #ddd #ddd #e9e9e9;
+  margin-bottom: 10px;
+}
+
+/* Page titles */
+
+.post-title,
+.page-title,
+.section-title {
+  font: 20px/24px Arvo, Arial, sans-serif;
+  padding-bottom: 10px;
+}
+
+.section-title {
+  font-size: 18px;
+}
+
+/* Flash messages */
 
 .flash-message {
   padding: 8px;
   margin-bottom: 5px;
+  text-shadow: 1px 1px #000;
 
   &.notice {
-    color: #00529B;
-    background: #BDE5F8;
+    color: #FFFFFF;
+    background: #3D81A1;
   }
 
   &.alert {
-    color: #D8000C;
-    background: #FFBABA;
+    color: #FFFFFF;
+    background: #D8000C;
   }
+}
+
+/* Footer */
+
+#footer {
+  @include fixed-width;
+  padding: 10px 0 30px 0;
+  text-align: center;
+  color: #a5a5a4;
+
+  a {
+    color: #777;
+  }
+}
+
+/* 404 - Not found page */
+
+#page.not-found {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/* Login page */
+
+#page.login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+#login-form {
+  width: 200px;
+  text-align: right;
 }

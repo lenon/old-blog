@@ -9,11 +9,16 @@
     #container{ :dir => "ltr" }
       %header#header
         #header-inner
-          %hgroup
+          %hgroup#branding
             %a{ :href => "/" }
-              %h1 Lenon Marcel
-              %h2 forever programmer
+              %h1#site-title Lenon Marcel
+              %h2#site-description o meu próprio blog
           %ul#nav{ :role => "navigation" }
+            -if current_user
+              %li.logged_in
+                %a{ :href => "/admin" } dashboard
+              %li.logged_in
+                %a{ :href => "/logout" } logout
             %li
               %a{ :href => "https://github.com/lenon" } github
             %li
@@ -22,11 +27,9 @@
               %a{ :href => "https://facebook.com/lenon" } facebook
       #main{ :role => "main" }
         -if flash[:notice]
-          .flash-message.notice
-            =flash[:notice]
+          .flash-message.notice=flash[:notice]
         -if flash[:alert]
-          .flash-message.alert
-            =flash[:alert]
+          .flash-message.alert=flash[:alert]
         =yield
       %footer#footer
         &copy #{Time.now.year} Lenon Marcel

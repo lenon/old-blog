@@ -9,6 +9,6 @@ Dir[File.join(File.dirname(__FILE__), 'models/**/*.rb')].each do |file|
   require file
 end
 
-["configure", "helpers", "routes"].each do |file|
+["configure", "helpers", "routes", "admin"].each do |file|
   require File.join(File.dirname(__FILE__), "#{file}")
 end

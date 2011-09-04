@@ -5,9 +5,8 @@ class Post
 
   field :title
   field :content
-  slug :title
+  slug :title, :index => true, :permanent => true
 
   validates_presence_of :title
   validates_presence_of :content
-  validates_presence_of :slug
 end
