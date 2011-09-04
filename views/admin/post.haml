@@ -1,16 +1,23 @@
-#page
-  -if @post.new_record?
-    %h1.page-title New post
-  -else
-    %h1.page-title Edit post
-  %form{ :action => (@post.new_record? ? "/admin/new-post" : "/admin/edit-post/#{@post.id}"), :method => "post" }
+-if @post.new_record?
+  -title, action, submit_msg = "New post", "/admin/new-post", "Create post"
+-else
+  -title, action, submit_msg = "Edit post", "/admin/edit-post/#{@post.id}", "Update post"
+
+#admin-page.clearfix
+  %h1.page-title=title
+  %form#post-form{ :action => action, :method => "post" }
     -unless @post.new_record?
       %input{ :type => "hidden", :name => "_method", :value => "put" }
     .label
       %label{ :for => "post-title" } Title
-      %input{ :id => "post-title", :name => "post[title]", :type => "text", :value => @post.title }
+      %input{ :id => "post-title", :name => "post[title]", :type => "text", :value => (@post.title || "Title of the post") }
     .label
       %label{ :for => "post-content" } Content (markdown)
-      %textarea{ :id => "post-content", :name => "post[content]" } #{@post.content}
+      %textarea{ :id => "post-content", :name => "post[content]" } #{@post.content || "Content of the post."}
     .submit
-      %input{ :value => (@post.new_record? ? "Create post" : "Update post"), :type => "submit" }
+      %input{ :value => submit_msg, :type => "submit" }
+  #post-preview
+    #post-preview-inner
+      %h1.page-title Preview:
+      %h1#post-preview-title.post-title
+      #post-preview-content

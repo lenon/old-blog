@@ -1,8 +1,16 @@
-#page
+#admin-page
   %h1.page-title Dashboard
   .section
     %h2.section-title Posts
-    -Post.all.each do |post|
-      %a{ :href => "/admin/edit-post/#{post.id}" } #{post.title}
+    %table
+      %tbody
+        -Post.all.each do |post|
+          %tr
+            %td
+              %a{ :href => "/post/#{post.slug}/" } #{post.title}
+            %td.action
+              %a{ :href => "/admin/edit-post/#{post.id}" } edit
+            %td.action
+              %a{ :href => "/admin/delete-post/#{post.id}" } delete
     .footer
       %a{ :href => "/admin/new-post" } New post

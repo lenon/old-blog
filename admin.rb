@@ -78,3 +78,28 @@ put "/admin/edit-post/:id" do
     haml :"admin/post"
   end
 end
+
+get "/admin/delete-post/:id" do
+  login_required
+
+  @post = begin
+      Post.find( params[:id] ) || raise
+    rescue
+      not_found
+    end
+  haml :"admin/delete_post"
+end
+
+delete "/admin/delete-post/:id" do
+  login_required
+
+  @post = begin
+      Post.find( params[:id] ) || raise
+    rescue
+      not_found
+    end
+
+  @post.delete
+  flash[:notice] = "Post successfully deleted!"
+  redirect :"admin"
+end

@@ -1,0 +1,10 @@
+#admin-page
+  %h1.page-title Do you really want to delete &#8220;#{@post.title}&#8221;?
+  %p
+    This action cannot be undone.
+  %form#delete-post{ :action => "/admin/delete-post/#{@post.id}", :method => "post" }
+    %div
+      %input{ :type => "hidden", :name => "_method", :value => "delete" }
+      %input{ :value => "Yes, I want to delete this post", :type => "submit" }
+      or
+      %a{ :href => "/admin" } No, get me out of here!

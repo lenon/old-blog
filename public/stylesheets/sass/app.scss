@@ -25,6 +25,31 @@ a {
   }
 }
 
+/* Forms */
+
+input, button, textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Clearfix (http://nicolasgallagher.com/micro-clearfix-hack/) */
+/* For modern browsers */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+  zoom: 1;
+}
+
 /* Header */
 
 #header {
@@ -99,7 +124,8 @@ a {
 /* Pages */
 
 .post,
-#page {
+#page,
+#admin-page {
   padding: 10px;
   background: #fafafa;
   border: 1px solid #ddd;
@@ -168,4 +194,88 @@ a {
 #login-form {
   width: 200px;
   text-align: right;
+}
+
+/* The Admin Area */
+
+#admin-page {
+  .section {
+    width: 50%;
+  }
+
+  table {
+    width: 100%;
+
+    a {
+      color: darkcyan;
+    }
+  }
+
+  td {
+    padding: 5px;
+
+    &.action {
+      text-align: center;
+    }
+  }
+
+  tr {
+    background: #f5f5f5;
+
+    &:nth-child(2n+1) {
+      background-color: #eee;
+    }
+  }
+
+  form {
+    .label {
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      padding: 0 0 4px 0;
+    }
+
+    input[type=text], textarea {
+      display: block;
+      width: 100%;
+      font: 13px/18px Arial, sans-serif;
+      padding: 4px;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      margin: 0;
+    }
+
+    textarea {
+      min-height: 200px;
+      resize: none;
+    }
+  }
+}
+
+/* Form for edit or create posts */
+
+#post-form {
+  float: left;
+  width: 50%;
+}
+
+/* Post preview */
+
+#post-preview {
+  float: right;
+  width: 50%;
+}
+
+#post-preview-inner {
+  padding-left: 10px;
+  margin-left: 10px;
+  border-left: 1px dashed #aaa;
+}
+
+/* Delete post form confirmation */
+
+#delete-post {
+  padding-top: 20px;
 }
