@@ -21,8 +21,16 @@
             %li
               %a{ :href => "https://facebook.com/lenon" } facebook
       #main{ :role => "main" }
+        -if flash[:notice]
+          .flash-message.notice
+            =flash[:notice]
+        -if flash[:alert]
+          .flash-message.alert
+            =flash[:alert]
         =yield
       %footer#footer
         &copy #{Time.now.year} Lenon Marcel
-        | source code available on
+        \/ Fork my blog on
         %a{ :href => "https://github.com/lenon/blog" } github
+        \/ powered by
+        %a{ :href => "http://www.mongodb.org" } MongoDB

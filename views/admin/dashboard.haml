@@ -1,0 +1,8 @@
+#page
+  %h1.page-title Dashboard
+  .section
+    %h2.section-title Posts
+    -Post.all.each do |post|
+      %a{ :href => "/admin/edit-post/#{post.id}" } Post.title
+    .footer
+      %a{ :href => "/admin/new-post" } New post

@@ -1,0 +1,10 @@
+#login
+  %form{:action => "/login", :method => "post"}
+    .label
+      %label{:for => "admin_login"} Usuário
+      %input{:id => "admin_login", :name => "login", :type => "text"}
+    .label
+      %label{:for => "admin_password"} Senha
+      %input{:id => "admin_password", :name => "password", :type => "password"}
+    .submit
+      %input{:value => "Entrar", :type => "submit"}

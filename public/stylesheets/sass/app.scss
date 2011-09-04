@@ -61,7 +61,10 @@ a {
   padding-bottom: 15px;
 }
 
-.post, #not-found {
+.post,
+#not-found,
+#login,
+#page {
   padding: 10px;
   background: #fafafa;
   border: 1px solid #ddd;
@@ -69,13 +72,21 @@ a {
   margin-bottom: 10px;
 }
 
-.post-title, #not-found h1 {
+.post-title,
+#not-found h1,
+#page .page-title,
+.section-title {
   font: 20px/24px Arvo, Arial, sans-serif;
   padding-bottom: 10px;
 }
 
+.section-title {
+  font-size: 18px;
+}
+
 #not-found {
-  height: 300px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 #nav {
@@ -100,3 +111,27 @@ a {
   }
 }
 
+#login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  form {
+    width: 200px;
+    text-align: right;
+  }
+}
+
+.flash-message {
+  padding: 8px;
+  margin-bottom: 5px;
+
+  &.notice {
+    color: #00529B;
+    background: #BDE5F8;
+  }
+
+  &.alert {
+    color: #D8000C;
+    background: #FFBABA;
+  }
+}
