@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title><%= "Lenon Marcel | " + (@title || "Blog") %></title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arvo"/>
+  <link rel="stylesheet" href="/stylesheets/app.css"/>
+  <script src="/javascripts/app.js"></script>
+  <% if current_user %>
+  <script src="/javascripts/admin.js"></script>
+  <% end %>
+</head>
+<body>
+<div id="container" dir="ltr">
+  <header id="header">
+    <div id="header-inner">
+      <hgroup id="branding">
+        <a href="/">
+          <h1 id="site-title">Lenon Marcel</h1>
+          <h2 id="site-description">forever programmer</h2>
+        </a>
+      </hgroup><!-- #branding -->
+      <ul id="nav" role="navigation">
+        <% if current_user %>
+        <li class="logged_in">
+          <a href="/admin">dashboard</a>
+        </li>
+        <li class="logged_in">
+          <a href="/logout">logout</a>
+        </li>
+        <% end %>
+        <li><a href="/">home</a></li>
+        <li><a href="https://github.com/lenon">github</a></li>
+        <li><a href="https://twitter.com/lenonm">twitter</a></li>
+        <li><a href="https://facebook.com/lenon">facebook</a></li>
+      </ul><!-- #nav -->
+    </div><!-- #header-inner -->
+  </header><!-- #header -->
+  <div id="main" role="main">
+    <% if flash[:notice] %>
+    <div class="flash-message notice"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="flash-message alert"><%= flash[:alert] %></div>
+    <% end %>
+    <%= yield %>
+  </div><!-- #main -->
+  <footer id="footer">
+    &copy; <%= Time.now.year %> Lenon Marcel
+    / Fork my blog on <a href="https://github.com/lenon/blog">github</a>
+    / powered by <a href="http://www.mongodb.org">MongoDB</a> &amp;
+    <a href="http://www.sinatrarb.com">Sinatra</a>
+  </footer><!-- #footer -->
+</div><!-- #container -->
+</body>
+</html>

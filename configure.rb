@@ -1,25 +1,21 @@
 configure do
-  env = ENV['RACK_ENV'].to_sym
+  environment = ENV['RACK_ENV'].to_sym
 
-  set :public, './public' # Public files
-  set :views, './views'   # Templates
-
-  # Haml options
-  set :haml, {
-    :format => :html5, # <3
-    :ugly => (env == :production)
-  }
-
-  # Sass options
-  set :sass, {
-    :style => (env == :production ? :compressed : :nested)
-  }
+  set :public, File.join(File.dirname(__FILE__), 'public')
+  set :views, File.join(File.dirname(__FILE__), 'views')
 
   enable :sessions
   use Rack::Flash
+  use Sass::Plugin::Rack
 
+  # Sass options
+  set :sass, {
+    :style => (environment == :production ? :compressed : :nested)
+  }
+
+  # MongoDB settings
   Mongoid.raise_not_found_error = false
   Mongoid.configure do |config|
-    config.master = Mongo::Connection.new.db("my_blog")
+    config.master = Mongo::Connection.new.db("app_blog_#{environment}")
   end
 end

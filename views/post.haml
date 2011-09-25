@@ -1,4 +1,0 @@
-%div{ :id => "post-#{@post.id}", :class => "post" }
-  %h1.post-title #{@post.title}
-  %div{ :class => "post-content" }
-    #{Redcarpet.new(@post.content).to_html}

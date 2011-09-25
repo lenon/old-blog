@@ -1,0 +1,10 @@
+<% @posts.each do |post| %>
+<div id="post-<%= post.id %>" class="post">
+  <h2 class="post-title">
+    <a href="/post/<%= post.slug %>"><%= post.title %></a>
+  </h2>
+  <div class="post-content text">
+    <%= print_markdown( post.content ) %>
+  </div>
+</div><!-- #post-<%= post.id %> -->
+<% end %>

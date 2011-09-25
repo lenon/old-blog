@@ -1,0 +1,34 @@
+<%
+if @post.new_record?
+  title, action, submit_msg = "New post", "/admin/new-post", "Create post"
+else
+  title, action, submit_msg = "Edit post", "/admin/edit-post/#{@post.id}", "Update post"
+end
+%>
+<div id="admin-page" class="clearfix">
+  <h1 class="page-title"><%= title %></h1>
+  <form id="post-form" action"<%= action %>" method="post">
+    <% unless @post.new_record? %>
+    <input type="hidden" name="_method" value="put"/>
+    <% end %>
+    <div class="label">
+      <label for="post-title">Title</label>
+      <input id="post-title" name="post[title]" type="text" value="<%= h @post.title %>"/>
+    </div>
+    <div class="label">
+      <label for="post-content">Content (markdown)</label>
+      <textarea id="post-content" name="post[content]"><%= h @post.content %></textarea>
+    </div>
+    <div class="submit">
+      <input value="<%= submit_msg %>" type="submit"/>
+    </div>
+  </form><!-- #post-form -->
+  <div id="preview">
+    <div id="preview-inner">
+      <div>Preview:</div>
+      <h1 id="preview-title" class="post-title"></h1>
+      <div id="preview-content" class="text"></div>
+      <div id="preview-loading">Loading preview...</div>
+    </div><!-- #preview-inner -->
+  </div><!-- #preview -->
+</div><!-- #admin-page -->

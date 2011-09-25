@@ -9,4 +9,8 @@ class Post
 
   validates_presence_of :title
   validates_presence_of :content
+
+  def excerpt
+    content
+  end
 end

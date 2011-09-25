@@ -1,19 +1,24 @@
+#
+# The Blog Dashboard
+#
+
 # Login
+
 get "/login" do
-  haml :"admin/login"
+  erb :"admin/login"
 end
 
 post "/login" do
-  if user = Admin.authenticate( params[:login], params[:password] )
+  if user = Admin.authenticate(params[:login], params[:password])
     session[:user] = user.id
-    redirect "/admin"
-  else
-    flash.now[:alert] = "Wrong login or password"
-    haml :"admin/login"
+    return redirect "/admin"
   end
+  flash.now[:alert] = "Wrong login or password"
+  erb :"admin/login"
 end
 
 # Logout
+
 get "/logout" do
   session[:user] = nil
   flash[:notice] = "You're now disconnected"
@@ -21,90 +26,94 @@ get "/logout" do
 end
 
 # Dashboard
+
 get "/admin" do
   login_required
-
-  haml :"admin/dashboard"
+  erb :"admin/dashboard"
 end
 
-# Create a new post
+# New post
+
 get "/admin/new-post" do
   login_required
-
   @post = Post.new
-  haml :"admin/post"
+  erb :"admin/post"
 end
 
 post "/admin/new-post" do
   login_required
-
-  @post = Post.new( params["post"] )
+  @post = Post.new(params["post"])
   if @post.save
     flash[:notice] = "Post created successfully!"
-    redirect "/post/#{@post.slug}"
-  else
-    flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
-    haml :"admin/post"
+    return redirect "/post/#{@post.slug}/"
   end
+  flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
+  erb :"admin/post"
 end
 
-# Edit a post
+# Edit post
+
 get "/admin/edit-post/:id" do
   login_required
-
-  @post = begin
-      Post.find( params[:id] ) || raise
-    rescue
-      not_found
-    end
-
-  haml :"admin/post"
+  @post = Post.find(params[:id]) || not_found
+  erb :"admin/post"
 end
 
 put "/admin/edit-post/:id" do
   login_required
-
-  @post = begin
-      Post.find( params[:id] ) || raise
-    rescue
-      not_found
-    end
-
-  if @post.update_attributes( params["post"] )
+  @post = Post.find(params[:id]) || not_found
+  if @post.update_attributes(params["post"])
     flash[:notice] = "Post successfully updated!"
-    redirect "/post/#{@post.slug}"
-  else
-    flash.now[:notice] = "Ooops, your post cannot be updated. Sorry again."
-    haml :"admin/post"
+    return redirect "/post/#{@post.slug}/"
   end
+  flash.now[:alert] = "Ooops, your post cannot be updated. Sorry again."
+  erb :"admin/post"
 end
+
+# Delete post
 
 get "/admin/delete-post/:id" do
   login_required
-
-  @post = begin
-      Post.find( params[:id] ) || raise
-    rescue
-      not_found
-    end
-  haml :"admin/delete_post"
+  @post = Post.find(params[:id]) || not_found
+  erb :"admin/delete_post"
 end
 
 delete "/admin/delete-post/:id" do
   login_required
-
-  @post = begin
-      Post.find( params[:id] ) || raise
-    rescue
-      not_found
-    end
-
+  @post = Post.find(params[:id]) || not_found
   @post.delete
   flash[:notice] = "Post successfully deleted!"
-  redirect :"admin"
+  redirect "/admin"
 end
+
+# Markdown preview
 
 post "/admin/markdown-preview" do
   login_required
-  Redcarpet.new( params[:text] ).to_html
+  print_markdown(params[:text])
+end
+
+# First-time setup
+
+get "/setup" do
+  return not_found if Admin.count > 0
+  erb :"admin/setup"
+end
+
+post "/setup" do
+  return not_found if Admin.count > 0
+
+  admin = Admin.new({
+    :login => params["login"],
+    :password => params["password"],
+    :password_confirmation => params["password_confirmation"]
+  })
+
+  if admin.save
+    flash[:notice] = "Your admin account was successfully created!"
+    redirect "/login"
+  else
+    flash.now[:alert] = "Ooops, your account can not be created."
+    erb :"admin/setup"
+  end
 end

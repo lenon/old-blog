@@ -1,0 +1,20 @@
+<div id="admin-page">
+  <h1 class="page-title">Dashboard</h1>
+  <div class="section">
+    <h2 class="section-title">Posts</h2>
+    <table>
+      <tbody>
+        <% Post.all.each do |post| %>
+        <tr>
+          <td><a href="/post/<%= post.slug %>/"><%= h post.title %></a></td>
+          <td class="action"><a href="/admin/edit-post/<%= post.id %>">edit</a></td>
+          <td class="action"><a href="/admin/delete-post/<%= post.id %>">delete</a></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table><!-- .section table -->
+    <div class="post-actions">
+      <a href="/admin/new-post">New post</a>
+    </div>
+  </div><!-- .section -->
+</div><!-- #admin-page -->

@@ -125,6 +125,7 @@ input, button, textarea {
 
 .post,
 #page,
+#not-found,
 #admin-page {
   padding: 10px;
   background: #fafafa;
@@ -145,6 +146,11 @@ input, button, textarea {
 .section-title {
   font-size: 18px;
 }
+
+  .post-title {
+    /*border-bottom: 1px dashed #ddd;
+    margin-bottom: 14px;*/
+  }
 
 /* Flash messages */
 
@@ -179,7 +185,7 @@ input, button, textarea {
 
 /* 404 - Not found page */
 
-#page.not-found {
+#not-found {
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -237,7 +243,8 @@ input, button, textarea {
       padding: 0 0 4px 0;
     }
 
-    input[type=text], textarea {
+    input[type=text],
+    textarea {
       display: block;
       width: 100%;
       font: 13px/18px Arial, sans-serif;
@@ -263,19 +270,89 @@ input, button, textarea {
 
 /* Post preview */
 
-#post-preview {
+#preview {
   float: right;
   width: 50%;
 }
 
-#post-preview-inner {
+#preview-inner {
   padding-left: 10px;
   margin-left: 10px;
   border-left: 1px dashed #aaa;
+}
+
+#preview-loading {
+  color: #000;
+  text-align: center;
+  font-style: italic;
 }
 
 /* Delete post form confirmation */
 
 #delete-post {
   padding-top: 20px;
+}
+
+/* Text styles */
+
+.text {
+  font: 14px/20px Arial, sans-serif;
+  color: #404040;
+
+  h1, h2, h3, h4, h5, h6 {
+    font: normal 1.6em/1.3em Arial, sans-serif;
+    margin-bottom: 0.4em;
+  }
+
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.4em; }
+  h3 { font-size: 1.3em; }
+  h4 { font-size: 1.2em; }
+  h5 { font-size: 1.1em; }
+  h6 { font-size: 1em; }
+
+  p, ul, ol, pre {
+    margin-bottom: 0.9em;
+  }
+
+  ul {
+    list-style: disc inside;
+    margin-left: 10px;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+
+  pre, code {
+    font: normal 13px/18px monospace;
+    background: #eee;
+  }
+
+  pre {
+    padding: 5px;
+    display: block;
+  }
+}
+
+.post-meta {
+  margin-bottom: 10px;
+  color: #A5A5A4;
+
+  iframe {
+    border: none;
+    overflow: hidden;
+    width: 100px;
+    height: 20px;
+  }
+
+  .post-time {
+    margin-right: 10px;
+  }
+
+  iframe,
+  .post-time {
+    display: inline;
+    vertical-align: middle;
+  }
 }
