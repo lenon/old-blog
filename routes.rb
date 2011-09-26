@@ -9,7 +9,7 @@ end
 
 # Home page
 get "/" do
-  @posts = Post.all
+  @posts = Post.order_by(:created_at, :desc)
   erb :index
 end
 
