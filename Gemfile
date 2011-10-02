@@ -8,5 +8,13 @@ gem "mongoid_slug"
 gem "bson_ext"
 gem "redcarpet"
 
-group :development do
+group :development, :test do
+  gem "rake"
 end
+
+group :test do
+  gem "simplecov"
+  gem "rack-test"
+  gem "mocha"
+end
+

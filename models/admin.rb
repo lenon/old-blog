@@ -38,3 +38,4 @@ class Admin
     rand(36**length).to_s(36)
   end
 end
+

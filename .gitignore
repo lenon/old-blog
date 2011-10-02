@@ -2,3 +2,5 @@
 .sass-cache
 /public/stylesheets/*.css
 Gemfile.lock
+coverage
+

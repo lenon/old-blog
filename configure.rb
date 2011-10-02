@@ -1,7 +1,7 @@
 configure do
   environment = ENV['RACK_ENV'].to_sym
 
-  set :public, File.join(File.dirname(__FILE__), 'public')
+  set :public_folder, File.join(File.dirname(__FILE__), 'public')
   set :views, File.join(File.dirname(__FILE__), 'views')
 
   use Rack::Session::Cookie
