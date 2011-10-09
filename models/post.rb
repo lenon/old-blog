@@ -14,4 +14,3 @@ class Post
     content
   end
 end
-

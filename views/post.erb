@@ -1,21 +1,21 @@
 <%
-facebook_params = {
+fb_params = {
   :href => url_for("/post/#{@post.slug}/"),
   :layout => "button_count",
   :action => "like"
 }
 %>
-<div id="post-<%= @post.id %>" class="post">
+<div id="post-<%= @post.id %>" class="post page">
   <h2 class="post-title">
-    <a href="/post/<%= @post.slug %>/"><%= @post.title %></a>
+    <a href="/post/<%= @post.slug %>/"><%= h @post.title %></a>
   </h2>
   <div class="post-meta">
-    <p class="post-time">
+    <span class="post-time">
       Postado em <%= @post.created_at.strftime "%d/%m/%Y" %> às
       <%= @post.created_at.strftime "%H:%M" %>
-    </p>
+    </span>
     <iframe src="//platform.twitter.com/widgets/tweet_button.html?count=horizontal" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
-    <iframe src="//www.facebook.com/plugins/like.php?<%= facebook_params.to_param %>" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+    <iframe src="//www.facebook.com/plugins/like.php?<%= fb_params.to_param %>" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
   <div class="post-content text">
     <%= print_markdown(@post.content) %>

@@ -58,4 +58,3 @@ class PostTest < Test::Unit::TestCase
     assert_equal("bla", post.excerpt)
   end
 end
-

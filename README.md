@@ -11,4 +11,3 @@ Oh, please do not forget to remove my name from the title if you put this applic
     bundle exec rackup -E production
 
 And go to `http://localhost:9292/` in your browser.
-

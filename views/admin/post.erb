@@ -5,7 +5,7 @@ else
   title, action, submit_msg = "Edit post", "/admin/edit-post/#{@post.id}", "Update post"
 end
 %>
-<div id="admin-page" class="clearfix">
+<div id="admin-page" class="page clearfix">
   <h1 class="page-title"><%= title %></h1>
   <form id="post-form" action"<%= action %>" method="post">
     <% unless @post.new_record? %>

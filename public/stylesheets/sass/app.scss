@@ -1,15 +1,49 @@
 @charset "UTF-8";
 @import "reset";
 
+/* Variables
+   ========= */
+
 $layout_width : 1000px;
 $reduced_width : 980px;
+
+/* Mixins
+   ====== */
 
 @mixin fixed-width($width : $layout_width) {
   width: $width;
   margin: 0 auto;
 }
 
-/* General */
+/* Clearfix (http://nicolasgallagher.com/micro-clearfix-hack/)
+   ======== */
+
+.clearfix:before,
+.clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+/* Flash messages
+   ============== */
+
+.flash-message {
+  padding: 8px;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px #000;
+
+  &.notice {
+    color: #FFFFFF;
+    background: #3D81A1;
+  }
+
+  &.alert {
+    color: #FFFFFF;
+    background: #D8000C;
+  }
+}
+
+/* General
+   ======= */
 
 body {
   font: 13px/18px Arial, sans-serif;
@@ -29,32 +63,8 @@ a {
 em { font-style: italic; }
 strong { font-weight: bold; }
 
-/* Forms */
-
-input, button, textarea {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* Clearfix (http://nicolasgallagher.com/micro-clearfix-hack/) */
-/* For modern browsers */
-.clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
-/* For IE 6/7 (trigger hasLayout) */
-.clearfix {
-  zoom: 1;
-}
-
-/* Header */
+/* Header
+   ====== */
 
 #header {
   background: brown;
@@ -62,9 +72,7 @@ input, button, textarea {
   text-shadow: 1px 1px #000;
   border-bottom: 1px solid #000;
 
-  a {
-    color: #fff;
-  }
+  a { color: #fff; }
 }
 
 #header-inner {
@@ -73,27 +81,28 @@ input, button, textarea {
   height: 30px;
 }
 
-/* Branding */
+/* Branding
+   ======== */
 
 #branding {
   float: left;
 
-  a {
-    display: block;
-  }
+  a { display: block; }
 }
 
 #site-title {
   font: 24px/30px Arvo, Arial, sans-serif;
 }
 
-#site-title,
-#site-description {
-  display: inline-block;
-  vertical-align: middle;
-}
+  #site-title,
+  #site-description {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
-/* Menu */
+/* Menu
+   ==== */
+
 #nav {
   float: right;
 
@@ -108,29 +117,24 @@ input, button, textarea {
     background: #942525;
     border-radius: 3px;
 
-    &:hover {
-      background: #832121;
-    }
+    &:hover { background: #832121; }
   }
 
-  .logged_in a {
-    background: #165959;
-  }
+  .logged_in a { background: #165959; }
 }
 
-/* Main (mãe, pros leigos) */
+/* Main (mãe, pros leigos)
+   ==== */
 
 #main {
   @include fixed-width;
   padding-top: 15px;
 }
 
-/* Pages */
+/* Pages
+   ===== */
 
-.post,
-#page,
-#not-found,
-#admin-page {
+.page {
   padding: 10px;
   background: #fafafa;
   border: 1px solid #ddd;
@@ -138,43 +142,18 @@ input, button, textarea {
   margin-bottom: 10px;
 }
 
-/* Page titles */
+/* Page titles
+   =========== */
 
-.post-title,
 .page-title,
+.post-title,
 .section-title {
   font: 20px/24px Arvo, Arial, sans-serif;
   padding-bottom: 10px;
 }
 
-.section-title {
-  font-size: 18px;
-}
-
-  .post-title {
-    /*border-bottom: 1px dashed #ddd;
-    margin-bottom: 14px;*/
-  }
-
-/* Flash messages */
-
-.flash-message {
-  padding: 8px;
-  margin-bottom: 5px;
-  text-shadow: 1px 1px #000;
-
-  &.notice {
-    color: #FFFFFF;
-    background: #3D81A1;
-  }
-
-  &.alert {
-    color: #FFFFFF;
-    background: #D8000C;
-  }
-}
-
-/* Footer */
+/* Footer
+   ====== */
 
 #footer {
   @include fixed-width;
@@ -182,126 +161,43 @@ input, button, textarea {
   text-align: center;
   color: #a5a5a4;
 
-  a {
-    color: #777;
-  }
+  a { color: #777; }
 }
 
-/* 404 - Not found page */
+/* Page Not found
+   ============== */
 
 #not-found {
   padding-top: 80px;
   padding-bottom: 80px;
+  text-align: center;
 }
 
-/* Login page */
+/* Login page
+   ========== */
 
-#page.login {
+#login-page {
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-#login-form {
-  width: 200px;
-  text-align: right;
-}
+  #login-form {
+    width: 250px;
+    text-align: right;
 
-/* The Admin Area */
-
-#admin-page {
-  .section {
-    width: 50%;
-  }
-
-  table {
-    width: 100%;
-
-    a {
-      color: darkcyan;
-    }
-  }
-
-  td {
-    padding: 5px;
-
-    &.action {
-      text-align: center;
-    }
-  }
-
-  tr {
-    background: #f5f5f5;
-
-    &:nth-child(2n+1) {
-      background-color: #eee;
-    }
-  }
-
-  form {
     .label {
-      padding-bottom: 10px;
-    }
-
-    label {
-      display: block;
-      padding: 0 0 4px 0;
-    }
-
-    input[type=text],
-    textarea {
-      display: block;
-      width: 100%;
-      font: 13px/18px Arial, sans-serif;
-      padding: 4px;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      margin: 0;
-    }
-
-    textarea {
-      min-height: 200px;
-      resize: none;
+      padding-bottom: 5px;
     }
   }
-}
 
-/* Form for edit or create posts */
-
-#post-form {
-  float: left;
-  width: 50%;
-}
-
-/* Post preview */
-
-#preview {
-  float: right;
-  width: 50%;
-}
-
-#preview-inner {
-  padding-left: 10px;
-  margin-left: 10px;
-  border-left: 1px dashed #aaa;
-}
-
-#preview-loading {
-  color: #000;
-  text-align: center;
-  font-style: italic;
-}
-
-/* Delete post form confirmation */
-
-#delete-post {
-  padding-top: 20px;
-}
-
-/* Text styles */
+/* Text styles
+   =========== */
 
 .text {
   font: 14px/20px Arial, sans-serif;
   color: #404040;
+
+  a { text-decoration: underline; }
 
   h1, h2, h3, h4, h5, h6 {
     font: normal 1.6em/1.3em Arial, sans-serif;
@@ -324,9 +220,7 @@ input, button, textarea {
     margin-left: 10px;
   }
 
-  li {
-    margin-bottom: 0.4em;
-  }
+  li { margin-bottom: 0.4em; }
 
   pre, code {
     font: normal 13px/18px monospace;
@@ -339,6 +233,9 @@ input, button, textarea {
   }
 }
 
+/* Post meta
+   ========= */
+
 .post-meta {
   margin-bottom: 10px;
   color: #A5A5A4;
@@ -348,15 +245,29 @@ input, button, textarea {
     overflow: hidden;
     width: 100px;
     height: 20px;
-  }
-
-  .post-time {
-    margin-right: 10px;
-  }
-
-  iframe,
-  .post-time {
     display: inline;
     vertical-align: middle;
   }
 }
+
+  #posts-list .post:last-child .post-meta {
+    margin-bottom: 0;
+  }
+
+.post-time { margin-right: 10px; }
+
+/* Index
+   ===== */
+
+#posts-list {
+  .post {
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+  }
+
+  .post:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+

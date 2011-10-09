@@ -1,6 +1,4 @@
-#
 # The Blog
-#
 
 # 404 - Not Found
 not_found do

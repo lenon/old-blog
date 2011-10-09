@@ -1,6 +1,4 @@
-#
-# The Blog Dashboard
-#
+# The Dashboard
 
 # Login
 

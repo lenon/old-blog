@@ -19,4 +19,3 @@ class Test::Unit::TestCase
     Sinatra::Application
   end
 end
-

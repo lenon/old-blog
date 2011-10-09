@@ -1,10 +1,15 @@
-<% @posts.each do |post| %>
-<div id="post-<%= post.id %>" class="post">
-  <h2 class="post-title">
-    <a href="/post/<%= post.slug %>"><%= post.title %></a>
-  </h2>
-  <div class="post-content text">
-    <%= print_markdown( post.content ) %>
-  </div>
-</div><!-- #post-<%= post.id %> -->
-<% end %>
+<div id="posts-list" class="page">
+  <% @posts.each do |post| %>
+  <div id="post-<%= post.id %>" class="post">
+    <h2 class="post-title">
+      <a href="/post/<%= post.slug %>"><%= h post.title %></a>
+    </h2>
+    <div class="post-meta">
+      <span class="post-time">
+        Postado em <%= post.created_at.strftime "%d/%m/%Y" %> às
+        <%= post.created_at.strftime "%H:%M" %>
+      </span>
+    </div>
+  </div><!-- #post-<%= post.id %> -->
+  <% end %>
+</div><!-- #posts-list -->

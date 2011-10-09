@@ -113,4 +113,3 @@ class AdminTest < Test::Unit::TestCase
     assert_equal("test", admin.login)
   end
 end
-
