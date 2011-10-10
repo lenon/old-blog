@@ -20,4 +20,7 @@ fb_params = {
   <div class="post-content text">
     <%= print_markdown(@post.content) %>
   </div>
+  <div id="fb-root"></div>
+  <script>(function(a,b,c){var d=a.getElementsByTagName(b)[0];if(!a.getElementById(c))a=a.createElement(b),a.id=c,a.src="//connect.facebook.net/en_US/all.js#xfbml=1",d.parentNode.insertBefore(a,d)})(document,"script","facebook-jssdk");</script>
+  <div class="fb-comments" data-href="<%= fb_params[:href] %>" data-width="978"></div>
 </div><!-- post-<%= @post.id %> -->
