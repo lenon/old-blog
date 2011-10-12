@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title><%= "#{SETTINGS["blog_title"]} | " + (@title || "Blog") %></title>
+  <meta property="fb:app_id" content="<%= SETTINGS["fbapp_id"] %>"/>
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arvo"/>
   <link rel="stylesheet" href="/stylesheets/app.css"/>
   <% if current_user %>
