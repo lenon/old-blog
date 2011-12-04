@@ -137,6 +137,10 @@ strong { font-weight: bold; }
   border-top: 1px solid #ddd;
 }
 
+.fb_iframe_widget {
+  width: auto !important;
+}
+
 .text {
   p, li, pre {
     margin-bottom: 10px;
