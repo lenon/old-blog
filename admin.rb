@@ -35,7 +35,7 @@ end
 get "/admin/new-post" do
   login_required
   @post = Post.new
-  erb :"admin/post"
+  erb :"admin/new_post"
 end
 
 post "/admin/new-post" do
@@ -46,7 +46,7 @@ post "/admin/new-post" do
     return redirect "/post/#{@post.slug}/"
   end
   flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
-  erb :"admin/post"
+  erb :"admin/new_post"
 end
 
 # Edit post
@@ -54,7 +54,7 @@ end
 get "/admin/edit-post/:id" do
   login_required
   @post = Post.find(params[:id]) || not_found
-  erb :"admin/post"
+  erb :"admin/edit_post"
 end
 
 put "/admin/edit-post/:id" do
@@ -65,7 +65,7 @@ put "/admin/edit-post/:id" do
     return redirect "/post/#{@post.slug}/"
   end
   flash.now[:alert] = "Ooops, your post cannot be updated. Sorry again."
-  erb :"admin/post"
+  erb :"admin/edit_post"
 end
 
 # Delete post

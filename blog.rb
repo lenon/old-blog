@@ -6,9 +6,6 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default, ENVIRONMENT)
 
-require 'yaml'
-SETTINGS = YAML.load(File.open("#{ROOT}/settings.yml"))[ENVIRONMENT.to_s]
-
 configure do
   set :public_folder, "#{ROOT}/public"
   set :views, "#{ROOT}/views"
@@ -24,7 +21,9 @@ configure do
 
   # MongoDB settings
   Mongoid.raise_not_found_error = false
-  Mongoid.configure.from_hash(SETTINGS["mongodb"])
+  Mongoid.configure.from_hash({
+    'database' => "app_blog_#{ENVIRONMENT}"
+  })
 end
 
 Dir["#{ROOT}/models/**/*.rb", "#{ROOT}/{helpers,routes,admin}.rb"].each do |file|

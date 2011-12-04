@@ -1,106 +1,52 @@
-@charset "UTF-8";
+#header .admin-menu {
+  padding-top: 5px;
 
-/* Forms
-   ===== */
-
-input, button, textarea {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  a { color: brown; }
 }
 
-/* Sections
-   ======== */
+#login-form {
+  padding: 50px 0 50px 0;
+  text-align: right;
+  width: 300px;
 
-.section {
-  width: 50%;
-}
-
-.section-title {
-  font-size: 18px;
-}
-
-.post-actions a {
-  padding: 0 4px;
-}
-
-#admin-page {
-  table {
-    width: 100%;
-
-    a { color: darkcyan; }
+  .input {
+    padding: 0 0 5px 0;
   }
+}
+
+table {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: collapse;
 
   td {
-    padding: 5px;
-
-    &.action { text-align: center; }
-  }
-
-  tr {
-    background: #f5f5f5;
-
-    &:nth-child(2n+1) { background-color: #eee; }
-  }
-
-  form {
-    .label { padding-bottom: 10px; }
-
-    label {
-      display: block;
-      padding: 0 0 4px 0;
-    }
-
-    input[type=text],
-    textarea {
-      display: block;
-      width: 100%;
-      font: 13px/18px Arial, sans-serif;
-      padding: 4px;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      margin: 0;
-    }
-
-    textarea {
-      min-height: 200px;
-      resize: none;
-    }
+    padding: 10px 10px 9px;
+    line-height: 18px;
+    text-align: left;
+    vertical-align: top;
   }
 }
 
-/* Form for edit or create posts
-   ============================= */
+.zebra-striped tbody tr:nth-child(odd) td {
+  background-color: #f9f9f9;
+}
+
+.zebra-striped tbody tr:hover td {
+  background-color: #f0f0f0;
+}
 
 #post-form {
-  float: left;
-  width: 50%;
+  input[type=text], textarea {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    padding: 4px;
+  }
+
+  .input { padding: 0 0 15px 0; }
+
+  textarea {
+    min-height: 200px;
+    resize: vertical;
+  }
 }
-
-/* Post preview
-   ============ */
-
-#preview {
-  float: right;
-  width: 50%;
-}
-
-#preview-inner {
-  padding-left: 10px;
-  margin-left: 10px;
-  border-left: 1px dashed #aaa;
-}
-
-#preview-loading {
-  color: #000;
-  text-align: center;
-  font-style: italic;
-}
-
-/* Delete post form confirmation
-   ============================= */
-
-#delete-post {
-  padding-top: 20px;
-}
-
