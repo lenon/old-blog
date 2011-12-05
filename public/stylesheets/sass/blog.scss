@@ -166,6 +166,18 @@ strong { font-weight: bold; }
       padding: 0;
     }
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font: 22px/1.2em 'Ubuntu', Arial, sans-serif;
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  h2 { font-size: 21px; }
+  h3 { font-size: 19px; }
+  h4 { font-size: 17px; }
+  h5 { font-size: 15px; }
+  h6 { font-size: 13px; }
 }
 
 /* 404 - Not Found */
