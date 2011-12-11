@@ -32,6 +32,19 @@ a {
 em { font-style: italic; }
 strong { font-weight: bold; }
 
+blockquote {
+  margin-bottom: 18px;
+  border-left: 5px solid #eee;
+  padding-left: 15px;
+}
+
+blockquote p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+  margin-bottom: 0;
+}
+
 /* Header */
 
 #header {
