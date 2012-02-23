@@ -1,21 +1,21 @@
 require "spec_helper"
 
 describe "Admin" do
-  before do
-    Admin.delete_all
-    @admin = Admin.create!({
+  let(:admin) do
+    Admin.create!({
       :login => "admin",
       :password => "123456"
     })
+  end
 
-    Post.delete_all
-    @post = Post.create!({
+  let(:blog_post) do
+    Post.create!({
       :title => "My Post",
       :content => "My post content"
     })
   end
 
-  describe "when a request hits the /login path" do
+  describe "GET /login" do
     it "should show the login form" do
       get "/login"
 
@@ -25,8 +25,10 @@ describe "Admin" do
     end
   end
 
-  describe "when a post request hits the /login path" do
+  describe "POST /login" do
     it "should authenticate user when username and password are valid" do
+      Admin.should_receive(:authenticate).with("admin", "123456").and_return(admin)
+
       post "/login", :login => "admin", :password => "123456"
 
       last_response.status.should == 302
@@ -34,7 +36,9 @@ describe "Admin" do
     end
 
     it "should not authenticate user when username and password are not valid" do
-      post "/login", :login => "admin", :password => "1234567"
+      Admin.should_receive(:authenticate).with("admin", "123456").and_return(false)
+
+      post "/login", :login => "admin", :password => "123456"
 
       last_response.status.should == 200
       last_response.should_not be_redirect
@@ -52,71 +56,160 @@ describe "Admin" do
     end
   end
 
-  describe "when a request hits the /admin path" do
+  describe "GET /admin" do
     it_should_behave_like "an area that requires authentication", "/admin"
 
     it "should show the dashboard" do
-      get "/admin", {}, "rack.session" => { :admin_id => @admin.id }
+      get "/admin", {}, session
 
       last_response.should be_ok
+      last_response.body.should include "Dashboard"
     end
   end
 
-  describe "when a request hits the /admin/new-post path" do
+  describe "GET /admin/new-post" do
     it_should_behave_like "an area that requires authentication", "/admin/new-post"
 
     it "should show the new post form" do
-      get "/admin/new-post", {}, "rack.session" => { :admin_id => @admin.id }
+      get "/admin/new-post", {}, session
 
       last_response.should be_ok
       last_response.body.should include "New post"
     end
   end
 
-  describe "when a post request hits the /admin/new-post path" do
+  describe "POST /admin/new-post" do
     it_should_behave_like "an area that requires authentication", "/admin/new-post", :post
 
+    let(:params) do
+      {
+        "title" => "New blog post title",
+        "content" => "Blog post content"
+      }
+    end
+
     it "should not create a new post when data is not valid" do
-      post "/admin/new-post", {}, "rack.session" => { :admin_id => @admin.id }
+      blog_post.should_receive(:save)
+               .and_return(false)
+
+      Post.should_receive(:new).with(params)
+          .and_return(blog_post)
+
+      post "/admin/new-post", { :post => params }, session
 
       last_response.should_not be_redirect
       last_response.body.should include "your post cannot be created"
     end
 
     it "should create a new post and redirect to this post when data is valid" do
-      params = { :title => "My new post", :content => "Content of my new post" }
+      blog_post.should_receive(:save)
+               .and_return(true)
 
-      post "/admin/new-post", { :post => params }, "rack.session" => { :admin_id => @admin.id }
+      Post.should_receive(:new).with(params)
+          .and_return(blog_post)
+
+      post "/admin/new-post", { :post => params }, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/post\/#{Regexp.escape Post.last.slug}\//
+      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
     end
   end
 
-  describe "when a request hits the /admin/edit-post/ path" do
+  describe "GET /admin/edit-post/:id" do
     it_should_behave_like "an area that requires authentication", "/admin/edit-post/11111"
 
     it "should show the a form to edit the post" do
-      get "/admin/edit-post/#{@post.id}", {}, "rack.session" => { :admin_id => @admin.id }
+      get "/admin/edit-post/#{blog_post.id}", {}, session
 
       last_response.should be_ok
       last_response.body.should include "Edit post"
     end
   end
 
-  describe "when a put request hits the /admin/edit-post/ path" do
-    pending
+  describe "PUT /admin/edit-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/admin/edit-post/11111", :put
+
+    let(:params) do
+      {
+        "title" => "New title",
+        "content" => "Post content"
+      }
+    end
+
+    it "should not update the post when data is not valid" do
+      blog_post.should_receive(:update_attributes).with(params)
+               .and_return(false)
+
+      Post.should_receive(:find).with(blog_post.id.to_s)
+          .and_return(blog_post)
+
+      put "/admin/edit-post/#{blog_post.id}", { :post => params }, session
+
+      last_response.should_not be_redirect
+      last_response.body.should include "your post cannot be updated"
+    end
+
+    it "should update the post when data is valid" do
+      blog_post.should_receive(:update_attributes).with(params)
+               .and_return(true)
+
+      Post.should_receive(:find).with(blog_post.id.to_s)
+          .and_return(blog_post)
+
+      put "/admin/edit-post/#{blog_post.id}", { :post => params }, session
+
+      last_response.should be_redirect
+      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
+    end
   end
 
-  describe "when a request hits the /admin/delete-post/ path" do
-    pending
+  describe "GET /admin/delete-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/admin/delete-post/11111"
+
+    it "should show a confirmation message" do
+      Post.should_receive(:find).with(blog_post.id.to_s).and_return(blog_post)
+
+      get "/admin/delete-post/#{blog_post.id}", {}, session
+
+      last_response.should be_ok
+      last_response.body.should include "Do you really want to delete"
+      last_response.body.should include blog_post.title
+      last_response.body.should include "Yes, I want to delete this post"
+      last_response.body.should include "No, get me out of here!"
+    end
   end
 
-  describe "when a delete request hits the /admin/delete-post/ path" do
-    pending
+  describe "DELETE /admin/delete-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/admin/delete-post/11111", :delete
+
+    it "should destroy the post" do
+      delete "/admin/delete-post/#{blog_post.id}", {}, session
+
+      last_response.should be_redirect
+      last_response.location.should =~ /\/admin$/
+
+      Post.find(blog_post.id.to_s).should be_nil
+    end
   end
 
-  describe "when a post request hits the /admin/markdown-preview/ path" do
-    pending
+  describe "POST /admin/markdown-preview" do
+    it_should_behave_like "an area that requires authentication", "/admin/markdown-preview", :post
+
+    it "should render the html version of a markdown content" do
+      mdown = <<-EOMD
+# TITLE
+content
+      EOMD
+
+      post "/admin/markdown-preview", { :text => mdown }, session
+
+      last_response.should be_ok
+      last_response.body.should include "<h1>TITLE</h1>"
+      last_response.body.should include "<p>content</p>"
+    end
+  end
+
+  def session
+    { "rack.session" => { :admin_id => admin.id } }
   end
 end

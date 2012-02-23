@@ -1,10 +1,6 @@
 require "spec_helper"
 
 describe "Admin setup" do
-  before do
-    Admin.delete_all
-  end
-
   describe "when a request hits the /setup path" do
     it "should show a form to fill the admin information" do
       get "/setup"

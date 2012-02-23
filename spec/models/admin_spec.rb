@@ -1,10 +1,6 @@
 require "spec_helper"
 
 describe Admin do
-  before do
-    Admin.delete_all
-  end
-
   it { should respond_to :hashed_password }
   it { should respond_to :password }
   it { should respond_to :password_confirmation }

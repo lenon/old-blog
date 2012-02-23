@@ -2,11 +2,6 @@ helpers do
   include Rack::Utils
   alias_method :h, :escape_html
 
-  # Render view
-  def view(file)
-    erb file.to_sym
-  end
-
   # Current admin
   def current_user
     Admin.find(session[:admin_id]) if session[:admin_id]

@@ -15,7 +15,7 @@ describe "Blog" do
     })
   end
 
-  describe "when a request hits the root path" do
+  describe "GET /" do
     it "should list all posts" do
       get "/"
 
@@ -25,7 +25,7 @@ describe "Blog" do
     end
   end
 
-  describe "when a request hits the post path" do
+  describe "GET /post/:slug" do
     it "should show the post" do
       get "/post/#{first_post.slug}/"
 
