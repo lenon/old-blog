@@ -9,7 +9,7 @@ helpers do
 
   # Current admin
   def current_user
-    Admin.find(session[:user]) if session[:user]
+    Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
   # Redirect if user is not logged in

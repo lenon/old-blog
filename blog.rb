@@ -6,12 +6,13 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default, ENVIRONMENT)
 
+Mongoid.logger = nil
+
 configure do
   set :public_folder, "#{ROOT}/public"
   set :views, "#{ROOT}/views"
 
-  use Rack::Session::Cookie
-  use Rack::Flash
+  enable :sessions unless test?
 
   require 'sass/plugin/rack'
   use Sass::Plugin::Rack

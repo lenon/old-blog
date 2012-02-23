@@ -28,8 +28,6 @@ class Admin
     self.hashed_password = Admin.encrypt(@password, self.salt)
   end
 
-  protected
-
   def self.encrypt(password, salt)
     Digest::SHA512.hexdigest("#{password}@#{salt}")
   end

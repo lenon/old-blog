@@ -8,7 +8,7 @@ end
 
 post "/login" do
   if user = Admin.authenticate(params[:login], params[:password])
-    session[:user] = user.id
+    session[:admin_id] = user.id
     return redirect "/admin"
   end
   flash.now[:alert] = "Wrong login or password"
@@ -18,7 +18,7 @@ end
 # Logout
 
 get "/logout" do
-  session[:user] = nil
+  session[:admin_id] = nil
   flash[:notice] = "You're now disconnected"
   redirect "/login"
 end
@@ -64,7 +64,7 @@ put "/admin/edit-post/:id" do
     flash[:notice] = "Post successfully updated!"
     return redirect "/post/#{@post.slug}/"
   end
-  flash.now[:alert] = "Ooops, your post cannot be updated. Sorry again."
+  flash.now[:alert] = "Ooops, your post cannot be updated. Sorry."
   erb :"admin/edit_post"
 end
 
