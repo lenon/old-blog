@@ -9,7 +9,7 @@ end
 
 require 'rspec'
 require 'rack/test'
-require File.join File.dirname(__FILE__), '..', 'blog'
+require File.join File.dirname(__FILE__), '..', 'lib', 'main'
 
 def app
   Sinatra::Application

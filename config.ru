@@ -1,2 +1,2 @@
-require './blog'
+require './lib/main.rb'
 run Sinatra::Application

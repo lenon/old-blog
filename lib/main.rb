@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] ||= 'development'
 ENVIRONMENT = ENV['RACK_ENV'].to_sym
-ROOT = File.join(File.dirname(__FILE__))
+ROOT = File.join File.dirname(__FILE__)
 
 require 'rubygems'
 require 'bundler'
