@@ -12,7 +12,7 @@ configure do
   set :public_folder, "#{ROOT}/public"
   set :views, "#{ROOT}/views"
 
-  enable :sessions unless test?
+  use Rack::Session::Cookie unless test?
 
   require 'sass/plugin/rack'
   use Sass::Plugin::Rack
