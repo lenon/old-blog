@@ -8,6 +8,8 @@ gem "mongoid", "2.4.5"
 gem "mongoid_slug", "0.8.3"
 gem "bson_ext", "1.6.0"
 gem "redcarpet", "1.17.2"
+gem "capistrano", "2.11.2"
+gem "unicorn", "4.2.0"
 
 group :development, :test do
   gem "rake"
