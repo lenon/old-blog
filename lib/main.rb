@@ -17,8 +17,9 @@ configure do
   require 'sass/plugin/rack'
   use Sass::Plugin::Rack
 
-  # Sass options
-  set :sass, {:style => (ENVIRONMENT == :production ? :compressed : :nested)}
+  Sass::Plugin.options[:style] = ENVIRONMENT == :production ? :compressed : :nested
+  Sass::Plugin.options[:css_location] = "#{ROOT}/public/stylesheets"
+  Sass::Plugin.options[:template_location] = "#{ROOT}/public/stylesheets/sass"
 
   # MongoDB settings
   Mongoid.raise_not_found_error = false
