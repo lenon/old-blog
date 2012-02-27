@@ -10,9 +10,9 @@ default_run_options[:pty] = true
 set :repository, "git://github.com/lenon/blog.git"
 set :scm, :git
 set :user, "deploy"
-set :domain, "lenonmarcel.com.br"
+set :domain, ENV["BLOG_APP_DOMAIN"]
 set :application, "blog_app"
-set :port, ENV["SSH_PORT"] if ENV["SSH_PORT"]
+set :port, ENV["BLOG_APP_SSH_PORT"]
 set :use_sudo, false
 set :branch, "master"
 set :deploy_to, "/home/#{user}/#{application}"
