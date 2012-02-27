@@ -1,8 +1,7 @@
-worker_processes 4
+worker_processes 2
 working_directory "/home/deploy/blog_app/current"
 
-listen "/home/deploy/blog_app/shared/unicorn.sock", :backlog => 64
-listen 3001, :tcp_nopush => true
+listen "/home/deploy/blog_app/shared/unicorn.sock", :backlog => 10
 
 timeout 30
 
