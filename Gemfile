@@ -12,6 +12,7 @@ gem "unicorn", "4.2.0"
 
 group :development do
   gem "capistrano", "2.11.2"
+  gem "rvm-capistrano", "1.2.2"
 end
 
 group :development, :test do
