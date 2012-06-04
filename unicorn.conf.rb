@@ -1,11 +1,11 @@
-worker_processes 2
-working_directory "/home/deploy/blog_app/current"
+worker_processes 3
+working_directory "/home/blog/blog/current"
 
-listen "/home/deploy/blog_app/shared/unicorn.sock", :backlog => 10
+listen "/home/blog/blog/shared/unicorn.sock", :backlog => 10
 
 timeout 30
 
-pid "/home/deploy/blog_app/shared/pids/unicorn.pid"
+pid "/home/blog/blog/shared/unicorn.pid"
 
-stderr_path "/home/deploy/blog_app/shared/log/unicorn.stderr.log"
-stdout_path "/home/deploy/blog_app/shared/log/unicorn.stdout.log"
+stderr_path "/home/blog/blog/shared/unicorn.stderr.log"
+stdout_path "/home/blog/blog/shared/unicorn.stdout.log"
