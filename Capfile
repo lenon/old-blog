@@ -11,8 +11,7 @@ set :application, "blog"
 set :repository, "git://github.com/lenon/blog.git"
 set :scm, :git
 set :user, "blog"
-set :domain, "50.116.39.84"
-ssh_options[:keys] = ["~/.ssh/blog_rsa"]
+set :domain, "lenonmarcel.com.br"
 set :port, 3299
 set :use_sudo, false
 set :branch, "master"
@@ -24,7 +23,7 @@ set :scm_verbose, true
 set :copy_cache, true
 set :keep_releases, 3
 
-server "50.116.39.84", :app
+server "lenonmarcel.com.br", :app
 
 namespace :deploy do
   task :start do
