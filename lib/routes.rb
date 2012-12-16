@@ -8,7 +8,7 @@ end
 # Home page
 get "/" do
   @posts = Post.order_by(:created_at, :desc)
-  erb :index, :locals => { :is_home => true }
+  erb :index
 end
 
 # Post page

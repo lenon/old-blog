@@ -38,16 +38,6 @@
     </nav><!-- #menu -->
   </header><!-- #header -->
   <div id="main">
-    <% if defined?(is_home) %>
-      <div id="about">
-        <p>
-          <span class="first-word">Oi!</span>
-          Meu nome é Lenon Marcel e este é meu blog. Aqui compartilho minhas ideias, informações
-          sobre meu trabalho como desenvolvedor de software e alguns pensamentos aleatórios.
-          Fique livre para comentar nos posts ou entrar em contato através do meu email. :)
-        </p>
-      </div><!-- #about -->
-    <% end %>
     <div id="page">
       <% if flash[:alert] %>
         <div class="alert-message"><%= flash[:alert] %></div>
