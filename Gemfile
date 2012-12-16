@@ -9,6 +9,7 @@ gem "mongoid_slug", "0.8.3"
 gem "bson_ext", "1.6.0"
 gem "redcarpet", "1.17.2"
 gem "unicorn", "4.2.0"
+gem "r18n-core", "~> 1.1.3"
 
 group :development do
   gem "capistrano", "2.11.2"

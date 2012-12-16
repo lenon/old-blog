@@ -7,7 +7,7 @@ fb_params = {
 %>
 <div id="post-<%= @post.id %>" class="post">
   <div class="post-meta">
-    <%= @post.created_at.strftime "%d/%m/%Y - %H:%M" %>
+    <%= l @post.created_at, :full %>
     <div class="social">
       <iframe src="//platform.twitter.com/widgets/tweet_button.html?count=none" allowtransparency="true" frameborder="0" scrolling="no" width="56"></iframe>
       <iframe src="//www.facebook.com/plugins/like.php?<%= fb_params.to_param %>" scrolling="no" frameborder="0" allowTransparency="true" width="300"></iframe>

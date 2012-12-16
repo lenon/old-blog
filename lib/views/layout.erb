@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <title><%= h @title || 'Blog' %> | Lenon Marcel</title>
   <meta property="fb:app_id" content="152943078134721"/>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="/stylesheets/blog.css"/>
   <!--[if lt IE 9]>
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,6 +38,16 @@
     </nav><!-- #menu -->
   </header><!-- #header -->
   <div id="main">
+    <% if defined?(is_home) %>
+      <div id="about">
+        <p>
+          <span class="first-word">Oi!</span>
+          Meu nome é Lenon Marcel e este é meu blog. Aqui compartilho minhas ideias, informações
+          sobre meu trabalho como desenvolvedor de software e alguns pensamentos aleatórios.
+          Fique livre para comentar nos posts ou entrar em contato através do meu email. :)
+        </p>
+      </div><!-- #about -->
+    <% end %>
     <div id="page">
       <% if flash[:alert] %>
         <div class="alert-message"><%= flash[:alert] %></div>

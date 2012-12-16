@@ -8,6 +8,8 @@ Bundler.require(:default, ENVIRONMENT)
 
 Mongoid.logger = nil
 
+R18n.set('pt-BR')
+
 configure do
   set :public_folder, "#{ROOT}/public"
   set :views, "#{ROOT}/views"
