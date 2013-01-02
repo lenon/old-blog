@@ -1,19 +1,23 @@
-ENV["RACK_ENV"] = "test"
+ENV['RACK_ENV'] = 'test'
 
-unless ENV["CI"]
+require 'rubygems'
+require 'bundler'
+
+Bundler.setup
+
+unless ENV['CI']
   require 'simplecov'
   SimpleCov.start do
     add_filter "/spec/"
   end
 end
 
+$LOAD_PATH.unshift File.expand_path('../..', __FILE__)
+
 require 'rspec'
 require 'rack/test'
-require File.join File.dirname(__FILE__), '..', 'lib', 'main'
 
-def app
-  Sinatra::Application
-end
+require 'lib/setup'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods

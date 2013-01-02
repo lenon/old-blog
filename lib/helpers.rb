@@ -1,18 +1,19 @@
-helpers do
+require 'redcarpet'
+
+module Helpers
   include Rack::Utils
   include R18n::Helpers
+
   alias_method :h, :escape_html
 
-  # Current admin
   def current_user
     Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
-  # Redirect if user is not logged in
   def login_required
     unless current_user
       flash[:notice] = "You must be logged in to access this area"
-      redirect '/login'
+      redirect '/admin/login'
     end
   end
 

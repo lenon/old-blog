@@ -2,7 +2,6 @@
 <p>This action cannot be undone.</p>
 <form id="delete-post" action="/admin/delete-post/<%= @post.id %>" method="post">
   <div>
-    <input type="hidden" name="_method" value="delete"/>
     <input value="Yes, I want to delete this post" type="submit"/>
     or <a href="/admin">No, get me out of here!</a>
   </div>

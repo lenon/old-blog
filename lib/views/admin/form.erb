@@ -1,6 +1,3 @@
-<% unless @post.new_record? %>
-<input type="hidden" name="_method" value="put"/>
-<% end %>
 <div class="input">
   <label for="post-title">Title</label>
   <input id="post-title" name="post[title]" type="text" value="<%= h @post.title %>"/>

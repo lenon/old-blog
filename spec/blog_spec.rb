@@ -1,6 +1,8 @@
 require "spec_helper"
 
-describe "Blog" do
+describe "BlogApp" do
+  def app; BlogApp; end
+
   let!(:first_post) do
     Post.create!({
       :title => "My Awesome Post",

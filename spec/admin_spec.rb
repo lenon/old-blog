@@ -1,6 +1,8 @@
 require "spec_helper"
 
-describe "Admin" do
+describe "AdminApp" do
+  def app; AdminApp; end
+
   let(:admin) do
     Admin.create!({
       :login => "admin",
@@ -56,30 +58,30 @@ describe "Admin" do
     end
   end
 
-  describe "GET /admin" do
-    it_should_behave_like "an area that requires authentication", "/admin"
+  describe "GET /" do
+    it_should_behave_like "an area that requires authentication", "/"
 
     it "should show the dashboard" do
-      get "/admin", {}, session
+      get "/", {}, session
 
       last_response.should be_ok
       last_response.body.should include "Dashboard"
     end
   end
 
-  describe "GET /admin/new-post" do
-    it_should_behave_like "an area that requires authentication", "/admin/new-post"
+  describe "GET /new-post" do
+    it_should_behave_like "an area that requires authentication", "/new-post"
 
     it "should show the new post form" do
-      get "/admin/new-post", {}, session
+      get "/new-post", {}, session
 
       last_response.should be_ok
       last_response.body.should include "New post"
     end
   end
 
-  describe "POST /admin/new-post" do
-    it_should_behave_like "an area that requires authentication", "/admin/new-post", :post
+  describe "POST /new-post" do
+    it_should_behave_like "an area that requires authentication", "/new-post", :post
 
     let(:params) do
       {
@@ -95,7 +97,7 @@ describe "Admin" do
       Post.should_receive(:new).with(params)
           .and_return(blog_post)
 
-      post "/admin/new-post", { :post => params }, session
+      post "/new-post", { :post => params }, session
 
       last_response.should_not be_redirect
       last_response.body.should include "your post cannot be created"
@@ -108,26 +110,26 @@ describe "Admin" do
       Post.should_receive(:new).with(params)
           .and_return(blog_post)
 
-      post "/admin/new-post", { :post => params }, session
+      post "/new-post", { :post => params }, session
 
       last_response.should be_redirect
       last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
     end
   end
 
-  describe "GET /admin/edit-post/:id" do
-    it_should_behave_like "an area that requires authentication", "/admin/edit-post/11111"
+  describe "GET /edit-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/edit-post/11111"
 
     it "should show the a form to edit the post" do
-      get "/admin/edit-post/#{blog_post.id}", {}, session
+      get "/edit-post/#{blog_post.id}", {}, session
 
       last_response.should be_ok
       last_response.body.should include "Edit post"
     end
   end
 
-  describe "PUT /admin/edit-post/:id" do
-    it_should_behave_like "an area that requires authentication", "/admin/edit-post/11111", :put
+  describe "POST /edit-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/edit-post/11111", :post
 
     let(:params) do
       {
@@ -143,7 +145,7 @@ describe "Admin" do
       Post.should_receive(:find).with(blog_post.id.to_s)
           .and_return(blog_post)
 
-      put "/admin/edit-post/#{blog_post.id}", { :post => params }, session
+      post "/edit-post/#{blog_post.id}", { :post => params }, session
 
       last_response.should_not be_redirect
       last_response.body.should include "your post cannot be updated"
@@ -156,20 +158,20 @@ describe "Admin" do
       Post.should_receive(:find).with(blog_post.id.to_s)
           .and_return(blog_post)
 
-      put "/admin/edit-post/#{blog_post.id}", { :post => params }, session
+      post "/edit-post/#{blog_post.id}", { :post => params }, session
 
       last_response.should be_redirect
       last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
     end
   end
 
-  describe "GET /admin/delete-post/:id" do
-    it_should_behave_like "an area that requires authentication", "/admin/delete-post/11111"
+  describe "GET /delete-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/delete-post/11111"
 
     it "should show a confirmation message" do
       Post.should_receive(:find).with(blog_post.id.to_s).and_return(blog_post)
 
-      get "/admin/delete-post/#{blog_post.id}", {}, session
+      get "/delete-post/#{blog_post.id}", {}, session
 
       last_response.should be_ok
       last_response.body.should include "Do you really want to delete"
@@ -179,11 +181,11 @@ describe "Admin" do
     end
   end
 
-  describe "DELETE /admin/delete-post/:id" do
-    it_should_behave_like "an area that requires authentication", "/admin/delete-post/11111", :delete
+  describe "POST /delete-post/:id" do
+    it_should_behave_like "an area that requires authentication", "/delete-post/11111", :post
 
     it "should destroy the post" do
-      delete "/admin/delete-post/#{blog_post.id}", {}, session
+      post "/delete-post/#{blog_post.id}", {}, session
 
       last_response.should be_redirect
       last_response.location.should =~ /\/admin$/
@@ -192,8 +194,8 @@ describe "Admin" do
     end
   end
 
-  describe "POST /admin/markdown-preview" do
-    it_should_behave_like "an area that requires authentication", "/admin/markdown-preview", :post
+  describe "POST /markdown-preview" do
+    it_should_behave_like "an area that requires authentication", "/markdown-preview", :post
 
     it "should render the html version of a markdown content" do
       mdown = <<-EOMD
@@ -201,7 +203,7 @@ describe "Admin" do
 content
       EOMD
 
-      post "/admin/markdown-preview", { :text => mdown }, session
+      post "/markdown-preview", { :text => mdown }, session
 
       last_response.should be_ok
       last_response.body.should include "<h1>TITLE</h1>"
