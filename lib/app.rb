@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'newrelic_rpm'
 require 'sinatra/flash'
 require 'sass/plugin/rack'
 

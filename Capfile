@@ -27,6 +27,8 @@ server "lenonmarcel.com.br", :app
 
 namespace :deploy do
   task :start do
+    run "rm #{current_path}/newrelic.yml"
+    run "cp #{shared_path}/newrelic.yml #{current_path}/newrelic.yml"
     run "cd #{current_path} && bundle exec unicorn -c unicorn.conf.rb -E production -D"
   end
 
