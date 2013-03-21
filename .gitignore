@@ -4,3 +4,7 @@
 coverage
 newrelic.yml
 /log
+config/*.yml
+config/*.conf
+.vagrant
+Vagrantfile

@@ -1,11 +1,11 @@
-source :rubygems
+source "https://rubygems.org/"
 
-gem "rack", "1.4.1"
-gem "sinatra", "1.3.2"
+gem "rack", "1.5.2"
+gem "sinatra", "1.4.1"
 gem "sinatra-flash", "0.3.0"
 gem "sass", "3.1.10"
-gem "mongoid", "2.4.5"
-gem "mongoid_slug", "0.8.3"
+gem "mongoid", "3.1.2"
+gem "mongoid_slug", "3.0.0"
 gem "bson_ext", "1.6.0"
 gem "redcarpet", "1.17.2"
 gem "unicorn", "4.2.0"
@@ -13,12 +13,7 @@ gem "r18n-core", "~> 1.1.3"
 gem "newrelic_rpm", "~> 3.5.5.38"
 
 group :development do
-  gem "capistrano", "2.11.2"
-  gem "rvm-capistrano", "1.2.2"
-end
-
-group :development, :test do
-  gem "rake"
+  gem "capistrano", "2.14.2"
 end
 
 group :test do

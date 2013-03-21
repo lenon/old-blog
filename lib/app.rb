@@ -6,9 +6,6 @@ require 'sass/plugin/rack'
 require 'lib/helpers'
 
 class App < Sinatra::Base
-  set :public_folder, 'lib/public'
-  set :views, 'lib/views'
-
   not_found { erb :not_found }
 
   Sass::Plugin.options[:style] = ENV['RACK_ENV'].to_s == 'production' ? :compressed : :nested

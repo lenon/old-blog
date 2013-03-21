@@ -15,7 +15,7 @@ class Admin
   attr_accessor :password, :password_confirmation
 
   def self.authenticate(login, password)
-    admin = Admin.first(:conditions => {:login => login})
+    admin = Admin.where(:login => login).first
     if admin && Admin.encrypt(password, admin.salt) == admin.hashed_password
       return admin
     end

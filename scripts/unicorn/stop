@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -e
+
+export UNICORN_PID="/home/blog/app/current/tmp/pids/unicorn.pid"
+
+if [ -r $UNICORN_PID ] && kill -0 `cat $UNICORN_PID` ; then
+  kill -s QUIT `cat $UNICORN_PID` && exit 0
+fi

@@ -2,13 +2,8 @@ require 'mongoid'
 require 'mongoid_slug'
 require 'r18n-core'
 
-Encoding.default_external = 'utf-8'
-
-Mongoid.logger = nil
+Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
-Mongoid.configure.from_hash({
-  'database' => "app_blog_#{ENV['RACK_ENV']}"
-})
 
 R18n.set 'pt-BR'
 

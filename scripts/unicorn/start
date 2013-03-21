@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+set -e
+
+export PATH="/usr/local/bin:$PATH"
+
+export CURRENT_PATH="/home/blog/app/current"
+export UNICORN_PID="/home/blog/app/current/tmp/pids/unicorn.pid"
+export OLD_UNICORN_PID="$UNICORN_PID.oldbin"
+export UNICORN_CONFIG="/home/blog/app/current/config/unicorn.conf"
+export BUNDLE_GEMFILE="$CURRENT_PATH/Gemfile"
+export RACK_ENV="production"
+
+if [ -r $UNICORN_PID ] && kill -0 `cat $UNICORN_PID` ; then
+  if kill -s USR2 `cat $UNICORN_PID` ; then
+    sleep 4
+    kill -s QUIT `cat $OLD_UNICORN_PID` > /dev/null 2>&1
+    exit 0
+  fi
+  rm $UNICORN_PID
+fi
+
+cd $CURRENT_PATH
+bundle exec unicorn -D -c $UNICORN_CONFIG

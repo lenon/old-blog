@@ -1,0 +1,5 @@
+check process unicorn with pidfile /home/blog/app/current/tmp/pids/unicorn.pid
+  start program = "/home/blog/app/current/scripts/unicorn/start"
+    as uid blog and gid blog
+  stop program = "/home/blog/app/current/scripts/unicorn/stop"
+    as uid blog and gid blog

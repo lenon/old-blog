@@ -1,6 +1,6 @@
 class BlogApp < App
   get '/' do
-    @posts = Post.order_by(:created_at, :desc)
+    @posts = Post.order_by(:created_at => :desc)
     erb :index
   end
 
@@ -9,7 +9,7 @@ class BlogApp < App
   end
 
   get '/post/:slug/' do
-    @post = Post.find_by_slug(params[:slug]) || not_found
+    @post = Post.find(params[:slug]) || not_found
     @title = @post.title
     erb :post
   end

@@ -104,7 +104,7 @@ describe Admin do
       :password_confirmation => "123456"
     })
 
-    admin = Admin.first(:conditions => {:login => "test"})
+    admin = Admin.where(:login => "test").first
     admin.password.should be_nil
     admin.password_confirmation.should be_nil
   end
