@@ -4,6 +4,7 @@ require 'r18n-core'
 
 Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
+Mongoid.allow_dynamic_fields  = false
 
 R18n.set 'pt-BR'
 
