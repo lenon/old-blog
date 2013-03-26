@@ -17,7 +17,7 @@ $LOAD_PATH.unshift File.expand_path('../..', __FILE__)
 require 'rspec'
 require 'rack/test'
 
-require 'lib/setup'
+require 'lib/boot'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
