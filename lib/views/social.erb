@@ -1,0 +1,12 @@
+<%
+  fblike_params = {
+    :href   => url("/post/#{identifier}/"),
+    :layout => "button_count",
+    :action => "like",
+  }.to_param
+%>
+<div class="social">
+  <iframe src="//platform.twitter.com/widgets/tweet_button.html?count=none" allowtransparency="true" frameborder="0" scrolling="no" width="56"></iframe>
+  <iframe src="//www.facebook.com/plugins/like.php?<%= fblike_params %>" scrolling="no" frameborder="0" allowtransparency="true" width="300"></iframe>
+</div>
+

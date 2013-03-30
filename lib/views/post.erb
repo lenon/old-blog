@@ -1,17 +1,7 @@
-<%
-fb_params = {
-  :href => url("/post/#{@post.slug}/"),
-  :layout => "button_count",
-  :action => "like"
-}
-%>
 <div id="post-<%= @post.id %>" class="post">
   <div class="post-meta">
     <%= l @post.created_at, :full %>
-    <div class="social">
-      <iframe src="//platform.twitter.com/widgets/tweet_button.html?count=none" allowtransparency="true" frameborder="0" scrolling="no" width="56"></iframe>
-      <iframe src="//www.facebook.com/plugins/like.php?<%= fb_params.to_param %>" scrolling="no" frameborder="0" allowTransparency="true" width="300"></iframe>
-    </div>
+    <%= erb :social, :locals => { :identifier => @post.slug } %>
   </div><!-- .post-meta -->
   <h2 class="post-title">
     <a href="<%= url "/post/#{@post.slug}/" %>"><%= h @post.title %></a>
@@ -20,19 +10,5 @@ fb_params = {
     <%= print_markdown(@post.content) %>
   </div><!-- .post-content -->
 
-  <!-- disqus plugin -->
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_shortname = 'lenon';
-  var disqus_identifier = '<%= @post.id %>';
-  (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  <!-- /disqus plugin -->
-
+  <%= erb :disqus, :locals => { :identifier => @post.id } %>
 </div><!-- #post-<%= @post.id %>.post -->
