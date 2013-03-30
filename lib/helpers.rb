@@ -20,24 +20,4 @@ module Helpers
   def print_markdown(txt)
     Redcarpet.new(txt).to_html
   end
-
-  # https://raw.github.com/emk/sinatra-url-for/master/lib/sinatra/url_for.rb
-  def url_for(url_fragment, options = nil)
-    optstring = nil
-
-    if options.is_a? Hash
-      optstring = '?' + options.map { |k,v| "#{k}=#{URI.escape(v.to_s, /[^#{URI::PATTERN::UNRESERVED}]/)}" }.join('&')
-    end
-
-    scheme = request.scheme
-    if (scheme == 'http' && request.port == 80 ||
-        scheme == 'https' && request.port == 443)
-      port = "" 
-    else
-      port = ":#{request.port}" 
-    end
-    base = "#{scheme}://#{request.host}#{port}#{request.script_name}"
-
-    "#{base}#{url_fragment}#{optstring}"
-  end
 end

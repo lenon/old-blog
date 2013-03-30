@@ -4,7 +4,7 @@
     <%= l post.created_at, :full %>
   </div><!-- .post-meta -->
   <h2 class="post-title">
-    <a href="/post/<%= post.slug %>/"><%= h post.title %></a>
+    <a href="<%= url "/post/#{post.slug}/" %>"><%= h post.title %></a>
   </h2>
 </div><!-- #post-<%= post.id %>.post -->
 <% end %>

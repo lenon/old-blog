@@ -1,6 +1,6 @@
 <%
 fb_params = {
-  :href => url_for("/post/#{@post.slug}/"),
+  :href => url("/post/#{@post.slug}/"),
   :layout => "button_count",
   :action => "like"
 }
@@ -14,7 +14,7 @@ fb_params = {
     </div>
   </div><!-- .post-meta -->
   <h2 class="post-title">
-    <a href="/post/<%= @post.slug %>"><%= h @post.title %></a>
+    <a href="<%= url "/post/#{@post.slug}/" %>"><%= h @post.title %></a>
   </h2>
   <div class="post-content text">
     <%= print_markdown(@post.content) %>
