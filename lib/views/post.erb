@@ -4,7 +4,7 @@
     <%= erb :social, :locals => { :identifier => @post.slug } %>
   </div><!-- .post-meta -->
   <h2 class="post-title">
-    <a href="<%= url "/post/#{@post.slug}/" %>"><%= h @post.title %></a>
+    <a href="<%= url "/post/#{@post.slug}" %>"><%= h @post.title %></a>
   </h2>
   <div class="post-content text">
     <%= print_markdown(@post.content) %>

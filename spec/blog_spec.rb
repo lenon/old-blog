@@ -29,7 +29,7 @@ describe "BlogApp" do
 
   describe "GET /post/:slug" do
     it "should show the post" do
-      get "/post/#{first_post.slug}/"
+      get "/post/#{first_post.slug}"
 
       last_response.should be_ok
       last_response.body.should include first_post.title
@@ -37,7 +37,7 @@ describe "BlogApp" do
     end
 
     it "should return HTTP 404 when post is not found" do
-      get "/post/post-que-no-ecziste/"
+      get "/post/post-que-no-ecziste"
 
       last_response.status.should == 404
     end

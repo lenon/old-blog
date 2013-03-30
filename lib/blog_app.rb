@@ -5,10 +5,6 @@ class BlogApp < App
   end
 
   get '/post/:slug' do
-    redirect "/post/#{params[:slug]}/", 301
-  end
-
-  get '/post/:slug/' do
     @post = Post.find(params[:slug]) || not_found
     @title = @post.title
     erb :post
