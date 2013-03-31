@@ -5,7 +5,6 @@ require 'settingslogic'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'newrelic_rpm'
-require 'sass/plugin/rack'
 
 Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
