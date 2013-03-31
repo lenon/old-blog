@@ -16,11 +16,14 @@ $LOAD_PATH.unshift File.expand_path('../..', __FILE__)
 
 require 'rspec'
 require 'rack/test'
-
+require 'factory_girl'
 require 'lib/boot'
+
+FactoryGirl.find_definitions
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include FactoryGirl::Syntax::Methods
 
   config.before do
     Admin.delete_all

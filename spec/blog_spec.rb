@@ -3,19 +3,8 @@ require "spec_helper"
 describe "BlogApp" do
   def app; BlogApp; end
 
-  let!(:first_post) do
-    Post.create!({
-      :title => "My Awesome Post",
-      :content => "Foo Bar Baz"
-    })
-  end
-
-  let!(:second_post) do
-    Post.create!({
-      :title => "My Awesome Post 2",
-      :content => "Foo Bar Baz"
-    })
-  end
+  let!(:first_post) { create :post }
+  let!(:second_post) { create :post }
 
   describe "GET /" do
     it "should list all posts" do

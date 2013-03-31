@@ -3,19 +3,8 @@ require "spec_helper"
 describe "AdminApp" do
   def app; AdminApp; end
 
-  let(:admin) do
-    Admin.create!({
-      :login => "admin",
-      :password => "123456"
-    })
-  end
-
-  let(:blog_post) do
-    Post.create!({
-      :title => "My Post",
-      :content => "My post content"
-    })
-  end
+  let(:admin) { create :admin }
+  let(:blog_post) { create :post }
 
   describe "GET /login" do
     it "should show the login form" do

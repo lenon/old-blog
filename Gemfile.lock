@@ -15,6 +15,8 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     diff-lcs (1.2.1)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
     highline (1.6.16)
     i18n (0.6.1)
     kgio (2.8.0)
@@ -78,6 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (= 2.14.2)
+  factory_girl
   mongoid (= 3.1.2)
   mongoid_slug (= 3.0.0)
   newrelic_rpm (= 3.6.0.78)

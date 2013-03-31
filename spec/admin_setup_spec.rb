@@ -12,10 +12,7 @@ describe "Admin setup" do
     end
 
     it "should return HTTP 404 when an admin already exists" do
-      Admin.create!({
-        :login => "admin",
-        :password => "123456"
-      })
+      create :admin
 
       get '/setup'
 
@@ -32,10 +29,7 @@ describe "Admin setup" do
     end
 
     it "should return HTTP 404 when an admin already exists" do
-      Admin.create!({
-        :login => "admin",
-        :password => "123456"
-      })
+      create :admin
 
       post '/setup'
 
