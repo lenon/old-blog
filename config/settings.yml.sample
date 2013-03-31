@@ -1,0 +1,14 @@
+defaults: &defaults
+  default_domain: lenonmarcel.com.br
+  domains:
+    - lenonmarcel.com.br
+    - math.lenonmarcel.com.br
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

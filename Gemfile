@@ -10,6 +10,7 @@ gem "redcarpet", "1.17.2"
 gem "unicorn", "4.6.2"
 gem "r18n-core", "1.1.4"
 gem "newrelic_rpm", "3.6.0.78"
+gem "settingslogic", "2.0.9"
 
 group :development do
   gem "capistrano", "2.14.2"
