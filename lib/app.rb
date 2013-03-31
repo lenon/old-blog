@@ -1,10 +1,3 @@
-require 'sinatra/base'
-require 'newrelic_rpm'
-require 'sinatra/flash'
-require 'sass/plugin/rack'
-
-require 'lib/helpers'
-
 class App < Sinatra::Base
   not_found { erb :not_found }
 
