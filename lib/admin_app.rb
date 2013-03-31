@@ -76,27 +76,4 @@ class AdminApp < App
     login_required
     print_markdown(params[:text])
   end
-
-  get '/setup' do
-    return not_found if Admin.count > 0
-    erb :'admin/setup'
-  end
-
-  post '/setup' do
-    return not_found if Admin.count > 0
-
-    admin = Admin.new({
-      :login => params['login'],
-      :password => params['password'],
-      :password_confirmation => params['password_confirmation']
-    })
-
-    if admin.save
-      flash[:notice] = 'Your admin account was successfully created!'
-      redirect '/admin/login'
-    else
-      flash.now[:alert] = 'Sorry, your account can\'t be created.'
-      erb :'admin/setup'
-    end
-  end
 end
