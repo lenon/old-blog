@@ -1,11 +1,11 @@
 class BlogApp < App
   get '/' do
-    @posts = Post.order_by(:created_at => :desc)
+    @posts = Post.where(:domain => current_domain).desc(:created_at)
     erb :index
   end
 
   get '/post/:slug' do
-    @post = Post.find(params[:slug]) || not_found
+    @post = Post.where(:domain => current_domain).find(params[:slug]) || not_found
     @title = @post.title
     erb :post
   end

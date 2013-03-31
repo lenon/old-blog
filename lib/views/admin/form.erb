@@ -6,6 +6,14 @@
   <label for="post-content">Content (markdown)</label>
   <textarea id="post-content" name="post[content]"><%= h @post.content %></textarea>
 </div>
+<div class="input">
+  <label for="post-domain">Domain</label>
+  <select id="post-domain" name="post[domain]">
+    <% Settings.domains.each do |d| %>
+      <option value="<%= h d %>" <%= "selected" if @post.domain == d %>><%= h d %></option>
+    <% end %>
+  </select>
+</div>
 <div class="submit">
   <input value="Save" type="submit"/>
 </div>

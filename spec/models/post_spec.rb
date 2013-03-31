@@ -44,12 +44,10 @@ describe Post do
   end
 
   specify "by default domain must be Setting.default_domain" do
-    Settings.stub(:default_domain => "foo.com.br")
-    Post.new.domain.should be == "foo.com.br"
+    Post.new.domain.should be == "foo.com"
   end
 
   it "validates inclusion of domain in Setting.domains" do
-    Settings.stub(:domains => %w(foo.com.br bar.com.br))
     post = Post.new(:domain => "foobar")
 
     post.should_not be_valid
@@ -57,11 +55,10 @@ describe Post do
   end
 
   it "saves a Post with valid domain" do
-    Settings.stub(:domains => ["risos.com.br"])
     post = Post.new({
       :title => "risos",
       :content => "Foobarbaz",
-      :domain => "risos.com.br"
+      :domain => "bar.com"
     })
 
     expect { post.save! }.to_not raise_error

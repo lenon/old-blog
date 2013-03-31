@@ -21,6 +21,9 @@ require 'lib/boot'
 
 FactoryGirl.find_definitions
 
+Settings[:default_domain] = "foo.com"
+Settings[:domains] = %w(foo.com bar.com foobar.com)
+
 RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include FactoryGirl::Syntax::Methods
