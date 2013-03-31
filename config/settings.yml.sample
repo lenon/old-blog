@@ -1,4 +1,5 @@
 defaults: &defaults
+  cookie_secret: "<PLEASE CHANGE ME>"
   default_domain: lenonmarcel.com.br
   domains:
     - lenonmarcel.com.br

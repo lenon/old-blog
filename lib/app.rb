@@ -7,7 +7,9 @@ class App < Sinatra::Base
 
   helpers Helpers
 
-  use Rack::Session::Cookie unless test?
+  unless test?
+    use Rack::Session::Cookie, :secret => Settings.cookie_secret
+  end
   use Sass::Plugin::Rack
 
   register Sinatra::Flash
