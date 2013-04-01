@@ -102,7 +102,7 @@ describe "AdminApp" do
       post "/new-post", { :post => params }, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
+      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}/
     end
   end
 
@@ -150,7 +150,7 @@ describe "AdminApp" do
       post "/edit-post/#{blog_post.id}", { :post => params }, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}\//
+      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}/
     end
   end
 

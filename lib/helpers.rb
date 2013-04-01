@@ -15,13 +15,6 @@ module Helpers
     Settings.domains.include?(domain) ? domain : Settings.default_domain
   end
 
-  def login_required
-    unless current_user
-      flash[:notice] = "You must be logged in to access this area"
-      redirect '/admin/login'
-    end
-  end
-
   def print_markdown(txt)
     Redcarpet.new(txt).to_html
   end

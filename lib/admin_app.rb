@@ -1,79 +1,90 @@
 class AdminApp < App
-  get '/login' do
-    erb :'admin/login'
+  def erb(file)
+    super :"admin/#{file}"
   end
 
-  post '/login' do
+  def self.auth(*)
+    condition do
+      unless current_user
+        flash[:notice] = "You must be logged in to access this area"
+        redirect to "/admin/login"
+      end
+    end
+  end
+
+  get "/login" do
+    erb :login
+  end
+
+  post "/login" do
     if user = Admin.authenticate(params[:login], params[:password])
       session[:admin_id] = user.id
-      return redirect '/admin'
+      return redirect to "/admin"
     end
 
-    flash.now[:alert] = 'Wrong login or password'
-    erb :'admin/login'
+    flash.now[:alert] = "Wrong login or password"
+    erb :login
   end
 
-  get '/logout' do
+  get "/logout" do
     session[:admin_id] = nil
-    flash[:notice] = 'You\'re now disconnected'
-    redirect '/admin/login'
+    flash[:notice] = "You're now disconnected"
+
+    redirect to "/admin/login"
   end
 
-  get '/' do
-    login_required
-    erb :'admin/dashboard'
+  get "/", :auth => true do
+    erb :dashboard
   end
 
-  get '/new-post' do
-    login_required
+  get "/new-post", :auth => true do
     @post = Post.new
-    erb :'admin/new_post'
+    erb :new_post
   end
 
-  post '/new-post' do
-    login_required
-    @post = Post.new(params['post'])
+  post "/new-post", :auth => true do
+    @post = Post.new(params["post"])
+
     if @post.save
-      flash[:notice] = 'Post created successfully!'
-      return redirect "/post/#{@post.slug}/"
+      flash[:notice] = "Post created successfully!"
+      return redirect to "/post/#{@post.slug}"
     end
-    flash.now[:alert] = 'Ooops, your post cannot be created. Sorry.'
-    erb :'admin/new_post'
+
+    flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
+    erb :new_post
   end
 
-  get '/edit-post/:id' do
-    login_required
+  get "/edit-post/:id", :auth => true do
     @post = Post.find(params[:id]) || not_found
-    erb :'admin/edit_post'
+    erb :edit_post
   end
 
-  post '/edit-post/:id' do
-    login_required
+  post "/edit-post/:id", :auth => true do
     @post = Post.find(params[:id]) || not_found
+
     if @post.update_attributes(params["post"])
-      flash[:notice] = 'Post successfully updated!'
-      return redirect "/post/#{@post.slug}/"
+      flash[:notice] = "Post successfully updated!"
+      return redirect to "/post/#{@post.slug}"
     end
-    flash.now[:alert] = 'Ooops, your post cannot be updated. Sorry.'
-    erb :'admin/edit_post'
+
+    flash.now[:alert] = "Ooops, your post cannot be updated. Sorry."
+    erb :edit_post
   end
 
-  get '/delete-post/:id' do
-    login_required
+  get "/delete-post/:id", :auth => true do
     @post = Post.find(params[:id]) || not_found
-    erb :'admin/delete_post'
+    erb :delete_post
   end
 
-  post '/delete-post/:id' do
-    login_required
+  post "/delete-post/:id", :auth => true do
     @post = Post.find(params[:id]) || not_found
     @post.delete
-    flash[:notice] = 'Post successfully deleted!'
-    redirect '/admin'
+
+    flash[:notice] = "Post successfully deleted!"
+    redirect to "/admin"
   end
 
-  post '/markdown-preview' do
-    login_required
+  post "/markdown-preview", :auth => true do
     print_markdown(params[:text])
   end
 end
