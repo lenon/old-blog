@@ -3,7 +3,7 @@
   <tbody>
     <% Post.all.each do |post| %>
     <tr>
-      <td><a href="/post/<%= post.slug %>/"><%= h post.title %></a></td>
+      <td><a href="http://<%= post.domain %>/post/<%= post.slug %>"><%= h post.title %></a></td>
       <td class="action"><a href="/admin/edit-post/<%= post.id %>">edit</a></td>
       <td class="action"><a href="/admin/delete-post/<%= post.id %>">delete</a></td>
     </tr>
