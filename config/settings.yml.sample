@@ -1,11 +1,13 @@
 defaults: &defaults
   cookie_key: blogsession
-  cookie_domain: .lenonmarcel.com.br
+  cookie_domain: .blogurl.com
   cookie_secret: please-change-me
-  default_domain: lenonmarcel.com.br
+
+  default_domain: blogurl.com
   domains:
-    - lenonmarcel.com.br
-    - math.lenonmarcel.com.br
+    "blogurl.com":
+      title: My Awesome Blog
+      description: My Blog
 
 development:
   <<: *defaults

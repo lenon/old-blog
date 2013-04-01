@@ -9,8 +9,8 @@
 <div class="input">
   <label for="post-domain">Domain</label>
   <select id="post-domain" name="post[domain]">
-    <% Settings.domains.each do |d| %>
-      <option value="<%= h d %>" <%= "selected" if @post.domain == d %>><%= h d %></option>
+    <% Settings.domains.each do |k, v| %>
+      <option value="<%= h k %>" <%= "selected" if @post.domain == k %>><%= h k %></option>
     <% end %>
   </select>
 </div>
