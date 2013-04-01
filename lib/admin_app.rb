@@ -7,7 +7,7 @@ class AdminApp < App
     condition do
       unless current_user
         flash[:notice] = "You must be logged in to access this area"
-        redirect to "/admin/login"
+        redirect to "/login"
       end
     end
   end
@@ -19,7 +19,7 @@ class AdminApp < App
   post "/login" do
     if user = Admin.authenticate(params[:login], params[:password])
       session[:admin_id] = user.id
-      return redirect to "/admin"
+      return redirect to "/"
     end
 
     flash.now[:alert] = "Wrong login or password"
@@ -30,7 +30,7 @@ class AdminApp < App
     session[:admin_id] = nil
     flash[:notice] = "You're now disconnected"
 
-    redirect to "/admin/login"
+    redirect to "/login"
   end
 
   get "/", :auth => true do
@@ -47,7 +47,7 @@ class AdminApp < App
 
     if @post.save
       flash[:notice] = "Post created successfully!"
-      return redirect to "/post/#{@post.slug}"
+      return redirect "/post/#{@post.slug}"
     end
 
     flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
@@ -64,7 +64,7 @@ class AdminApp < App
 
     if @post.update_attributes(params["post"])
       flash[:notice] = "Post successfully updated!"
-      return redirect to "/post/#{@post.slug}"
+      return redirect "/post/#{@post.slug}"
     end
 
     flash.now[:alert] = "Ooops, your post cannot be updated. Sorry."
@@ -81,7 +81,7 @@ class AdminApp < App
     @post.delete
 
     flash[:notice] = "Post successfully deleted!"
-    redirect to "/admin"
+    redirect to "/"
   end
 
   post "/markdown-preview", :auth => true do

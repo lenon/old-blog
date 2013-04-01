@@ -23,7 +23,7 @@ describe "AdminApp" do
       post "/login", :login => "admin", :password => "123456"
 
       last_response.status.should == 302
-      last_response.location.should =~ /\/admin$/
+      last_response.location.should == "http://example.org/"
     end
 
     it "should not authenticate user when username and password are not valid" do
@@ -43,7 +43,7 @@ describe "AdminApp" do
       send(http_verb, path)
 
       last_response.status.should == 302
-      last_response.location.should =~ /\/login$/
+      last_response.location.should == "http://example.org/login"
     end
   end
 
@@ -102,7 +102,7 @@ describe "AdminApp" do
       post "/new-post", { :post => params }, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}/
+      last_response.location.should == "http://example.org/post/#{blog_post.slug}"
     end
   end
 
@@ -150,7 +150,7 @@ describe "AdminApp" do
       post "/edit-post/#{blog_post.id}", { :post => params }, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/post\/#{Regexp.escape blog_post.slug}/
+      last_response.location.should == "http://example.org/post/#{blog_post.slug}"
     end
   end
 
@@ -177,7 +177,7 @@ describe "AdminApp" do
       post "/delete-post/#{blog_post.id}", {}, session
 
       last_response.should be_redirect
-      last_response.location.should =~ /\/admin$/
+      last_response.location.should == "http://example.org/"
 
       Post.find(blog_post.id.to_s).should be_nil
     end
