@@ -3,7 +3,10 @@ class App < Sinatra::Base
 
   helpers Helpers
 
-  use Rack::Session::Cookie, :secret => Settings.cookie_secret unless test?
+  use Rack::Session::Cookie,
+      :key    => Settings.cookie_key,
+      :secret => Settings.cookie_secret,
+      :domain => Settings.cookie_domain unless test?
 
   register Sinatra::Flash
 end
