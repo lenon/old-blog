@@ -46,7 +46,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.10.0)
-    redcarpet (1.17.2)
+    redcarpet (2.2.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -87,7 +87,7 @@ DEPENDENCIES
   r18n-core (= 1.1.4)
   rack (= 1.5.2)
   rack-test
-  redcarpet (= 1.17.2)
+  redcarpet (= 2.2.2)
   rspec
   sass (= 3.2.7)
   settingslogic (= 2.0.9)

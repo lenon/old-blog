@@ -16,6 +16,7 @@ module Helpers
   end
 
   def print_markdown(txt)
-    Redcarpet.new(txt).to_html
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
+    @markdown.render(txt)
   end
 end
