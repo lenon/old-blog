@@ -19,4 +19,18 @@ module Helpers
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
     @markdown.render(txt)
   end
+
+  def site_title
+    domain_settings["title"]
+  end
+
+  def site_description
+    domain_settings["description"]
+  end
+
+  private
+
+  def domain_settings
+    Settings.domains[current_domain] || {}
+  end
 end
