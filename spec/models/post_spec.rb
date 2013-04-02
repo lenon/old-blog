@@ -44,7 +44,7 @@ describe Post do
   end
 
   specify "by default domain must be Setting.default_domain" do
-    Post.new.domain.should be == "foo.com"
+    Post.new.domain.should be == "example.com"
   end
 
   it "validates inclusion of domain in Setting.domains" do
@@ -58,7 +58,7 @@ describe Post do
     post = Post.new({
       :title => "risos",
       :content => "Foobarbaz",
-      :domain => "bar.com"
+      :domain => "example.com"
     })
 
     expect { post.save! }.to_not raise_error

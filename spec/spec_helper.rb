@@ -14,15 +14,14 @@ end
 
 $LOAD_PATH.unshift File.expand_path('../..', __FILE__)
 
+ENV["SETTINGS_FILE"] = "spec/settings.yml"
+
 require 'rspec'
 require 'rack/test'
 require 'factory_girl'
 require 'lib/boot'
 
 FactoryGirl.find_definitions
-
-Settings[:default_domain] = "foo.com"
-Settings[:domains] = %w(foo.com bar.com foobar.com)
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods

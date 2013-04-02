@@ -1,0 +1,14 @@
+test:
+  cookie_key   : "blogsession"
+  cookie_domain: ".example.com"
+  cookie_secret: "secret key"
+
+  default_domain: "example.com"
+  domains:
+    "example.com":
+      title      : "My Blog"
+      description: "My Blog Description"
+    "other.example.com":
+      title      : "My Other Blog"
+      description: "My Other Blog Description"
+
