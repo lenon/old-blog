@@ -1,67 +1,57 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8"/>
-  <title><%= h @title || 'Blog' %> | Lenon Marcel</title>
+  <meta name="viewport" content="width=device-width" />
   <meta property="fb:app_id" content="152943078134721"/>
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" href="/stylesheets/blog.css"/>
-  <!--[if lt IE 9]>
-  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <% if current_user %>
-  <script src="/javascripts/admin.js"></script>
-  <% else %>
-  <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10589745-6"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+
+  <title><%= h @title || 'Blog' %> | Lenon Marcel</title>
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/normalize.css" />
+  <link rel="stylesheet" href="/stylesheets/foundation.min.css" />
+  <link rel="stylesheet" href="/stylesheets/blog.css" />
+
+  <script src="/javascripts/modernizr.js"></script>
+
+  <% if !current_user %>
+    <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10589745-6"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
   <% end %>
 </head>
 <body>
-<div id="container">
-  <header id="header">
-    <h1 id="site-title"><a href="/"><%= site_title %></a></h1>
-    <h2 id="site-description"><%= site_description %></h2>
-    <nav id="menu">
-      <ul>
-        <li><a href="/">home</a></li>
-        <li><a href="https://github.com/lenon">github</a></li>
-        <li><a href="https://twitter.com/lenonm">twitter</a></li>
-        <li><a href="https://facebook.com/lenon">facebook</a></li>
-        <li><a href="https://www.linkedin.com/in/lenonmarcel">linkedin</a></li>
-      </ul>
-      <% if current_user %>
-      <ul class="admin-menu">
-        <li><a href="/admin">dashboard</a></li>
-        <li><a href="/admin/new-post">new post</a></li>
-        <li><a href="/admin/logout">logout</a></li>
-      </ul>
-      <% end %>
-    </nav><!-- #menu -->
-  </header><!-- #header -->
-  <div id="main">
-    <div id="page">
-      <% if flash[:alert] %>
-        <div class="alert-message"><%= flash[:alert] %></div>
-      <% end %>
-      <% if flash[:notice] %>
-        <div class="alert-message"><%= flash[:notice] %></div>
-      <% end %>
+  <div id="container" class="row">
+    <header id="header" class="large-3 columns">
+      <h1 id="site-title">
+        <a href="/"><%= site_title %></a>
+      </h1>
+      <%= erb :menu %>
+    </header>
 
-      <%= yield %>
-    </div><!-- #page -->
-    <footer id="footer">
-      <p>
-        &copy; <%= Time.now.year %> Lenon Marcel<br/>
-        O código-fonte deste blog está disponível no <a href="https://github.com/lenon/blog">github</a>.
-        Movido a <a href="http://www.mongodb.org">MongoDB</a> e
-        <a href="http://www.sinatrarb.com">Sinatra</a>.<br/>
-        Todo o conteúdo deste blog está sob uma licença
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative Commons</a>.
-      </p>
-    </footer><!-- #footer -->
-  </div><!-- #main -->
-</div><!-- #container -->
-<% if current_user %>
-<script>document_loaded();</script>
-<% end %>
+    <div id="main" class="large-9 columns">
+      <div id="page">
+        <% if flash[:alert] %>
+          <div class="alert-box"><%= flash[:alert] %></div>
+        <% end %>
+
+        <% if flash[:notice] %>
+          <div class="alert-box success"><%= flash[:notice] %></div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+
+      <footer id="footer">
+        <p>
+          &copy; <%= Time.now.year %> Lenon Marcel<br/>
+          O código-fonte deste blog está disponível no <a href="https://github.com/lenon/blog">github</a>.
+          Movido a <a href="http://www.mongodb.org">MongoDB</a> e
+          <a href="http://www.sinatrarb.com">Sinatra</a>.<br/>
+          Todo o conteúdo deste blog está sob uma licença
+          <a href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative Commons</a>.
+        </p>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>

@@ -9,6 +9,6 @@
   <div class="post-content text">
     <%= print_markdown(@post.content) %>
   </div><!-- .post-content -->
-
-  <%= erb :disqus, :locals => { :identifier => @post.id } %>
 </div><!-- #post-<%= @post.id %>.post -->
+
+<%= erb :disqus, :locals => { :identifier => @post.id } %>

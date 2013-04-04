@@ -1,10 +1,10 @@
 <% @posts.each do |post| %>
-<div id="post-<%= post.id %>" class="post">
+<div id="post-<%= post.id %>" class="post home">
   <div class="post-meta">
     <%= l post.created_at, :full %>
-  </div><!-- .post-meta -->
+  </div>
   <h2 class="post-title">
     <a href="<%= url "/post/#{post.slug}" %>"><%= h post.title %></a>
   </h2>
-</div><!-- #post-<%= post.id %>.post -->
+</div>
 <% end %>
