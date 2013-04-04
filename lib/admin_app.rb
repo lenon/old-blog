@@ -1,6 +1,10 @@
 class AdminApp < App
   def erb(file)
-    super :"admin/#{file}"
+    if File.exists?("lib/views/admin/#{file}.erb")
+      super :"admin/#{file}"
+    else
+      super
+    end
   end
 
   def self.auth(*)
