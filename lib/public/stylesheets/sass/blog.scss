@@ -2,7 +2,7 @@ body {
   background: #f5f5f5;
   font-family: "Open Sans", sans-serif;
   color: #332F3E;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -90,13 +90,17 @@ p a {
 }
 
 #main {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 22px;
+  }
+
   .post {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
   }
 
   .post-title {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   .post-meta {
