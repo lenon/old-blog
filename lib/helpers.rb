@@ -28,9 +28,22 @@ module Helpers
     domain_settings["description"]
   end
 
+  def asset(src)
+    return src unless ENV["RACK_ENV"] == "production"
+    "http://#{Settings.assets_domain}/#{release_name}#{src}"
+  end
+
   private
 
   def domain_settings
     Settings.domains[current_domain] || {}
+  end
+
+  def release_name
+    @release_name ||= File.exists?(release_file_name) && File.read(release_file_name).strip
+  end
+
+  def release_file_name
+    File.expand_path("RELEASE_NAME")
   end
 end

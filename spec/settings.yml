@@ -2,7 +2,7 @@ test:
   cookie_key   : "blogsession"
   cookie_domain: ".example.com"
   cookie_secret: "secret key"
-
+  assets_domain: "assets.example.com"
   default_domain: "example.com"
   domains:
     "example.com":

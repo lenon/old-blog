@@ -65,4 +65,25 @@ describe Helpers do
       end
     end
   end
+
+  describe "#asset" do
+    context "RACK_ENV is production" do
+      let(:release_file) { File.expand_path("RELEASE_NAME") }
+
+      it "returns Setting.assets_domain + RELEASE_NAME + source path" do
+        File.should_receive(:exists?).with(release_file).and_return(true)
+        File.should_receive(:read).with(release_file).and_return("RELEASE-TIMESTAMP\n")
+        ENV.stub(:[] => "production")
+
+        subject.asset("/foo/bar.css").should be == "http://assets.example.com/RELEASE-TIMESTAMP/foo/bar.css"
+      end
+    end
+
+    context "RACK_ENV is not production" do
+      it "returns source path" do
+        ENV.stub(:[] => "test")
+        subject.asset("/foo/bar.css").should be == "/foo/bar.css"
+      end
+    end
+  end
 end
