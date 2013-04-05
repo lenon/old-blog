@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width" />
-  <meta property="fb:app_id" content="152943078134721"/>
 
   <title><%= h @title || 'Blog' %> | Lenon Marcel</title>
 
@@ -20,26 +19,27 @@
   <% end %>
 </head>
 <body>
-  <div id="container" class="row">
-    <header id="header" class="large-3 columns">
+  <div id="container">
+    <header id="header" class="large-2 columns">
       <h1 id="site-title">
         <a href="/"><%= site_title %></a>
       </h1>
+      <h2 id="site-description">
+        <%= site_description %>
+      </h2>
       <%= erb :menu %>
     </header>
 
-    <div id="main" class="large-9 columns">
-      <div id="page">
-        <% if flash[:alert] %>
-          <div class="alert-box"><%= flash[:alert] %></div>
-        <% end %>
+    <div id="main">
+      <% if flash[:alert] %>
+        <div class="alert-box"><%= flash[:alert] %></div>
+      <% end %>
 
-        <% if flash[:notice] %>
-          <div class="alert-box success"><%= flash[:notice] %></div>
-        <% end %>
+      <% if flash[:notice] %>
+        <div class="alert-box success"><%= flash[:notice] %></div>
+      <% end %>
 
-        <%= yield %>
-      </div>
+      <%= yield %>
 
       <footer id="footer">
         <p>

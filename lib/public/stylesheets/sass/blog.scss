@@ -1,116 +1,99 @@
+$normal_color : #332F3E;
+$border_color : #ccc;
+$font_family : "Open Sans", sans-serif;
+
 body {
   background: #f5f5f5;
-  font-family: "Open Sans", sans-serif;
-  color: #332F3E;
-  font-size: 18px;
+  font-family: $font_family;
+  color: $normal_color;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
+  font-family: $font_family;
+  font-weight: 500;
+  color: $normal_color;
 }
 
 a { color: rgb(43, 113, 203); }
 a:hover { color: rgb(16, 66, 131); }
 
+/* Header */
 #header {
-  padding-left: 0;
-
-  h1 {
-    margin-bottom: 0;
-    margin-top: 20px;
-    float: right;
-    width: 180px;
-  }
-
-  h1 a {
-    display: block;
-    background: #332F3E;
-    border-radius: 10px 0 10px 10px;
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    text-align: center;
-    text-transform: lowercase;
-  }
+  padding-top: 1.25em;
+  text-align: right;
 }
 
+/* Branding */
+#site-title {
+  margin: 0;
+  font-size: 1.8em;
+  text-transform: lowercase;
+}
+
+#site-description {
+  font-size: 1em;
+  margin: 0;
+}
+
+/* Sidebar menu */
 #menu {
-  clear: both;
-  float: right;
-  text-align: right;
-  width: 180px;
+  padding-top: 0.625em;
+  font-size: 0.95em;
 
   h4 {
     display: inline-block;
-    padding: 5px;
-    font-size: 16px;
-    color: #332F3E;
-    margin-bottom: 0;
-    margin-top: 8px;
-    border-bottom: 1px dashed #ddd;
+    padding: 0.3em;
+    font-size: inherit;
+    margin: 0;
+    border-bottom: 1px dashed $border_color;
   }
 
   ul {
-    clear: both;
     list-style: none;
+    margin-bottom: 1em;
   }
 
   a {
-    border-bottom: 1px dashed #ddd;
-    color: #332F3E;
+    border-bottom: 1px dashed $border_color;
+    color: $normal_color;
     display: inline-block;
-    padding: 2px;
+    padding: 0.3em;
   }
 
   a:hover {
-    border-bottom-color: #332F3E;
+    border-bottom-color: $normal_color;
   }
 }
 
+/* Main content */
 #main {
-  border-left: 1px dashed #ddd;
-  min-height: 400px;
-}
+  border-left: 1px dashed $border_color;
+  padding-top: 1.875em;
+  padding-bottom: 1.875em;
 
-pre {
-  margin-bottom: 1.25em;
-
-  code {
-    line-height: 1.5;
-  }
-}
-
-code {
-  color: #332F3E;
-  font-weight: normal;
-}
-
-p a {
-  text-decoration: underline;
-}
-
-#main {
   h1, h2, h3, h4, h5, h6 {
-    font-size: 22px;
+    font-size: 1.6em;
   }
 
   .post {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    padding-bottom: 0.95em;
+    margin-bottom: 0.95em;
   }
 
   .post-title {
-    font-size: 26px;
+    font-size: 1.8em;
   }
 
   .post-meta {
     line-height: 20px;
-    font-size: 14px;
+    font-size: 0.9em;
   }
 
   .post.home {
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px dashed $border_color;
   }
 
   .home .post-title {
@@ -128,11 +111,92 @@ p a {
   }
 }
 
-#page {
-  padding-top: 20px;
-  padding-bottom: 30px;
+/* Little refinements */
+pre {
+  margin-bottom: 1.25em;
+
+  code {
+    line-height: 1.5;
+  }
 }
 
+code {
+  color: $normal_color;
+  font-weight: normal;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+/* Footer */
 #footer {
-  font-size: 13px;
+  font-size: 0.8em;
+}
+
+/* Layout */
+#header {
+  padding-left: 0;
+  width: 12.5em;
+  float: left;
+}
+
+#main {
+  margin-left: 13.4em;
+  padding-left: 0.9em;
+  padding-right: 1.2em;
+}
+
+#container {
+  max-width: 68.75em;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  #header {
+    font-size: 0.8em;
+    position: relative;
+    float: none;
+    background: $normal_color;
+    width: auto;
+    text-align: left;
+    padding: 1em;
+    color: white;
+
+    h1, h2, h4, a { color: white; }
+  }
+
+  #main {
+    margin-left: 0;
+    border-left: 0;
+  }
+
+  #menu {
+    font-size: 1.3em;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+
+    a, h4 {
+      display: block;
+      padding: 0.6em 0;
+      border: 0;
+    }
+
+    ul {
+      margin: 0;
+    }
+  }
+
+  #menu:target {
+    display: block !important;
+  }
+
+  .toggle-menu {
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    font-size: 1.5em;
+    margin-top: -0.5em;
+  }
 }

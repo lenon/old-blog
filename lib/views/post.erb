@@ -1,7 +1,7 @@
 <div id="post-<%= @post.id %>" class="post">
   <div class="post-meta">
     <%= l @post.created_at, :full %>
-    <%= erb :social, :locals => { :identifier => @post.slug } %>
+    <%#= erb :social, :locals => { :identifier => @post.slug } %>
   </div><!-- .post-meta -->
   <h2 class="post-title">
     <a href="<%= url "/post/#{@post.slug}" %>"><%= h @post.title %></a>
