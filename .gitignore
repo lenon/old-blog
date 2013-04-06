@@ -8,5 +8,3 @@ config/*.yml
 config/*.conf
 .vagrant
 Vagrantfile
-!/lib/public/stylesheets/foundation.min.css
-!/lib/public/stylesheets/normalize.css
