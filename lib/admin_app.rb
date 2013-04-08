@@ -59,12 +59,12 @@ class AdminApp < App
   end
 
   get "/edit-post/:id", :auth => true do
-    @post = Post.find(params[:id]) || not_found
+    find_post
     erb :edit_post
   end
 
   post "/edit-post/:id", :auth => true do
-    @post = Post.find(params[:id]) || not_found
+    find_post
 
     if @post.update_attributes(params["post"])
       flash[:notice] = "Post successfully updated!"
@@ -76,12 +76,12 @@ class AdminApp < App
   end
 
   get "/delete-post/:id", :auth => true do
-    @post = Post.find(params[:id]) || not_found
+    find_post
     erb :delete_post
   end
 
   post "/delete-post/:id", :auth => true do
-    @post = Post.find(params[:id]) || not_found
+    find_post
     @post.delete
 
     flash[:notice] = "Post successfully deleted!"
@@ -90,5 +90,11 @@ class AdminApp < App
 
   post "/markdown-preview", :auth => true do
     print_markdown(params[:text])
+  end
+
+  private
+
+  def find_post
+    @post = Post.find(params[:id]) || not_found
   end
 end
