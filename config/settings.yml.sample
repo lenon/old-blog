@@ -1,24 +1,22 @@
 defaults: &defaults
-  cookie_key    : "blogsession"
-  cookie_domain : ""
-  cookie_secret : "PLEASE CHANGE ME"
-  default_domain: "localhost:3000"
-  assets_domain : "localhost:3000"
-  domains:
-    "localhost:3000":
-      title      : "My Blog"
-      description: "My Blog Description"
+  cookie_key   : "blogsession"
+  cookie_domain: ~
+  cookie_secret: "secret key"
+  assets_domain: ~
+  blogs:
+    - domain: ~
+      title: "my blog"
+      description: "blog description"
 
 development:
   <<: *defaults
 
 production:
-  cookie_key    : "blogsession"
-  cookie_domain : ".example.com"
-  cookie_secret : "PLEASE CHANGE ME"
-  default_domain: "example.com"
-  assets_domain : "assets.example.com"
-  domains:
-    "example.com":
-      title      : "My Blog"
-      description: "My Blog Description"
+  cookie_key   : "blogsession"
+  cookie_domain: ".example.com"
+  cookie_secret: "secret key"
+  assets_domain: "assets.example.com"
+  blogs:
+    - domain: "example.com"
+      title: "my blog"
+      description: "blog description"

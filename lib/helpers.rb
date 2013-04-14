@@ -10,9 +10,20 @@ module Helpers
     Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
-  def current_domain
-    domain = request.env["HTTP_HOST"]
-    Settings.domains.include?(domain) ? domain : Settings.default_domain
+  def blog_settings
+    BlogSettings.new(request.env["HTTP_HOST"])
+  end
+
+  def blog_title
+    blog_settings.title
+  end
+
+  def blog_description
+    blog_settings.description
+  end
+
+  def blog_domain
+    blog_settings.domain
   end
 
   def print_markdown(txt)
@@ -20,24 +31,12 @@ module Helpers
     @markdown.render(txt)
   end
 
-  def site_title
-    domain_settings["title"]
-  end
-
-  def site_description
-    domain_settings["description"]
-  end
-
-  def asset(src)
+  def asset_url(src)
     return src unless ENV["RACK_ENV"] == "production"
     "http://#{Settings.assets_domain}/#{release_name}#{src}"
   end
 
   private
-
-  def domain_settings
-    Settings.domains[current_domain] || {}
-  end
 
   def release_name
     @release_name ||= File.exists?(release_file_name) && File.read(release_file_name).strip

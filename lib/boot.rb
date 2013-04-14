@@ -13,6 +13,7 @@ Mongoid.allow_dynamic_fields  = false
 R18n.set 'pt-BR'
 
 require 'lib/settings'
+require 'lib/blog_settings'
 require 'lib/helpers'
 require 'lib/models/admin'
 require 'lib/models/post'

@@ -5,10 +5,9 @@ class Post
 
   field :title
   field :content
-  field :domain, :default => lambda { |*| Settings.default_domain }
+  field :domain
   slug :title, :index => true, :permanent => true
 
   validates_presence_of :title
   validates_presence_of :content
-  validates_inclusion_of :domain, :in => lambda { |*| Settings.domains }
 end

@@ -13,6 +13,6 @@ class BlogApp < App
   private
 
   def posts_scope
-    Post.where(:domain => current_domain)
+    Post.where(:domain => blog_domain)
   end
 end

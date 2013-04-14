@@ -43,17 +43,6 @@ describe Post do
     first.slug.should_not == second.slug
   end
 
-  specify "by default domain must be Setting.default_domain" do
-    Post.new.domain.should be == "example.com"
-  end
-
-  it "validates inclusion of domain in Setting.domains" do
-    post = Post.new(:domain => "foobar")
-
-    post.should_not be_valid
-    post.errors[:domain].should include "is not included in the list"
-  end
-
   it "saves a Post with valid domain" do
     post = Post.new({
       :title => "risos",

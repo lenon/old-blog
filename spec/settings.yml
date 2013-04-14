@@ -3,12 +3,10 @@ test:
   cookie_domain: ".example.com"
   cookie_secret: "secret key"
   assets_domain: "assets.example.com"
-  default_domain: "example.com"
-  domains:
-    "example.com":
-      title      : "My Blog"
-      description: "My Blog Description"
-    "other.example.com":
-      title      : "My Other Blog"
-      description: "My Other Blog Description"
-
+  blogs:
+    - domain: ~
+      title: "my blog"
+      description: "blog description"
+    - domain: "other.example.com"
+      title: "my other blog"
+      description: "other blog description"
