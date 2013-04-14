@@ -7,6 +7,10 @@ test:
     - domain: ~
       title: "my blog"
       description: "blog description"
+      home_title: "my blog home page"
+      post_title: "%s | my blog"
     - domain: "other.example.com"
       title: "my other blog"
       description: "other blog description"
+      home_title: "my other blog home page"
+      post_title: "%s | my other blog"

@@ -15,6 +15,14 @@ class BlogSettings
     settings["domain"]
   end
 
+  def home_title
+    settings["home_title"]
+  end
+
+  def post_title
+    settings["post_title"]
+  end
+
   private
 
   def settings

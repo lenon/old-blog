@@ -26,6 +26,11 @@ module Helpers
     blog_settings.domain
   end
 
+  def page_title
+    return blog_settings.home_title unless @title.present?
+    blog_settings.post_title % @title
+  end
+
   def print_markdown(txt)
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
     @markdown.render(txt)

@@ -7,6 +7,8 @@ defaults: &defaults
     - domain: ~
       title: "my blog"
       description: "blog description"
+      home_title: "my blog home page"
+      post_title: "%s | my blog"
 
 development:
   <<: *defaults
@@ -20,3 +22,5 @@ production:
     - domain: "example.com"
       title: "my blog"
       description: "blog description"
+      home_title: "my blog home page"
+      post_title: "%s | my blog"

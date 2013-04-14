@@ -52,4 +52,32 @@ describe BlogSettings do
       end
     end
   end
+
+  describe "#home_title" do
+    context "host is unknown" do
+      it "returns default home_title" do
+        subject.new("bla.example.com").home_title.should be == "my blog home page"
+      end
+    end
+
+    context "host is described on settings.yml" do
+      it "returns a described home_title" do
+        subject.new("other.example.com").home_title.should be == "my other blog home page"
+      end
+    end
+  end
+
+  describe "#post_title" do
+    context "host is unknown" do
+      it "returns default post_title" do
+        subject.new("bla.example.com").post_title.should be == "%s | my blog"
+      end
+    end
+
+    context "host is described on settings.yml" do
+      it "returns a described post_title" do
+        subject.new("other.example.com").post_title.should be == "%s | my other blog"
+      end
+    end
+  end
 end

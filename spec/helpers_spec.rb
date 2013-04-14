@@ -71,4 +71,21 @@ describe Helpers do
       end
     end
   end
+
+  describe "#page_title" do
+    context "@title instance variable is not set" do
+      it "retuns default page title" do
+        subject.stub_chain(:blog_settings, :home_title).and_return("home page")
+        subject.page_title.should be == "home page"
+      end
+    end
+
+    context "@title instance variable is set" do
+      it "retuns page title" do
+        subject.stub_chain(:blog_settings, :post_title).and_return("blog post %s")
+        subject.instance_variable_set(:@title, "foo bar baz")
+        subject.page_title.should be == "blog post foo bar baz"
+      end
+    end
+  end
 end
