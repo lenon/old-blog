@@ -37,11 +37,15 @@ module Helpers
   end
 
   def asset_url(src)
-    return src unless ENV["RACK_ENV"] == "production"
+    return src unless production? && Settings.assets_domain.present?
     "http://#{Settings.assets_domain}/#{release_name}#{src}"
   end
 
   private
+
+  def production?
+    ENV["RACK_ENV"] == "production"
+  end
 
   def release_name
     @release_name ||= File.exists?(release_file_name) && File.read(release_file_name).strip
