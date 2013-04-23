@@ -13,7 +13,9 @@ export RACK_ENV="production"
 if [ -r $UNICORN_PID ] && kill -0 `cat $UNICORN_PID` ; then
   if kill -s USR2 `cat $UNICORN_PID` ; then
     sleep 4
-    kill -s QUIT `cat $OLD_UNICORN_PID` > /dev/null 2>&1
+    if [ -r $OLD_UNICORN_PID ] ; then
+      kill -s QUIT `cat $OLD_UNICORN_PID` > /dev/null 2>&1
+    fi
     exit 0
   fi
   rm $UNICORN_PID
