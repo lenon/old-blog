@@ -1,6 +1,6 @@
 class AdminApp < App
   def erb(file)
-    if File.exists?("lib/views/admin/#{file}.erb")
+    if File.exists?("app/views/admin/#{file}.erb")
       super :"admin/#{file}"
     else
       super

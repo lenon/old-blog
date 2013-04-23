@@ -26,10 +26,10 @@ end
 
 namespace :sass do
   task :precompile, :roles => :app, :except => { :no_release => true } do
-    run "cd #{latest_release} && bundle exec sass --trace -t compressed --update lib/public/stylesheets/sass:lib/public/stylesheets"
-    run "rm #{latest_release}/lib/public/stylesheets/sass/*.scss"
+    run "cd #{latest_release} && bundle exec sass --trace -t compressed --update app/assets/stylesheets/sass:app/assets/stylesheets"
+    run "rm #{latest_release}/app/assets/stylesheets/sass/*.scss"
 
-    source = "#{latest_release}/lib/public/"
+    source = "#{latest_release}/app/assets/"
     destination = "#{assets_user}@#{assets_host}:/srv/public/blog/#{release_name}/"
 
     run "rsync -az -e ssh \"#{source}\" \"#{destination}\""

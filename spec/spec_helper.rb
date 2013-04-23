@@ -19,7 +19,7 @@ ENV["SETTINGS_FILE"] = "spec/settings.yml"
 require 'rspec'
 require 'rack/test'
 require 'factory_girl'
-require 'lib/boot'
+require 'config/boot'
 
 FactoryGirl.find_definitions
 
