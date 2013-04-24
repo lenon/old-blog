@@ -1,4 +1,4 @@
-class BlogApp < App
+class BlogController < ApplicationController
   get "/" do
     @posts = posts_scope.desc(:created_at)
     erb :index

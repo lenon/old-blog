@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe "BlogApp" do
-  def app; BlogApp; end
+describe BlogController do
+  def app; BlogController; end
 
   let!(:first_post) { create :post }
   let!(:second_post) { create :post }

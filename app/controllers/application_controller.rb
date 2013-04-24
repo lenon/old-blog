@@ -1,4 +1,4 @@
-class App < Sinatra::Base
+class ApplicationController < Sinatra::Base
   not_found { erb :not_found }
 
   helpers Helpers
@@ -7,6 +7,8 @@ class App < Sinatra::Base
       :key    => Settings.cookie_key,
       :secret => Settings.cookie_secret,
       :domain => Settings.cookie_domain unless test?
+
+  set :views, "app/views"
 
   register Sinatra::Flash
 end

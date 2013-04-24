@@ -1,4 +1,4 @@
-class AdminApp < App
+class AdminController < ApplicationController
   def erb(file)
     if File.exists?("app/views/admin/#{file}.erb")
       super :"admin/#{file}"

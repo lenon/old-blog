@@ -5,5 +5,5 @@ $LOAD_PATH.unshift File.expand_path('..', __FILE__)
 
 require "app/boot"
 
-map("/") { run BlogApp }
-map("/admin") { run AdminApp }
+map("/") { run BlogController }
+map("/admin") { run AdminController }

@@ -12,11 +12,11 @@ Mongoid.allow_dynamic_fields  = false
 
 R18n.set "pt-BR"
 
-require "app/models/settings"
 require "app/blog_settings"
 require "app/helpers"
 require "app/models/admin"
 require "app/models/post"
-require "app/app"
-require "app/blog"
-require "app/admin"
+require "app/models/settings"
+require "app/controllers/application_controller"
+require "app/controllers/blog_controller"
+require "app/controllers/admin_controller"

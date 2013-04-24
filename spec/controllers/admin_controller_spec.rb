@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe "AdminApp" do
-  def app; AdminApp; end
+describe AdminController do
+  def app; AdminController; end
 
   let(:admin) { create :admin }
   let(:blog_post) { create :post }
