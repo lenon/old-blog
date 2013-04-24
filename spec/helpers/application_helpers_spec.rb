@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Helpers do
+describe ApplicationHelpers do
   subject do
-    Class.new { include Helpers }.new
+    Class.new { include ApplicationHelpers }.new
   end
 
   describe "#blog_settings" do

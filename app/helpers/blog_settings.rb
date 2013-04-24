@@ -3,25 +3,11 @@ class BlogSettings
     @host = host
   end
 
-  def title
-    settings["title"]
-  end
-
-  def description
-    settings["description"]
-  end
-
-  def domain
-    settings["domain"]
-  end
-
-  def home_title
-    settings["home_title"]
-  end
-
-  def post_title
-    settings["post_title"]
-  end
+  def title       ; settings.title       ; end
+  def description ; settings.description ; end
+  def domain      ; settings.domain      ; end
+  def home_title  ; settings.home_title  ; end
+  def post_title  ; settings.post_title  ; end
 
   private
 

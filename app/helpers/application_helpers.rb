@@ -1,6 +1,4 @@
-require 'redcarpet'
-
-module Helpers
+module ApplicationHelpers
   include Rack::Utils
   include R18n::Helpers
 

@@ -1,7 +1,7 @@
 class ApplicationController < Sinatra::Base
   not_found { erb :not_found }
 
-  helpers Helpers
+  helpers ApplicationHelpers
 
   use Rack::Session::Cookie,
       :key    => Settings.cookie_key,
