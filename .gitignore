@@ -1,6 +1,6 @@
 .DS_Store
 .sass-cache
-/lib/public/stylesheets/*.css
+/app/assets/stylesheets/*.css
 coverage
 newrelic.yml
 /log
