@@ -124,10 +124,18 @@ a:hover { color: rgb(16, 66, 131); }
 
 /* Little refinements */
 pre {
+  $text_color: invert($normal_color);
+
+  background: $normal_color;
   margin-bottom: 1.25em;
+  color: $text_color;
+  padding: 1em;
+  overflow: auto;
 
   code {
     line-height: 1.5;
+    color: $text_color;
+    white-space: pre;
   }
 }
 
