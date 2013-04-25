@@ -6,6 +6,7 @@ describe BlogController do
   let!(:first_post) { create :post }
   let!(:second_post) { create :post }
   let!(:third_post) { create :post, :domain => "other.example.com" }
+  let!(:unpublished) { create :post, :published => false }
 
   describe "GET /" do
     context "HTTP_HOST is empty" do
@@ -16,6 +17,7 @@ describe BlogController do
         last_response.body.should include first_post.title
         last_response.body.should include second_post.title
         last_response.body.should_not include third_post.title
+        last_response.body.should_not include unpublished.title
       end
     end
 
@@ -27,6 +29,7 @@ describe BlogController do
         last_response.body.should_not include first_post.title
         last_response.body.should_not include second_post.title
         last_response.body.should include third_post.title
+        last_response.body.should_not include unpublished.title
       end
     end
   end

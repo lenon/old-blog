@@ -1,6 +1,6 @@
 class BlogController < ApplicationController
   get "/" do
-    @posts = posts_scope.desc(:created_at)
+    @posts = posts_scope.where(:published => true).desc(:created_at)
     erb :index
   end
 

@@ -5,6 +5,7 @@ describe Post do
   it { should respond_to :content }
   it { should respond_to :slug }
   it { should respond_to :domain }
+  it { should respond_to :published }
 
   it "should not be saved" do
     Post.new.save.should be_false
@@ -51,5 +52,14 @@ describe Post do
     })
 
     expect { post.save! }.to_not raise_error
+  end
+
+  it "saves an unpublished Post" do
+    post = Post.new({
+      :title => "teste",
+      :content => "foobarbaz",
+      :domain => "example.com",
+      :published => false
+    })
   end
 end

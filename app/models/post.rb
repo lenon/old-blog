@@ -7,6 +7,7 @@ class Post
   field :content
   field :domain
   slug :title, :index => true, :permanent => true
+  field :published, :type => Boolean, :default => true
 
   validates_presence_of :title
   validates_presence_of :content
