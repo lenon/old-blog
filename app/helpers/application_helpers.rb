@@ -30,7 +30,7 @@ module ApplicationHelpers
   end
 
   def print_markdown(txt)
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true, :fenced_code_blocks => true)
     @markdown.render(txt)
   end
 
