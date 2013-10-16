@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
       :secret => Settings.cookie_secret,
       :domain => Settings.cookie_domain unless test?
 
+  set :public_folder, "public"
   set :views, "app/views"
 
   register Sinatra::Flash
