@@ -8,3 +8,5 @@ config/*.yml
 config/*.conf
 .vagrant
 Vagrantfile
+public/*
+!.gitkeep
