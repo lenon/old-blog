@@ -34,9 +34,14 @@ module ApplicationHelpers
     @markdown.render(txt)
   end
 
-  def asset_url(src)
-    return src unless production? && Settings.assets_domain.present?
-    "http://#{Settings.assets_domain}/#{release_name}#{src}"
+  def asset_url(path)
+    asset = Assets.find_asset(path)
+
+    if asset
+      "#{assets_domain_url}/assets/#{asset.digest_path}"
+    else
+      raise "Missing asset: #{path}"
+    end
   end
 
   private
@@ -45,11 +50,11 @@ module ApplicationHelpers
     ENV["RACK_ENV"] == "production"
   end
 
-  def release_name
-    @release_name ||= File.exists?(release_file_name) && File.read(release_file_name).strip
-  end
-
-  def release_file_name
-    File.expand_path("RELEASE_NAME")
+  def assets_domain_url
+    if production? && Settings.assets_domain.present?
+      "http://#{Settings.assets_domain}"
+    else
+      ""
+    end
   end
 end

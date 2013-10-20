@@ -61,35 +61,44 @@ describe ApplicationHelpers do
   end
 
   describe "#asset_url" do
-    let(:asset_url) { subject.asset_url("/foo/bar.css") }
+    subject { super().asset_url("bar.css") }
 
-    context "RACK_ENV is production" do
-      before do
-        stub_release_file("RELEASE-TIMESTAMP")
-        stub_env("production")
-      end
-
-      it "returns Setting.assets_domain + RELEASE NAME + given path" do
-        expect(asset_url).to be == "http://assets.example.com/RELEASE-TIMESTAMP/foo/bar.css"
-      end
+    before do
+      Assets.stub(:find_asset).and_return(double(:digest_path => "bar-MYLONGHASH.css"))
     end
 
-    context "RACK_ENV is production and Settings.assets_domain is empty" do
-      before do
+    context "production" do
+
+      before { stub_env(:production) }
+
+      it "returns asset url using assets domain" do
+        Settings.stub(:assets_domain => "assets.example.com")
+        expect(subject).to eql("http://assets.example.com/assets/bar-MYLONGHASH.css")
+      end
+
+      it "returns only asset path when assets domain is empty" do
         Settings.stub(:assets_domain => nil)
-        stub_env("production")
-      end
-
-      it "returns given path" do
-        expect(asset_url).to be == "/foo/bar.css"
+        expect(subject).to eql("/assets/bar-MYLONGHASH.css")
       end
     end
 
-    context "RACK_ENV isn't production" do
-      before { stub_env("development") }
+    context "development" do
 
-      it "returns given path" do
-        expect(asset_url).to be == "/foo/bar.css"
+      it "returns only asset path" do
+        expect(subject).to eql("/assets/bar-MYLONGHASH.css")
+      end
+    end
+
+    context "missing asset" do
+
+      before do
+        Assets.stub(:find_asset).and_return(nil)
+      end
+
+      it "raises an error" do
+        expect {
+          subject
+        }.to raise_error("Missing asset: bar.css")
       end
     end
   end
@@ -125,13 +134,7 @@ describe ApplicationHelpers do
     subject.stub_chain(:blog_settings, setting).and_return(value)
   end
 
-  def stub_release_file(value)
-    fname = File.expand_path("RELEASE_NAME")
-    File.stub(:exists?).with(fname).and_return(true)
-    File.stub(:read).with(fname).and_return(value)
-  end
-
   def stub_env(env)
-    ENV.stub(:[]).with("RACK_ENV").and_return(env)
+    ENV.stub(:[]).with("RACK_ENV").and_return(env.to_s)
   end
 end
