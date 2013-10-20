@@ -7,3 +7,5 @@ require "app/boot"
 
 map("/") { run BlogController }
 map("/admin") { run AdminController }
+map("/assets") { run Assets }
+
