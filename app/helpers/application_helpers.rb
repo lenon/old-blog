@@ -35,10 +35,10 @@ module ApplicationHelpers
   end
 
   def asset_url(path)
-    asset = Assets.find_asset(path)
+    asset = production? ? AssetsManifest.assets[path] : Assets.find_asset(path).try(:digest_path)
 
     if asset
-      "#{assets_domain_url}/assets/#{asset.digest_path}"
+      "#{assets_domain_url}/assets/#{asset}"
     else
       raise "Missing asset: #{path}"
     end

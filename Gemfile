@@ -4,7 +4,6 @@ gem "rake"
 gem "rack", "1.5.2"
 gem "sinatra", "1.4.2"
 gem "sinatra-flash", "0.3.0"
-gem "sass", "3.2.7"
 gem "mongoid", "3.1.2"
 gem "mongoid_slug", "3.0.0"
 gem "redcarpet", "2.2.2"
@@ -14,7 +13,13 @@ gem "newrelic_rpm", "3.6.0.78"
 gem "settingslogic", "2.0.9"
 gem "sprockets", "2.10.0"
 
-group :development do
+group :assets do
+  gem "uglifier", "~> 2.2.1"  
+  gem "therubyracer"
+  gem "sass", "3.2.7"
+end
+
+group :deployment do
   gem "capistrano", "2.14.2"
 end
 

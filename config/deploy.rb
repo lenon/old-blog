@@ -2,7 +2,8 @@ require "bundler/capistrano"
 
 set :application, "Blog"
 set :scm, :git
-set :repository, "git@github.com:lenon/blog.git"
+# set :repository, "git@github.com:lenon/blog.git"
+set :repository, "file:///Users/lenon/dev/blog"
 set :deploy_to, "/home/blog/app"
 set :deploy_via, :copy
 set :copy_exclude, [".git/", ".gitignore", "README.md", "config/", "spec/", "Capfile", ".rspec"]
@@ -31,7 +32,7 @@ namespace :sass do
     destination = "#{assets_user}@#{assets_host}:/srv/public/assets/"
 
     run "rsync -az -e ssh \"#{source}\" \"#{destination}\""
-    run "rm #{release_path}/public/assets/*.*"
+    # run "rm #{release_path}/public/assets/*.*"
   end
 end
 

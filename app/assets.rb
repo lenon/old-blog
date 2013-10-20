@@ -17,3 +17,7 @@ Assets.context_class.class_eval do
   end
 end
 
+if ENV["RACK_ENV"] == "production"
+  AssetsManifest = Sprockets::Manifest.new("public/assets/manifest.json")
+end
+
