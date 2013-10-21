@@ -61,15 +61,17 @@ describe ApplicationHelpers do
   end
 
   describe "#asset_url" do
-    subject { super().asset_url("bar.css") }
 
-    before do
-      Assets.stub(:find_asset).and_return(double(:digest_path => "bar-MYLONGHASH.css"))
-    end
+    subject { super().asset_url("bar.css") }
 
     context "production" do
 
-      before { stub_env(:production) }
+      before do
+        stub_env(:production)
+
+        Assets::Manifest.any_instance
+          .stub(:assets).and_return({"bar.css" => "bar-MYLONGHASH.css"})
+      end
 
       it "returns asset url using assets domain" do
         Settings.stub(:assets_domain => "assets.example.com")
@@ -84,16 +86,17 @@ describe ApplicationHelpers do
 
     context "development" do
 
+      before do
+        Assets::Environment.any_instance
+          .stub(:find_asset).and_return(double(:digest_path => "bar-MYLONGHASH.css"))
+      end
+
       it "returns only asset path" do
         expect(subject).to eql("/assets/bar-MYLONGHASH.css")
       end
     end
 
     context "missing asset" do
-
-      before do
-        Assets.stub(:find_asset).and_return(nil)
-      end
 
       it "raises an error" do
         expect {

@@ -35,7 +35,11 @@ module ApplicationHelpers
   end
 
   def asset_url(path)
-    asset = production? ? AssetsManifest.assets[path] : Assets.find_asset(path).try(:digest_path)
+    asset = if production?
+              Assets::Manifest.instance.assets[path] # from compiled manifest
+            else
+              Assets::Environment.instance.find_asset(path).try(:digest_path)
+            end
 
     if asset
       "#{assets_domain_url}/assets/#{asset}"

@@ -2,8 +2,7 @@ require "bundler/capistrano"
 
 set :application, "Blog"
 set :scm, :git
-# set :repository, "git@github.com:lenon/blog.git"
-set :repository, "file:///Users/lenon/dev/blog"
+set :repository, "git@github.com:lenon/blog.git"
 set :deploy_to, "/home/blog/app"
 set :deploy_via, :copy
 set :copy_exclude, [".git/", ".gitignore", "README.md", "config/", "spec/", "Capfile", ".rspec"]
