@@ -7,5 +7,8 @@ require "app/boot"
 
 map("/") { run BlogController }
 map("/admin") { run AdminController }
-map("/assets") { run Assets }
+
+unless ENV["RACK_ENV"] == "production"
+  map("/assets") { run Assets::Environment.instance }
+end
 

@@ -6,6 +6,7 @@ require "sinatra/base"
 require "sinatra/flash"
 require "newrelic_rpm"
 require "redcarpet"
+require "sprockets"
 
 Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
@@ -13,7 +14,10 @@ Mongoid.allow_dynamic_fields  = false
 
 R18n.set "pt-BR"
 
-require "app/assets"
+require "lib/assets/helpers"
+require "lib/assets/environment"
+require "lib/assets/manifest"
+
 require "app/helpers/blog_settings"
 require "app/helpers/application_helpers"
 require "app/models/admin"
