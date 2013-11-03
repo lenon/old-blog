@@ -5,28 +5,19 @@ module ApplicationHelpers
   alias_method :h, :escape_html
 
   def current_user
-    Admin.find(session[:admin_id]) if session[:admin_id]
+    (session[:admin_id] && Admin.find(session[:admin_id])) || false
   end
 
-  def blog_settings
-    BlogSettings.new(request.env["HTTP_HOST"])
-  end
-
-  def blog_title
-    blog_settings.title
-  end
-
-  def blog_description
-    blog_settings.description
-  end
-
-  def blog_domain
-    blog_settings.domain
-  end
+  def blog_title ;       cached_settings.title ; end
+  def blog_description ; cached_settings.description ; end
+  def blog_domain ;      cached_settings.domain ; end
 
   def page_title
-    return blog_settings.home_title unless @title.present?
-    blog_settings.post_title % @title
+    if @title.present?
+      cached_settings.post_title % @title
+    else
+      cached_settings.home_title
+    end
   end
 
   def print_markdown(txt)
@@ -34,31 +25,46 @@ module ApplicationHelpers
     @markdown.render(txt)
   end
 
-  def asset_url(path)
+  def asset_url(file)
     asset = if production?
-              Assets::Manifest.instance.assets[path] # from compiled manifest
+              compute_production_url(file)
             else
-              Assets::Environment.instance.find_asset(path).try(:digest_path)
+              compute_development_url(file)
             end
 
     if asset
-      "#{assets_domain_url}/assets/#{asset}"
+      "#{assets_domain}/assets/#{asset}"
     else
-      raise "Missing asset: #{path}"
+      raise "Missing asset: #{file}"
     end
   end
 
   private
 
+  def cached_settings
+    host = request.env["HTTP_HOST"]
+    host = nil if host == "localhost"
+    BlogSettings.from_cache(host)
+  end
+
   def production?
     ENV["RACK_ENV"] == "production"
   end
 
-  def assets_domain_url
-    if production? && Settings.assets_domain.present?
+  def compute_production_url(file)
+    Assets::Manifest.instance.assets[file] # from compiled manifest
+  end
+
+  def compute_development_url(file)
+    Assets::Environment.instance.find_asset(file).try(:digest_path)
+  end
+
+  def assets_domain
+    if production?
       "http://#{Settings.assets_domain}"
     else
       ""
     end
   end
 end
+

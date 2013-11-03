@@ -1,43 +1,38 @@
 require "spec_helper"
 
 describe ApplicationHelpers do
+
   subject do
     Class.new { include ApplicationHelpers }.new
   end
 
-  describe "#blog_settings" do
-    let(:settings) { subject.blog_settings }
+  before do
+    subject.stub(:request => double(:env => {}))
+  end
 
-    context "request's HTTP_HOST is empty" do
-      before { stub_http_host("") }
+  describe "#current_user" do
+    context "there is an admin logged in" do
+      let(:admin) { create(:admin) }
 
-      it "returns default blog settings" do
-        expect(settings).to be_kind_of BlogSettings
-        expect(settings.domain).to be_nil
+      it "returns this admin" do
+        subject.stub(:session => { :admin_id => admin.id })
+        expect(subject.current_user).to eql(admin)
       end
     end
 
-    context "request's HTTP_HOST isn't described on settings.yml" do
-      before { stub_http_host("missing.example.com") }
-
-      it "returns default blog settings" do
-        expect(settings).to be_kind_of BlogSettings
-        expect(settings.domain).to be_nil
+    context "there is not and admin logged in" do
+      before do
+        subject.stub(:session => { :admin_id => nil })
       end
-    end
 
-    context "request's HTTP_HOST is described on settings.yml" do
-      before { stub_http_host("other.example.com") }
-
-      it "returns settings for the given host" do
-        expect(settings).to be_kind_of BlogSettings
-        expect(settings.domain).to be == "other.example.com"
+      it "returns false" do
+        expect(subject.current_user).to be(false)
       end
     end
   end
 
   describe "#blog_title" do
-    before { stub_blog_setting(:title, "blog title") }
+    before { stub_blog_setting(:title => "blog title") }
 
     it "returns blog's title" do
       expect(subject.blog_title).to be == "blog title"
@@ -45,7 +40,7 @@ describe ApplicationHelpers do
   end
 
   describe "#blog_description" do
-    before { stub_blog_setting(:description, "blog description") }
+    before { stub_blog_setting(:description => "blog description") }
 
     it "returns blog's description" do
       expect(subject.blog_description).to be == "blog description"
@@ -53,91 +48,68 @@ describe ApplicationHelpers do
   end
 
   describe "#blog_domain" do
-    before { stub_blog_setting(:domain, "example.com") }
+    before { stub_blog_setting(:domain => "example.com") }
 
     it "returns blog's domain" do
       expect(subject.blog_domain).to be == "example.com"
     end
   end
 
-  describe "#asset_url" do
-
-    subject { super().asset_url("bar.css") }
-
-    context "production" do
-
-      before do
-        stub_env(:production)
-
-        Assets::Manifest.any_instance
-          .stub(:assets).and_return({"bar.css" => "bar-MYLONGHASH.css"})
-      end
-
-      it "returns asset url using assets domain" do
-        Settings.stub(:assets_domain => "assets.example.com")
-        expect(subject).to eql("http://assets.example.com/assets/bar-MYLONGHASH.css")
-      end
-
-      it "returns only asset path when assets domain is empty" do
-        Settings.stub(:assets_domain => nil)
-        expect(subject).to eql("/assets/bar-MYLONGHASH.css")
-      end
-    end
-
-    context "development" do
-
-      before do
-        Assets::Environment.any_instance
-          .stub(:find_asset).and_return(double(:digest_path => "bar-MYLONGHASH.css"))
-      end
-
-      it "returns only asset path" do
-        expect(subject).to eql("/assets/bar-MYLONGHASH.css")
-      end
-    end
-
-    context "missing asset" do
-
-      it "raises an error" do
-        expect {
-          subject
-        }.to raise_error("Missing asset: bar.css")
-      end
-    end
-  end
-
   describe "#page_title" do
-    let(:page_title) { subject.page_title }
 
-    context "instance variable @title isn't set" do
-      before { stub_blog_setting(:home_title, "home page title") }
+    context "instance variable @title is not set" do
+      before { stub_blog_setting(:home_title => "home page title") }
 
-      it "returns blog's default page title" do
-        expect(page_title).to be == "home page title"
+      it "returns blog's default home page title" do
+        expect(subject.page_title).to eql("home page title")
       end
     end
 
     context "instance variable @title is set" do
-      before { stub_blog_setting(:post_title, "blog post %s title") }
+      before { stub_blog_setting(:post_title => "%s | blog post") }
 
       it "returns blog's post title" do
         subject.instance_variable_set(:@title, "foo bar baz")
-        expect(page_title).to be == "blog post foo bar baz title"
+        expect(subject.page_title).to be == "foo bar baz | blog post"
       end
     end
   end
 
-  def stub_http_host(host)
-    subject.stub_chain(:request, :env).and_return({
-      "HTTP_HOST" => host
-    })
+  describe "#asset_url" do
+    after { ENV["RACK_ENV"] = "test" }
+
+    context "missing asset" do
+      it "raises an error" do
+        expect {
+          subject.asset_url("risos.css")
+        }.to raise_error("Missing asset: risos.css")
+      end
+    end
+
+    context "production environment" do
+      before do
+        ENV["RACK_ENV"] = "production"
+        Assets::Manifest.any_instance.stub(:assets => { "risos.css" => "risos-mylonghash.css" })
+      end
+
+      it "returns an url with assets domain and compiled hash" do
+        expect(subject.asset_url("risos.css")).to eql("http://assets.example.com/assets/risos-mylonghash.css")
+      end
+    end
+
+    context "development environment" do
+      before do
+        ENV["RACK_ENV"] = "development"
+        Assets::Environment.any_instance.stub(:find_asset => double(:digest_path => "risos-mylonghash.css"))
+      end
+
+      it "only returns assets path with file name and hash" do
+        expect(subject.asset_url("risos.css")).to eql("/assets/risos-mylonghash.css")
+      end
+    end
   end
 
-  def stub_blog_setting(setting, value)
-    subject.stub_chain(:blog_settings, setting).and_return(value)
-  end
-
-  def stub_env(env)
-    ENV.stub(:[]).with("RACK_ENV").and_return(env.to_s)
+  def stub_blog_setting(*args)
+    BlogSettings.stub(:from_cache => double(*args))
   end
 end
