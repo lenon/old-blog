@@ -1,26 +1,41 @@
 defaults: &defaults
-  cookie_key   : "blogsession"
-  cookie_domain: ~
-  cookie_secret: "secret key"
-  assets_domain: ~
+  # These are the cookie settings used by the admin app.
+  cookie_key    : "blogsession"
+  cookie_domain : ~
+  cookie_secret : "<PLEASE CHANGE ME>"
+
+  # If you want to serve assets from another domain,
+  # change this to something like:
+  # assets_domain : cdn.myassets.com
+  assets_domain : "myblog.com"
+
+  # List of blogs
   blogs:
-    - domain: ~
-      title: "my blog"
-      description: "blog description"
-      home_title: "my blog home page"
+    # Default blog settings
+    - domain: "myblog.com"
+      title: "My Blog"
+      description: "Blog description"
+      home_title: "my blog"
       post_title: "%s | my blog"
+
+    # If you want to serve multiple blogs,
+    # you can add more settings in this array:
+    #
+    # - domain: "other.blog.com"
+    #   title: "Other Blog"
+    #   description: "other blog description"
+    #   home_title: "other blog"
+    #   post_title: "%s | other blog"
 
 development:
   <<: *defaults
+  blogs:
+    - domain: "localhost:8080"
+      title: "My Blog (development)"
+      description: "Blog description"
+      home_title: "my blog"
+      post_title: "%s | my blog (development)"
 
 production:
-  cookie_key   : "blogsession"
-  cookie_domain: ".example.com"
-  cookie_secret: "secret key"
-  assets_domain: "assets.example.com"
-  blogs:
-    - domain: "example.com"
-      title: "my blog"
-      description: "blog description"
-      home_title: "my blog home page"
-      post_title: "%s | my blog"
+  <<: *defaults
+
