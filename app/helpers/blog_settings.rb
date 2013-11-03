@@ -9,13 +9,23 @@ class BlogSettings
   def home_title  ; settings.home_title  ; end
   def post_title  ; settings.post_title  ; end
 
+  def self.from_cache(host)
+    @settings       ||= {}
+    @settings[host] ||= self.new(host)
+  end
+
   private
 
   def settings
-    @settings ||= (find_blog || Settings.blogs.first)
+    @settings ||= (find_settings || default_settings)
   end
 
-  def find_blog
-    Settings.blogs.reject { |b| b.domain != "#@host".downcase }.first
+  def find_settings
+    Settings.blogs.select { |b| b.domain == @host.to_s.downcase }.first
+  end
+
+  def default_settings
+    Settings.blogs.first # first is the default
   end
 end
+

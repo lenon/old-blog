@@ -4,11 +4,11 @@ test:
   cookie_secret: "secret key"
   assets_domain: "assets.example.com"
   blogs:
-    - domain: ~
-      title: "my blog"
-      description: "blog description"
-      home_title: "my blog home page"
-      post_title: "%s | my blog"
+    - domain: "defaultblog.com"
+      title: "default blog"
+      description: "default blog description"
+      home_title: "default blog home page"
+      post_title: "%s | default blog"
     - domain: "other.example.com"
       title: "my other blog"
       description: "other blog description"
