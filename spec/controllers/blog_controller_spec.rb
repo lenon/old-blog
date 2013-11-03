@@ -3,10 +3,10 @@ require "spec_helper"
 describe BlogController do
   def app; BlogController; end
 
-  let!(:first_post) { create :post }
-  let!(:second_post) { create :post }
+  let!(:first_post) { create :post, :domain => "defaultblog.com" }
+  let!(:second_post) { create :post, :domain => "defaultblog.com" }
   let!(:third_post) { create :post, :domain => "other.example.com" }
-  let!(:unpublished) { create :post, :published => false }
+  let!(:unpublished) { create :post, :domain => "defaultblog.com", :published => false }
 
   describe "GET /" do
     context "HTTP_HOST is empty" do
