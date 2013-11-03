@@ -14,52 +14,56 @@ describe Post do
   it "should be created" do
     Post.create!({
       :title => "Foo",
-      :content => "Bar"
+      :content => "Bar",
+      :domain => "example.com"
     }).should be_true
   end
 
   it "must have a title" do
     Post.new({
-      :content => "bla"
+      :content => "bla",
+      :domain => "example.com"
     }).should_not be_valid
   end
 
   it "must have content" do
     Post.new({
-      :title => "foo"
+      :title => "foo",
+      :domain => "example.com"
+    }).should_not be_valid
+  end
+
+  it "must have domain" do
+    Post.new({
+      :title => "foo",
+      :content => "bla"
     }).should_not be_valid
   end
 
   it "must have a unique slug" do
     first = Post.create!({
       :title => "foo",
-      :content => "bar"
+      :content => "bar",
+      :domain => "example.com"
     })
 
     second = Post.create!({
       :title => "foo",
-      :content => "bar"
+      :content => "bar",
+      :domain => "example.com"
     })
 
     first.slug.should_not == second.slug
   end
 
-  it "saves a Post with valid domain" do
-    post = Post.new({
-      :title => "risos",
-      :content => "Foobarbaz",
-      :domain => "example.com"
-    })
-
-    expect { post.save! }.to_not raise_error
-  end
-
   it "saves an unpublished Post" do
-    post = Post.new({
-      :title => "teste",
-      :content => "foobarbaz",
-      :domain => "example.com",
-      :published => false
-    })
+    expect {
+      Post.create!({
+        :title => "teste",
+        :content => "foobarbaz",
+        :domain => "example.com",
+        :published => false
+      })
+    }.to_not raise_error
   end
 end
