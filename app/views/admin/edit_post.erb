@@ -1,5 +1,10 @@
-<h1 class="page-title">Edit post</h1>
+<h1>
+  Edit post
+  <a href="/admin" class="btn btn-primary">Back to dashboard</a>
+</h1>
+<hr>
+
 <form id="post-form" action="/admin/edit-post/<%= @post.id %>" method="post">
   <%= erb :form %>
-</form><!-- #post-form -->
-<%= erb :preview %>
+</form>
+

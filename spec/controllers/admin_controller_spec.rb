@@ -11,7 +11,7 @@ describe AdminController do
       get "/login"
 
       last_response.should be_ok
-      last_response.body.should include "Username"
+      last_response.body.should include "Login"
       last_response.body.should include "Password"
     end
   end
@@ -33,7 +33,7 @@ describe AdminController do
 
       last_response.status.should == 200
       last_response.should_not be_redirect
-      last_response.body.should include "Username"
+      last_response.body.should include "Login"
       last_response.body.should include "Password"
     end
   end
@@ -163,9 +163,9 @@ describe AdminController do
       get "/delete-post/#{blog_post.id}", {}, session
 
       last_response.should be_ok
-      last_response.body.should include "Do you really want to delete"
+      last_response.body.should include "Are you sure that you want to delete"
       last_response.body.should include blog_post.title
-      last_response.body.should include "Yes, I want to delete this post"
+      last_response.body.should include "Yes, delete this post"
       last_response.body.should include "No, get me out of here!"
     end
   end

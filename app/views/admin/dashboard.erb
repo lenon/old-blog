@@ -1,13 +1,33 @@
-<h1 class="page-title">Dashboard</h1>
-<table class="zebra-striped">
-  <tbody>
-    <% Post.all.each do |post| %>
-    <tr>
-      <td><a href="http://<%= post.domain %>/post/<%= post.slug %>"><%= h post.title %></a></td>
-      <td class="action"><a href="/admin/edit-post/<%= post.id %>">edit</a></td>
-      <td class="action"><a href="/admin/delete-post/<%= post.id %>">delete</a></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<a href="/admin/new-post">New post</a>
+<h1>
+  Dashboard
+  <a href="/admin/new-post" class="btn btn-primary">New post</a>
+</h1>
+<hr>
+<%= erb :"admin/flash" %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Post.all.order_by(:created_at => :desc).each do |post| %>
+      <tr>
+        <td>
+          <a href="http://<%= post.domain %>/post/<%= post.slug %>"><%= h post.title %></a>
+        </td>
+        <td class="fit-content"><%= post.created_at %></td>
+        <td class="fit-content"><%= post.updated_at %></td>
+        <td class="fit-content">
+          <a href="/admin/edit-post/<%= post.id %>" class="btn btn-primary btn-sm">edit</a>
+          <a href="/admin/delete-post/<%= post.id %>" class="btn btn-danger btn-sm">delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

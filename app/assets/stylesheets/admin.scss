@@ -1,0 +1,18 @@
+body {
+  padding: 15px;
+}
+
+#main {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
+}
+
+td.fit-content {
+  width: 1%;
+  white-space: nowrap;
+}
+

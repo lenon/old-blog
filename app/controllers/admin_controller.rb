@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   def erb(file)
     if File.exists?("app/views/admin/#{file}.erb")
-      super :"admin/#{file}"
+      super :"admin/#{file}", :layout => :"admin/layout"
     else
       super
     end

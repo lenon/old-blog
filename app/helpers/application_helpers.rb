@@ -42,9 +42,7 @@ module ApplicationHelpers
   private
 
   def cached_settings
-    host = request.env["HTTP_HOST"]
-    host = nil if host == "localhost"
-    BlogSettings.from_cache(host)
+    BlogSettings.from_cache(request.env["HTTP_HOST"])
   end
 
   def production?

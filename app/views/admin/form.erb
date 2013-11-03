@@ -1,26 +1,35 @@
-<div class="input">
+<%= erb :"admin/flash" %>
+
+<div class="form-group">
   <label for="post-title">Title</label>
-  <input id="post-title" name="post[title]" type="text" value="<%= h @post.title %>"/>
+  <input id="post-title" class="form-control" name="post[title]" type="text" value="<%= h @post.title %>"/>
 </div>
-<div class="input">
+
+<div class="form-group">
   <label for="post-content">Content (markdown)</label>
-  <textarea id="post-content" name="post[content]"><%= h @post.content %></textarea>
+  <textarea id="post-content" class="form-control" rows="10" name="post[content]"><%= h @post.content %></textarea>
 </div>
-<div class="input">
+
+<div class="form-group">
   <label for="post-domain">Domain</label>
-  <select id="post-domain" name="post[domain]">
+  <select id="post-domain" class="form-control" name="post[domain]">
     <% Settings.blogs.each do |b| %>
-      <option value="<%= h b.domain %>" <%= "selected" if @post.domain == b.domain %>><%= h b.domain %></option>
+      <option value="<%= h b.domain %>" <%= "selected" if @post.domain == b.domain %>>
+        <%= h b.title %> <%= h b.domain %>
+      </option>
     <% end %>
   </select>
 </div>
-<div class="input">
+
+<div class="form-group">
   <label for="post-domain">State</label>
-  <select id="post-domain" name="post[published]">
+  <select id="post-domain" class="form-control" name="post[published]">
     <option value="1" <%= "selected" if @post.published %>>Published</option>
     <option value="0" <%= "selected" unless @post.published %>>Draft</option>
   </select>
 </div>
+
 <div class="submit">
-  <input value="Save" type="submit"/>
+  <input class="btn btn-success btn-lg" type="submit" value="Save post">
 </div>
+
