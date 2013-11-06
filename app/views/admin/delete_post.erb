@@ -1,18 +1,14 @@
-<h1>
-  Delete post
-</h1>
-<hr>
+<h2>Delete post</h2>
 <p>
-  Are you sure that you want to delete 
-  &#8220;<%= @post.title %>&#8221;?
-  <br>
-  This action cannot be undone.
+    Are you sure that you want to delete 
+    &#8220;<%= @post.title %>&#8221;?
+    <br>
+    This action cannot be undone.
 </p>
-
 <form id="delete-post" action="/admin/delete-post/<%= @post.id %>" method="post">
-  <div>
-    <a href="/admin" class="btn btn-success btn-lg">No, get me out of here!</a>
-    <input value="Yes, delete this post" type="submit" class="btn btn-danger">
-  </div>
+    <div>
+        <a href="/admin" class="btn btn-success btn-lg">No, get me out of here!</a>
+        <input value="Yes, delete this post" type="submit" class="btn btn-danger">
+    </div>
 </form>
 

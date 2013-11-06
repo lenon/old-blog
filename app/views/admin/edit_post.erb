@@ -1,10 +1,6 @@
-<h1>
-  Edit post
-  <a href="/admin" class="btn btn-primary">Back to dashboard</a>
-</h1>
-<hr>
+<h2>Edit post</h2>
 
 <form id="post-form" action="/admin/edit-post/<%= @post.id %>" method="post">
-  <%= erb :form %>
+    <%= partial :form %>
 </form>
 

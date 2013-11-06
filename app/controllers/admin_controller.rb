@@ -1,10 +1,16 @@
 class AdminController < ApplicationController
-  def erb(file)
+  def erb(file, options = {})
+    options = { :layout => :"admin/layout" }.merge(options)
+
     if File.exists?("app/views/admin/#{file}.erb")
-      super :"admin/#{file}", :layout => :"admin/layout"
+      super :"admin/#{file}", options
     else
       super
     end
+  end
+
+  def partial(file)
+    erb(file, :layout => false)
   end
 
   def self.auth(*)
@@ -38,6 +44,7 @@ class AdminController < ApplicationController
   end
 
   get "/", :auth => true do
+    @posts = Post.all.order_by(:created_at => :desc)
     erb :dashboard
   end
 
