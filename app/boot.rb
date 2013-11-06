@@ -17,6 +17,7 @@ R18n.set "pt-BR"
 require "lib/assets/helpers"
 require "lib/assets/environment"
 require "lib/assets/manifest"
+require "lib/markdown/processor"
 
 require "app/helpers/application_helpers"
 require "app/models/admin"
