@@ -10,3 +10,4 @@ config/*.conf
 Vagrantfile
 public/*
 !.gitkeep
+doc/
