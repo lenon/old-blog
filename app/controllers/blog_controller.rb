@@ -10,6 +10,12 @@ class BlogController < ApplicationController
     erb :post
   end
 
+  get "/rss" do
+    @posts = posts_scope.where(:published => true).desc(:created_at)
+    content_type :xml
+    erb :rss, :layout => false
+  end
+
   private
 
   def posts_scope

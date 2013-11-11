@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+    <title><%= blog_title %></title>
+    <description><%= blog_description %></description>
+    <link>http://<%= blog_domain %>/</link>
+    <% @posts.each do |post| %>
+        <item>
+            <title><%= h post.title %></title>
+            <description><%= h print_markdown(post.content) %></description>
+            <link><%= url "/post/#{post.slug}" %></link>
+            <guid isPermaLink="false"><%= post.id %></guid>
+            <pubDate><%= post.created_at.rfc2822 %></pubDate>
+        </item>
+    <% end %>
+</channel>
+</rss>
+
