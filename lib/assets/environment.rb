@@ -10,6 +10,7 @@ module Assets
       append_path "app/assets/javascripts"
       append_path "app/assets/stylesheets"
       append_path "app/assets/fonts"
+      append_path "app/assets/images"
 
       context_class.send(:include, Assets::Helpers)
     end

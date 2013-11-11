@@ -1,52 +1,55 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="pt-BR"><!--<![endif]-->
+<html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width" />
-  <title><%= h page_title %></title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <link rel="stylesheet" href="<%= asset_url("blog.css") %>"/>
-  <script type="text/javascript" src="<%= asset_url("modernizr.js") %>"></script>
+    <title><%= h page_title %></title>
+    <meta name="description" content="<%= h blog_description %>" />
 
-  <% if !current_user %>
-    <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10589745-6"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
-  <% end %>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?subset=latin,latin-ext&family=Open+Sans+Condensed:300|Merriweather:400,300,300italic,400italic,700,700italic|Roboto+Slab:400,300" />
+    <link rel="stylesheet" type="text/css" href="<%= asset_url "screen.css" %>" />
 </head>
 <body>
-  <div id="container">
-    <header id="header">
-      <h1 id="site-title">
-        <a href="/"><%= blog_title %></a>
-      </h1>
-      <h2 id="site-description">
-        <%= blog_description %>
-      </h2>
-      <%= erb :menu %>
+    <header id="site-head">
+        <a id="blog-logo" href="/"><img src="<%= asset_url "logo.jpg" %>" alt="Lenon Marcel" /></a>
+        <h1 class="blog-title"><a href="/"><%= h blog_title %></a></h1>
+
+        <nav class="social-networks">
+            <ul>
+                <li><a class="icon-github" href="https://github.com/lenon"><span class="hidden">Github</span></a></li>
+                <li><a class="icon-twitter" href="https://twitter.com/lenonm"><span class="hidden">Twitter</span></a></li>
+                <li><a class="icon-linkedin" href="https://www.linkedin.com/in/lenonmarcel"><span class="hidden">LinkedIn</span></a></li>
+                <li><a class="icon-feed" href="/rss"><span class="hidden">Feed (RSS)</span></a></li>
+            </ul>
+        </nav>
+
+        <h2 class="blog-description"><%= h blog_description %></h2>
     </header>
 
-    <div id="main">
-      <% if flash[:alert] %>
-        <div class="alert-box"><%= flash[:alert] %></div>
-      <% end %>
+    <%= yield %>
 
-      <% if flash[:notice] %>
-        <div class="alert-box success"><%= flash[:notice] %></div>
-      <% end %>
-
-      <%= yield %>
-
-      <footer id="footer">
-        <p>
-          &copy; <%= Time.now.year %> Lenon Marcel<br/>
-          O código-fonte deste blog está disponível no <a href="https://github.com/lenon/blog">github</a>.
-          Movido a <a href="http://www.mongodb.org">MongoDB</a> e
-          <a href="http://www.sinatrarb.com">Sinatra</a>.<br/>
-          Todo o conteúdo deste blog está sob uma licença
-          <a href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative Commons</a>.
-        </p>
-      </footer>
-    </div>
-  </div>
+    <footer class="site-footer">
+        <div class="inner">
+            <section class="copyright">
+                &copy; 2013 Lenon Marcel.
+            </section>
+            <section>
+                O código-fonte deste blog está disponível no
+                <a href="https://github.com/lenon/blog">github</a>.
+                Movido a <a href="http://www.mongodb.org/">MongoDB</a> e
+                <a href="http://www.sinatrarb.com/">Sinatra</a>.
+            </section>
+            <section>
+                Todo o conteúdo deste blog está sob uma licença
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative Commons</a>.
+            </section>
+        </div>
+    </footer>
 </body>
 </html>
+

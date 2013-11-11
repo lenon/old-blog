@@ -1,14 +1,42 @@
-<div id="post-<%= @post.id %>" class="post">
-  <div class="post-meta">
-    <%= l @post.created_at, :full %>
-    <%#= erb :social, :locals => { :identifier => @post.slug } %>
-  </div><!-- .post-meta -->
-  <h2 class="post-title">
-    <a href="<%= url "/post/#{@post.slug}" %>"><%= h @post.title %></a>
-  </h2>
-  <div class="post-content text">
-    <%= print_markdown(@post.content) %>
-  </div><!-- .post-content -->
-</div><!-- #post-<%= @post.id %>.post -->
+<main class="content" role="main">
+    <article class="post">
+        <header>
+            <h1 class="post-title"><%= h @post.title %></h1>
+            <div class="post-meta"><time><%= l @post.created_at, :full %></time></div>
+        </header>
 
-<%= erb :disqus, :locals => { :identifier => @post.id } %>
+        <section class="post-content">
+            <%= print_markdown(@post.content) %>
+        </section>
+
+        <section class="share">
+            <p class="info">
+                Compartilhe nas redes sociais
+            </p>
+            <a class="icon-twitter" target="_blank" href="http://twitter.com/share?text=<%= h @post.title %>&url=<%= h url "/post/#{@post.slug}" %>">
+                <span class="hidden">Twitter</span>
+            </a>
+            <a class="icon-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= h url "/post/#{@post.slug}" %>">
+                <span class="hidden">Facebook</span>
+            </a>
+            <a class="icon-google-plus" target="_blank" href="https://plus.google.com/share?url=<%= h url "/post/#{@post.slug}" %>">
+                <span class="hidden">Google+</span>
+            </a>
+        </section>
+
+        <footer class="post-footer">
+            <section class="author">
+                <img src="http://www.gravatar.com/avatar/6174015667b1e21e3693e47ad1861990" class="userimage" alt="Lenon Marcel" />
+                <p class="attr">Publicado por</p>
+                <h4>Lenon Marcel</h4>
+                <p class="bio">
+                    Desenvolvedor apaixonado e entusiasta de software livre.
+                    Escrevo código por diversão.
+                </p>
+            </section>
+        </footer>
+
+        <%= erb :disqus, :locals => { :identifier => @post.id } %>
+    </article>
+</main>
+
