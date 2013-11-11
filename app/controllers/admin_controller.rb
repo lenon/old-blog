@@ -1,17 +1,6 @@
 class AdminController < ApplicationController
-  def erb(file, options = {})
-    options = { :layout => :"admin/layout" }.merge(options)
 
-    if File.exists?("app/views/admin/#{file}.erb")
-      super :"admin/#{file}", options
-    else
-      super
-    end
-  end
-
-  def partial(file)
-    erb(file, :layout => false)
-  end
+  set :views, "app/views/admin"
 
   def self.auth(*)
     condition do
