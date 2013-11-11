@@ -13,6 +13,10 @@
 
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?subset=latin,latin-ext&family=Open+Sans+Condensed:300|Merriweather:400,300,300italic,400italic,700,700italic|Roboto+Slab:400,300" />
     <link rel="stylesheet" type="text/css" href="<%= asset_url "screen.css" %>" />
+
+    <% if !current_user %>
+        <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10589745-6"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+    <% end %>
 </head>
 <body>
     <header id="site-head">
