@@ -14,11 +14,8 @@ Mongoid.allow_dynamic_fields  = false
 
 R18n.set "pt-BR"
 
-require "lib/assets/sass_helpers"
-require "lib/assets/environment"
-require "lib/assets/manifest"
+require "lib/assets"
 require "lib/markdown/processor"
-
 require "app/helpers/application_helpers"
 require "app/models/admin"
 require "app/models/post"

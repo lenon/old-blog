@@ -49,17 +49,8 @@ module ApplicationHelpers
   # to the asset using blog's assets_domain setting. Otherwise,
   # returns the path to the given asset.
   def asset_url(file)
-    asset = if production?
-              compute_production_url(file)
-            else
-              compute_development_url(file)
-            end
-
-    unless asset
-      raise "Missing asset: #{file}"
-    end
-
-    "#{assets_domain}/assets/#{asset}"
+    path = Assets.compute_path(file)
+    "#{assets_domain}#{path}"
   end
 
   private
@@ -68,20 +59,8 @@ module ApplicationHelpers
     BlogSettings.from_cache(request.env["HTTP_HOST"])
   end
 
-  def production?
-    ENV["RACK_ENV"] == "production"
-  end
-
-  def compute_production_url(file)
-    Assets::Manifest.instance.assets[file]
-  end
-
-  def compute_development_url(file)
-    Assets::Environment.instance.find_asset(file).try(:digest_path)
-  end
-
   def assets_domain
-    if production?
+    if ENV["RACK_ENV"] == "production"
       "http://#{Settings.assets_domain}"
     end
   end
