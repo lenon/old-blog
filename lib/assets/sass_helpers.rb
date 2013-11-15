@@ -1,5 +1,5 @@
 module Assets
-  module Helpers
+  module SassHelpers
 
     def asset_path(path)
       parts = path.split(/(\?|\#)/)
