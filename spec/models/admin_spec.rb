@@ -111,7 +111,7 @@ describe Admin do
 
   describe ".random_string" do
     it "should return a string with given length" do
-      Admin.random_string(199).size.should == 199
+      Admin.random_string(200).size.should == 200
       Admin.random_string(10).size.should == 10
     end
   end

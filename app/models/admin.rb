@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Admin
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -33,6 +35,7 @@ class Admin
   end
 
   def self.random_string(length)
-    rand(36**length).to_s(36)
+    SecureRandom.hex(length / 2)
   end
 end
+
