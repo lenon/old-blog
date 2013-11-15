@@ -2,9 +2,7 @@ $:.unshift File.expand_path("..", __FILE__)
 
 require "sprockets"
 require "uglifier"
-require "lib/assets/helpers"
-require "lib/assets/environment"
-require "lib/assets/manifest"
+require "lib/assets"
 require "rake/sprocketstask"
 
 Rake::SprocketsTask.new do |t|
