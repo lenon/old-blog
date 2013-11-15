@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   def self.auth(*)
     condition do
-      unless current_user
+      unless current_admin
         flash[:notice] = "You must be logged in to access this area"
         redirect to "/login"
       end
@@ -94,3 +94,4 @@ class AdminController < ApplicationController
     @post = Post.find(params[:id]) || not_found
   end
 end
+

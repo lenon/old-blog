@@ -5,7 +5,7 @@ module ApplicationHelpers
   alias_method :h, :escape_html
 
   # Returns the current Admin or false if no admin is logged in.
-  def current_user
+  def current_admin
     if session[:admin_id]
       Admin.find(session[:admin_id])
     else

@@ -10,13 +10,13 @@ describe ApplicationHelpers do
     subject.stub(:request => double(:env => {}))
   end
 
-  describe "#current_user" do
+  describe "#current_admin" do
     context "there is an admin logged in" do
       let(:admin) { create(:admin) }
 
       it "returns this admin" do
         subject.stub(:session => { :admin_id => admin.id })
-        expect(subject.current_user).to eql(admin)
+        expect(subject.current_admin).to eql(admin)
       end
     end
 
@@ -26,7 +26,7 @@ describe ApplicationHelpers do
       end
 
       it "returns false" do
-        expect(subject.current_user).to be(false)
+        expect(subject.current_admin).to be(false)
       end
     end
   end
