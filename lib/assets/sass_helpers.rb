@@ -1,4 +1,6 @@
 module Assets
+
+  # SASS helpers used in .sass files.
   module SassHelpers
 
     def asset_path(path)
@@ -12,4 +14,3 @@ module Assets
     end
   end
 end
-

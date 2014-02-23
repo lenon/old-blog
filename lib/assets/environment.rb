@@ -3,6 +3,9 @@ require "sprockets"
 require "lib/assets/sass_helpers"
 
 module Assets
+
+  # Assets environment class, used to serve /assets in development and test
+  # environments and to compile static files for production.
   class Environment < Sprockets::Environment
     include Singleton
 
@@ -18,4 +21,3 @@ module Assets
     end
   end
 end
-
