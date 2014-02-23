@@ -6,7 +6,7 @@ module Assets
     include Singleton
 
     def initialize
-      super Assets::Environment.instance, "public/assets/manifest.json"
+      super "public/assets/manifest.json"
     end
   end
 end
