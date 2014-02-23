@@ -1,5 +1,6 @@
 source "https://rubygems.org/"
 
+gem "rake", :require => false
 gem "rack", "1.5.2"
 gem "sinatra", "1.4.2", :require => "sinatra/base"
 gem "sinatra-flash", "0.3.0", :require => "sinatra/flash"
@@ -20,10 +21,6 @@ end
 
 group :deployment do
   gem "capistrano", "2.14.2"
-end
-
-group :development, :test do
-  gem "rake"
 end
 
 group :test do
