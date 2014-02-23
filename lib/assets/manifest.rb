@@ -1,5 +1,6 @@
 require "singleton"
 require "ostruct"
+require "sprockets/manifest"
 
 module Assets
 
