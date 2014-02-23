@@ -1,4 +1,6 @@
 require "singleton"
+require "sprockets"
+require "lib/assets/sass_helpers"
 
 module Assets
   class Environment < Sprockets::Environment
