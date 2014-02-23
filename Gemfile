@@ -1,8 +1,8 @@
 source "https://rubygems.org/"
 
 gem "rack", "1.5.2"
-gem "sinatra", "1.4.2"
-gem "sinatra-flash", "0.3.0"
+gem "sinatra", "1.4.2", :require => "sinatra/base"
+gem "sinatra-flash", "0.3.0", :require => "sinatra/flash"
 gem "mongoid", "3.1.2"
 gem "mongoid_slug", "3.0.0"
 gem "redcarpet", "2.2.2"
