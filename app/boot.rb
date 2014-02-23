@@ -1,12 +1,7 @@
-require "mongoid"
-require "mongoid_slug"
-require "r18n-core"
-require "settingslogic"
-require "sinatra/base"
-require "sinatra/flash"
-require "newrelic_rpm"
-require "redcarpet"
-require "sprockets"
+require "rubygems"
+require "bundler/setup"
+
+Bundler.require(:default)
 
 Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
@@ -24,4 +19,3 @@ require "app/models/blog_settings"
 require "app/controllers/application_controller"
 require "app/controllers/blog_controller"
 require "app/controllers/admin_controller"
-
