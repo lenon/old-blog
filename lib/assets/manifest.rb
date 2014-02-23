@@ -9,7 +9,7 @@ module Assets
     include Singleton
 
     def initialize
-      super "public/assets/manifest.json"
+      super "public/assets" # look for public/assets/manifest-{hash}.json
     end
   end
 end
