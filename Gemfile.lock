@@ -42,7 +42,6 @@ GEM
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.6.0.78)
     origin (1.0.11)
-    r18n-core (1.1.4)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -97,10 +96,10 @@ PLATFORMS
 DEPENDENCIES
   capistrano (= 2.14.2)
   factory_girl
+  i18n
   mongoid (= 3.1.2)
   mongoid_slug (= 3.0.0)
   newrelic_rpm (= 3.6.0.78)
-  r18n-core (= 1.1.4)
   rack (= 1.5.2)
   rack-test
   rake

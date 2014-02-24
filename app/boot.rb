@@ -7,7 +7,8 @@ Mongoid.load!("config/mongoid.yml", ENV["RACK_ENV"])
 Mongoid.raise_not_found_error = false
 Mongoid.allow_dynamic_fields  = false
 
-R18n.set "pt-BR"
+I18n.default_locale = :"pt-BR"
+I18n.load_path += Dir["locales/*.yml"]
 
 require "lib/assets"
 require "lib/markdown/processor"

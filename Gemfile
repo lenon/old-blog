@@ -8,7 +8,7 @@ gem "mongoid", "3.1.2"
 gem "mongoid_slug", "3.0.0"
 gem "redcarpet", "2.2.2"
 gem "unicorn", "4.6.2"
-gem "r18n-core", "1.1.4"
+gem "i18n"
 gem "newrelic_rpm", "3.6.0.78"
 gem "settingslogic", "2.0.9"
 

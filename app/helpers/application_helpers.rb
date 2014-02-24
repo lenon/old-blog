@@ -1,6 +1,5 @@
 module ApplicationHelpers
   include Rack::Utils
-  include R18n::Helpers
 
   alias_method :h, :escape_html
 
