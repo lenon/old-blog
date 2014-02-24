@@ -2,7 +2,7 @@ source "https://rubygems.org/"
 
 gem "rake", :require => false
 gem "rack", "1.5.2"
-gem "sinatra", "1.4.2", :require => "sinatra/base"
+gem "sinatra", "1.4.4", :require => "sinatra/base"
 gem "sinatra-flash", "0.3.0", :require => "sinatra/flash"
 gem "mongoid", "3.1.2"
 gem "mongoid_slug", "3.0.0"
