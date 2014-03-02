@@ -3,7 +3,7 @@
 <channel>
     <title><%= blog_title %></title>
     <description><%= blog_description %></description>
-    <link>http://<%= blog_domain %>/</link>
+    <link><%= url "/" %></link>
     <% @posts.each do |post| %>
         <item>
             <title><%= h post.title %></title>
@@ -15,4 +15,3 @@
     <% end %>
 </channel>
 </rss>
-

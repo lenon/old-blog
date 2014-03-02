@@ -22,11 +22,6 @@ module ApplicationHelpers
     Settings.blog_description
   end
 
-  # Returns the domain of current blog.
-  def blog_domain
-    Settings.blog_domain
-  end
-
   # Returns the formated title for the current page.
   # If @title is set, blog's post_title setting is used. Otherwise,
   # home_title is returned.

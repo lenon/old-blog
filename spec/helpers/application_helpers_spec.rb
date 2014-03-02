@@ -43,12 +43,6 @@ describe ApplicationHelpers do
     end
   end
 
-  describe "#blog_domain" do
-    it "returns blog's domain" do
-      expect(subject.blog_domain).to be == "example.com"
-    end
-  end
-
   describe "#page_title" do
 
     context "instance variable @title is not set" do
