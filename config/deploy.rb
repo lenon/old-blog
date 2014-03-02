@@ -26,13 +26,7 @@ end
 
 namespace :sass do
   task :precompile, :roles => :app, :except => { :no_release => true } do
-    run "cd #{release_path} && bundle exec rake assets --trace"
-
-    source      = "#{release_path}/public/assets/"
-    destination = "#{assets_user}@#{assets_host}:/srv/public/assets/"
-
-    run "rsync -az -e ssh \"#{source}\" \"#{destination}\""
-    # run "rm #{release_path}/public/assets/*.*"
+    run "cd #{release_path} && bundle exec rake assets"
   end
 end
 
