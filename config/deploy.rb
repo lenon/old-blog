@@ -19,6 +19,7 @@ role :app, "blog"
 
 namespace :unicorn do
   task :restart, :roles => :app, :except => { :no_release => true } do
+    run "/home/blog/app/current/scripts/unicorn/stop"
     run "/home/blog/app/current/scripts/unicorn/start"
   end
 end
