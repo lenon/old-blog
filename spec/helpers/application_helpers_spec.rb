@@ -58,4 +58,10 @@ describe ApplicationHelpers do
       end
     end
   end
+
+  describe "#disqus_shortname" do
+    it "returns disqus shortname from settings" do
+      expect(subject.disqus_shortname).to be == "example"
+    end
+  end
 end

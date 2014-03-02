@@ -5,3 +5,4 @@ test:
   blog_description : "blog description"
   blog_home_title  : "home page title"
   blog_post_title  : "%s | blog post"
+  disqus_shortname : "example"

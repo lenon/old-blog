@@ -5,6 +5,7 @@ defaults: &defaults
   blog_description : "Blog description"
   blog_home_title  : "my blog"
   blog_post_title  : "%s | my blog"
+  disqus_shortname : "<PLEASE CHANGE ME>"
 
 development:
   <<: *defaults

@@ -42,4 +42,9 @@ module ApplicationHelpers
   def asset_url(file)
     Assets.compute_path(file)
   end
+
+  # Returns Disqus shortname from settings.
+  def disqus_shortname
+    h Settings.disqus_shortname
+  end
 end
