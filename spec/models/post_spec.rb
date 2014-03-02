@@ -4,7 +4,6 @@ describe Post do
   it { should respond_to :title }
   it { should respond_to :content }
   it { should respond_to :slug }
-  it { should respond_to :domain }
   it { should respond_to :published }
 
   it "should not be saved" do
@@ -14,43 +13,31 @@ describe Post do
   it "should be created" do
     Post.create!({
       :title => "Foo",
-      :content => "Bar",
-      :domain => "example.com"
+      :content => "Bar"
     }).should be_true
   end
 
   it "must have a title" do
     Post.new({
-      :content => "bla",
-      :domain => "example.com"
+      :content => "bla"
     }).should_not be_valid
   end
 
   it "must have content" do
     Post.new({
-      :title => "foo",
-      :domain => "example.com"
-    }).should_not be_valid
-  end
-
-  it "must have domain" do
-    Post.new({
-      :title => "foo",
-      :content => "bla"
+      :title => "foo"
     }).should_not be_valid
   end
 
   it "must have a unique slug" do
     first = Post.create!({
       :title => "foo",
-      :content => "bar",
-      :domain => "example.com"
+      :content => "bar"
     })
 
     second = Post.create!({
       :title => "foo",
-      :content => "bar",
-      :domain => "example.com"
+      :content => "bar"
     })
 
     first.slug.should_not == second.slug
@@ -61,7 +48,6 @@ describe Post do
       Post.create!({
         :title => "teste",
         :content => "foobarbaz",
-        :domain => "example.com",
         :published => false
       })
     }.to_not raise_error

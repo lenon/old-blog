@@ -14,17 +14,17 @@ module ApplicationHelpers
 
   # Returns the title (or name) of the current blog.
   def blog_title
-    cached_settings.title
+    Settings.blog_title
   end
 
   # Returns the description of current blog.
   def blog_description
-    cached_settings.description
+    Settings.blog_description
   end
 
   # Returns the domain of current blog.
   def blog_domain
-    cached_settings.domain
+    Settings.blog_domain
   end
 
   # Returns the formated title for the current page.
@@ -32,9 +32,9 @@ module ApplicationHelpers
   # home_title is returned.
   def page_title
     if @title.present?
-      cached_settings.post_title % @title
+      Settings.blog_post_title % @title
     else
-      cached_settings.home_title
+      Settings.blog_home_title
     end
   end
 
@@ -54,14 +54,9 @@ module ApplicationHelpers
 
   private
 
-  def cached_settings
-    BlogSettings.from_cache(request.env["HTTP_HOST"])
-  end
-
   def assets_domain
     if ENV["RACK_ENV"] == "production"
       "http://#{Settings.assets_domain}"
     end
   end
 end
-

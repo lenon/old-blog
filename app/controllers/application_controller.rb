@@ -5,8 +5,7 @@ class ApplicationController < Sinatra::Base
 
   use Rack::Session::Cookie,
       :key    => Settings.cookie_key,
-      :secret => Settings.cookie_secret,
-      :domain => Settings.cookie_domain unless test?
+      :secret => Settings.cookie_secret unless test?
 
   set :public_folder, "public"
   set :views, "app/views"

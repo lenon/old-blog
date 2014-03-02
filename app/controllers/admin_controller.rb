@@ -47,7 +47,7 @@ class AdminController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post created successfully!"
-      return redirect "http://#{@post.domain}/post/#{@post.slug}"
+      return redirect "/post/#{@post.slug}"
     end
 
     flash.now[:alert] = "Ooops, your post cannot be created. Sorry."
@@ -64,7 +64,7 @@ class AdminController < ApplicationController
 
     if @post.update_attributes(params["post"])
       flash[:notice] = "Post successfully updated!"
-      return redirect "http://#{@post.domain}/post/#{@post.slug}"
+      return redirect "/post/#{@post.slug}"
     end
 
     flash.now[:alert] = "Ooops, your post cannot be updated. Sorry."
@@ -94,4 +94,3 @@ class AdminController < ApplicationController
     @post = Post.find(params[:id]) || not_found
   end
 end
-

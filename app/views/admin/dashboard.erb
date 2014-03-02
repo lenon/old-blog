@@ -16,7 +16,7 @@
         <% @posts.each do |post| %>
         <tr>
             <td>
-                <a href="http://<%= post.domain %>/post/<%= post.slug %>"><%= h post.title %></a>
+                <a href="/post/<%= post.slug %>"><%= h post.title %></a>
             </td>
             <td class="fit-content"><%= post.created_at %></td>
             <td class="fit-content"><%= post.updated_at %></td>
@@ -34,4 +34,3 @@
         </tbody>
     </table>
 </div>
-
