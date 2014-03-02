@@ -1,7 +1,6 @@
 test:
   cookie_key       : "blogsession"
   cookie_secret    : "top secret key"
-  assets_domain    : "assets.example.com"
   blog_title       : "blog title"
   blog_description : "blog description"
   blog_home_title  : "home page title"

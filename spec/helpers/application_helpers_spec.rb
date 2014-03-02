@@ -58,38 +58,4 @@ describe ApplicationHelpers do
       end
     end
   end
-
-  describe "#asset_url" do
-    after { ENV["RACK_ENV"] = "test" }
-
-    context "missing asset" do
-      it "raises an error" do
-        expect {
-          subject.asset_url("risos.css")
-        }.to raise_error("Missing asset: risos.css")
-      end
-    end
-
-    context "production environment" do
-      before do
-        ENV["RACK_ENV"] = "production"
-        Assets::Manifest.any_instance.stub(:assets => { "risos.css" => "risos-mylonghash.css" })
-      end
-
-      it "returns an url with assets domain and compiled hash" do
-        expect(subject.asset_url("risos.css")).to eql("http://assets.example.com/assets/risos-mylonghash.css")
-      end
-    end
-
-    context "development environment" do
-      before do
-        ENV["RACK_ENV"] = "development"
-        Assets::Environment.any_instance.stub(:find_asset => double(:digest_path => "risos-mylonghash.css"))
-      end
-
-      it "only returns assets path with file name and hash" do
-        expect(subject.asset_url("risos.css")).to eql("/assets/risos-mylonghash.css")
-      end
-    end
-  end
 end

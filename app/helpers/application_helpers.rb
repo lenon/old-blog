@@ -39,19 +39,7 @@ module ApplicationHelpers
   end
 
   # Returns the asset url for a given file.
-  # If the current environment is production returns the complete URL
-  # to the asset using blog's assets_domain setting. Otherwise,
-  # returns the path to the given asset.
   def asset_url(file)
-    path = Assets.compute_path(file)
-    "#{assets_domain}#{path}"
-  end
-
-  private
-
-  def assets_domain
-    if ENV["RACK_ENV"] == "production"
-      "http://#{Settings.assets_domain}"
-    end
+    Assets.compute_path(file)
   end
 end
