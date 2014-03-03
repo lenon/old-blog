@@ -9,3 +9,4 @@ test:
   gravatar_email   : "mail@example.com"
   author_name      : "blog author"
   author_bio       : "author bio"
+  analytics_ua     : "UA-XXXXXXXX-X"

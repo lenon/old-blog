@@ -9,6 +9,7 @@ defaults: &defaults
   gravatar_email   : "mail@example.com"
   author_name      : "Author"
   author_bio       : "My Bio"
+  analytics_ua     : "UA-XXXXXXXX-X"
 
 development:
   <<: *defaults

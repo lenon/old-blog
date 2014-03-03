@@ -65,4 +65,9 @@ module ApplicationHelpers
   def author_bio
     h Settings.author_bio
   end
+
+  # Return the Google Analytics UA code.
+  def analytics_ua
+    h Settings.analytics_ua
+  end
 end

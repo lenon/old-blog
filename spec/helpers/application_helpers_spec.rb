@@ -82,4 +82,10 @@ describe ApplicationHelpers do
       expect(subject.author_bio).to be == "author bio"
     end
   end
+
+  describe "#analytics_ua" do
+    it "returns the google analytics UA code" do
+      expect(subject.analytics_ua).to be == "UA-XXXXXXXX-X"
+    end
+  end
 end
