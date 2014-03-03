@@ -64,4 +64,22 @@ describe ApplicationHelpers do
       expect(subject.disqus_shortname).to be == "example"
     end
   end
+
+  describe "#gravatar_url" do
+    it "returns the gravatar picture url" do
+      expect(subject.gravatar_url).to be =~ /7daf6c79d4802916d83f6266e24850af/
+    end
+  end
+
+  describe "#author_name" do
+    it "returns the author name" do
+      expect(subject.author_name).to be == "blog author"
+    end
+  end
+
+  describe "#author_bio" do
+    it "returns the author bio" do
+      expect(subject.author_bio).to be == "author bio"
+    end
+  end
 end

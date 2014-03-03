@@ -26,13 +26,10 @@
 
         <footer class="post-footer">
             <section class="author">
-                <img src="http://www.gravatar.com/avatar/6174015667b1e21e3693e47ad1861990" class="userimage" alt="Lenon Marcel" />
+                <img src="<%= gravatar_url %>" class="userimage" alt="<%= author_name %>" />
                 <p class="attr">Publicado por</p>
-                <h4>Lenon Marcel</h4>
-                <p class="bio">
-                    Desenvolvedor apaixonado e entusiasta de software livre.
-                    Escrevo código por diversão.
-                </p>
+                <h4><%= author_name %></h4>
+                <p class="bio"><%= author_bio %></p>
             </section>
         </footer>
 

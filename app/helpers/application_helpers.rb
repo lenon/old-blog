@@ -47,4 +47,22 @@ module ApplicationHelpers
   def disqus_shortname
     h Settings.disqus_shortname
   end
+
+  # Returns the full url to gravatar picture.
+  def gravatar_url
+    unless defined?(@@gravatar_md5)
+      @@gravatar_md5 = Digest::MD5.hexdigest(Settings.gravatar_email.downcase)
+    end
+    "https://secure.gravatar.com/avatar/#@@gravatar_md5"
+  end
+
+  # Returns the author name.
+  def author_name
+    h Settings.author_name
+  end
+
+  # Returns the author bio.
+  def author_bio
+    h Settings.author_bio
+  end
 end

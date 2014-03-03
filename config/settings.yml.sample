@@ -6,6 +6,9 @@ defaults: &defaults
   blog_home_title  : "my blog"
   blog_post_title  : "%s | my blog"
   disqus_shortname : "<PLEASE CHANGE ME>"
+  gravatar_email   : "mail@example.com"
+  author_name      : "Author"
+  author_bio       : "My Bio"
 
 development:
   <<: *defaults
