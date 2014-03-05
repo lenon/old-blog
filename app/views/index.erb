@@ -1,3 +1,18 @@
+<header id="site-head">
+    <a id="blog-logo" href="/"><img src="<%= asset_url "logo.jpg" %>" alt="Lenon Marcel" /></a>
+    <h1 class="blog-title"><a href="/"><%= h blog_title %></a></h1>
+    <h2 class="blog-description"><%= h blog_description %></h2>
+</header>
+
+<nav class="social-networks">
+    <ul>
+        <li><a href="https://github.com/lenon"><span class="icon-github"></span> Github</a></li>
+        <li><a href="https://twitter.com/lenonm"><span class="icon-twitter"></span> Twitter</a></li>
+        <li><a href="https://www.linkedin.com/in/lenonmarcel"><span class="icon-linkedin"></span> LinkedIn</a></li>
+        <li><a href="/rss"><span class="icon-feed"></span> Feed (RSS)</a></li>
+    </ul>
+</nav>
+
 <main class="home content" role="main">
 
     <% @posts.each do |post| %>
@@ -12,4 +27,3 @@
     <% end %>
 
 </main>
-
