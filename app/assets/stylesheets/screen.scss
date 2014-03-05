@@ -148,11 +148,10 @@ h1.blog-title {
 }
 
 h2.blog-description {
-    color: #95a5a6; 
+    color: #95a5a6;
     border-bottom: 1px solid #ecf0f1;
-    border-top: 1px solid #ecf0f1;
-    margin-bottom: 2em;
-    margin-top: 1em;
+    margin-bottom: 0;
+    margin-top: 0;
     padding: .5em 1em;
     line-height: 1.2em;
 }
@@ -317,14 +316,17 @@ footer.post-footer {
 /* === Navigation and Pagination === */
 
 nav.social-networks {
-    margin: 0 auto;
+    margin: 20px auto;
+    padding-bottom: 20px;
     text-align: center;
+    border-bottom: 1px solid #ecf0f1;
 
     ul {
         list-style: none;
         margin: 0 auto;
         padding: 0;
         width: 100%;
+        text-align: center;
     }
 
     li {
@@ -334,20 +336,6 @@ nav.social-networks {
         margin: 0;
         padding: 0;
         text-transform: uppercase;
-    }
-
-    a {
-        font-size: 1.2em;
-        opacity: .3;
-        vertical-align: middle;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    a.icon-twitter {
-        font-size: 1.3em;
     }
 }
 
@@ -430,39 +418,36 @@ a.archive-link {
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    -webkit-font-smoothing: antialiased;
     text-decoration: none;
-    padding-left: 0.5em
+    padding-left: 0.5em;
+    vertical-align: middle;
+    font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 .icon-feed:before {
     content: "\e605";
-    color: orangered;
 }
 
 .icon-twitter:before {
     content: "\e600";
-    color: #55acee;
 }
 
 .icon-google-plus:before {
     content: "\e604";
-    color: #d34836;
 }
 
 .icon-facebook:before {
     content: "\e603";
-    color: #3B5998;
 }
 
 .icon-github:before {
     content: "\e601";
-    color: black;
 }
 
 .icon-linkedin:before {
     content: "\e602";
-    color: #4875b4;
 }
 
 /* === Media Queries === */
