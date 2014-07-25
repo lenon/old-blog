@@ -23,13 +23,11 @@ module ApplicationHelpers
   end
 
   # Returns the formated title for the current page.
-  # If @title is set, blog's post_title setting is used. Otherwise,
-  # home_title is returned.
   def page_title
     if @title.present?
-      Settings.blog_post_title % @title
+      I18n.t('page_title', :page_title => @title, :blog_title => blog_title)
     else
-      Settings.blog_home_title
+      I18n.t('home_title', :blog_title => blog_title)
     end
   end
 

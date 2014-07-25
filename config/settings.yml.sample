@@ -3,8 +3,6 @@ defaults: &defaults
   cookie_secret    : "<PLEASE CHANGE ME>"
   blog_title       : "My Blog"
   blog_description : "Blog description"
-  blog_home_title  : "my blog"
-  blog_post_title  : "%s | my blog"
   disqus_shortname : "<PLEASE CHANGE ME>"
   gravatar_email   : "mail@example.com"
   author_name      : "Author"

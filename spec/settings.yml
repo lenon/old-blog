@@ -3,8 +3,6 @@ test:
   cookie_secret    : "top secret key"
   blog_title       : "blog title"
   blog_description : "blog description"
-  blog_home_title  : "home page title"
-  blog_post_title  : "%s | blog post"
   disqus_shortname : "example"
   gravatar_email   : "mail@example.com"
   author_name      : "blog author"

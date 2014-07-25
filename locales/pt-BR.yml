@@ -16,3 +16,6 @@ pt-BR:
       long: "%d de %B de %Y %H:%M"
     am: ""
     pm: ""
+
+  home_title: "%{blog_title}"
+  page_title: "%{page_title} | %{blog_title}"

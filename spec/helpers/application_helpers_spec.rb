@@ -46,15 +46,15 @@ describe ApplicationHelpers do
   describe "#page_title" do
 
     context "instance variable @title is not set" do
-      it "returns blog's default home page title" do
-        expect(subject.page_title).to eql("home page title")
+      it "returns blog's title" do
+        expect(subject.page_title).to eql("blog title")
       end
     end
 
     context "instance variable @title is set" do
-      it "returns blog's post title" do
+      it "returns blog's title and page's title" do
         subject.instance_variable_set(:@title, "foo bar baz")
-        expect(subject.page_title).to be == "foo bar baz | blog post"
+        expect(subject.page_title).to be == "foo bar baz | blog title"
       end
     end
   end
