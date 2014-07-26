@@ -17,5 +17,5 @@ pt-BR:
     am: ""
     pm: ""
 
-  home_title: "%{blog_title}"
-  page_title: "%{page_title} | %{blog_title}"
+  home_title: "Blog de %{blog_title}"
+  page_title: "%{page_title} | Blog de %{blog_title}"
